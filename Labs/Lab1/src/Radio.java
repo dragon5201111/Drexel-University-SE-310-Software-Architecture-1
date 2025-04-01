@@ -1,34 +1,35 @@
 public class Radio {
-    private final String DEFAULT_AMPLITUDE = "AM";
-    private final int DEFAULT_STATION = 1060;
-    private final int DEFAULT_VOLUME = 0;
+    boolean radioIsOn;
+    float volume;
+    private Station currentStation;
 
-    private int station;
-    private String amplitude;
-    private int volume;
-
-    public Radio(){
-        this.station = DEFAULT_STATION;
-        this.amplitude = DEFAULT_AMPLITUDE;
-        this.volume = DEFAULT_VOLUME;
+    public Radio(Station currentStation, float volume) {
+        this.currentStation = currentStation;
+        this.volume = volume;
+        this.radioIsOn = true;
     }
 
-    public Radio(String amplitude, int station, int volume) {
-        this.station = station;
-        this.amplitude = amplitude;
+    public Station getCurrentStation() {
+        return currentStation;
+    }
+
+    public void setCurrentStation(Station currentStation) {
+        this.currentStation = currentStation;
+    }
+
+    public float getVolume() {
+        return volume;
+    }
+
+    public void setVolume(float volume) {
         this.volume = volume;
     }
 
-    public void setStation(int station) {
-        this.station = station;
+    public void turnRadioOn() {
+        this.radioIsOn = true;
     }
 
-    public void setAmplitude(String amplitude) {
-        this.amplitude = amplitude;
+    public void turnRadioOff() {
+        this.radioIsOn = false;
     }
-
-    public void setVolume(int volume) {
-        this.volume = volume;
-    }
-
 }

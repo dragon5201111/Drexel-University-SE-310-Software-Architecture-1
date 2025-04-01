@@ -1,7 +1,7 @@
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
-public class Time {
+public class Time{
     private static final String PM = "PM";
     private static final String AM = "AM";
 
@@ -21,15 +21,20 @@ public class Time {
         this.time = LocalTime.of(hour, minutes, seconds);
     }
 
-    public String getFormattedTime(){
-        return this.time.format(DateTimeFormatter.ofPattern("h:mm a"));
+    public void addSecond(){
+        this.time = this.time.plusSeconds(1);
     }
 
-    public void incrementByMinutes(int minutes){
+    public void addMinutes(int minutes){
         this.time = this.time.plusMinutes(minutes);
     }
 
-    public void incrementBySecond(){
-        this.time = this.time.plusSeconds(1);
+    public String getFormattedTime(){
+        return this.time.format(DateTimeFormatter.ofPattern("h:mm:ss a"));
     }
+
+    public boolean equals(Time other){
+        return this.getFormattedTime().equals(other.getFormattedTime());
+    }
+
 }

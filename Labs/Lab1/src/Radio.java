@@ -1,4 +1,4 @@
-public class Radio extends PoweredDevice{
+public class Radio {
     private final String DEFAULT_AMPLITUDE = "AM";
     private final int DEFAULT_STATION = 1060;
     private final int DEFAULT_VOLUME = 0;

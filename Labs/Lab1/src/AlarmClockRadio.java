@@ -1,0 +1,4 @@
+class AlarmClockRadio {
+    public AlarmClockRadio() {
+    }
+}

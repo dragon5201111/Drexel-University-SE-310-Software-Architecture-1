@@ -7,12 +7,14 @@ public class AlarmClock extends Clock{
     private final int SNOOZE_TIME = 9;
 
     protected Time alarmTime;
+    protected Time fixedTime;
     protected boolean isAlarmOn;
 
 
     public AlarmClock(int hour, int minutes, int seconds, String amPm, int alarmHour, int alarmMinutes, String alarmAmPm) {
         super(hour, minutes, seconds, amPm);
         this.alarmTime = new Time(alarmHour, alarmMinutes, alarmAmPm);
+        this.fixedTime = new Time(alarmHour, alarmMinutes, alarmAmPm);
         this.isAlarmOn = true;
     }
 

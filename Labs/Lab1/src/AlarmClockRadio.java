@@ -30,7 +30,7 @@ public class AlarmClockRadio {
     }
 
     public Time getAlarmTime(){
-        return this.alarmClock.alarmTime;
+        return this.alarmClock.fixedTime;
     }
 
     public void turnAlarmOn(){
@@ -38,10 +38,12 @@ public class AlarmClockRadio {
     }
 
     public void turnAlarmOff(){
+        this.radio.turnRadioOff();
         this.alarmClock.turnAlarmOff();
     }
 
     public void snooze(){
+        this.radio.turnRadioOff();
         this.alarmClock.snooze();
     }
 
@@ -58,7 +60,8 @@ public class AlarmClockRadio {
             return;
         }
 
-        if(this.getCurrentTime().equals(this.getAlarmTime())){
+        if(this.getCurrentTime().equals(this.alarmClock.alarmTime)){
+            this.radio.turnRadioOn();
             System.out.println("The radio is playing " + this.getRadioStation());
         }
     }

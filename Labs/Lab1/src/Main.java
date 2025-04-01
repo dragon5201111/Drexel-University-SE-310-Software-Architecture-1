@@ -7,11 +7,9 @@ public class Main {
         AlarmClock alarmClock = new AlarmClock(8, 0, 0, "AM", 8, 5, "AM");
 
         AlarmClockRadio alarmClockRadio = new AlarmClockRadio(radio, alarmClock);
-        System.out.println("Initial Time: " + alarmClockRadio.getCurrentTime().getFormattedTime());
-        System.out.println("The radio was turned on and is playing " + alarmClockRadio.getRadioStation());
         for (i = 0; i < 6; i++)
         {
-            System.out.println("Time: " + alarmClockRadio.showTime());
+            System.out.println(alarmClockRadio.showTime());
 
             for ( seconds = 0; seconds < 60; seconds++)
             {
@@ -24,7 +22,7 @@ public class Main {
 
         for (i = 0; i < 9; i++)
         {
-            System.out.println("Time: " + alarmClockRadio.showTime());
+            System.out.println(alarmClockRadio.showTime());
             for ( seconds = 0; seconds < 60; seconds++)
             {
                 alarmClockRadio.checkAlarm();
@@ -32,5 +30,6 @@ public class Main {
             }
         }
         alarmClockRadio.turnAlarmOff();
+        System.out.println("The alarm time is " + alarmClockRadio.getAlarmTime().getFormattedTime());
     }
 }

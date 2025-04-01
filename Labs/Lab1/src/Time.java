@@ -3,6 +3,8 @@ import java.time.format.DateTimeFormatter;
 
 public class Time {
     private static final String PM = "PM";
+    private static final String AM = "AM";
+
     private LocalTime time;
 
     public Time(int hour, int minutes, String amPm) {
@@ -10,15 +12,21 @@ public class Time {
     }
 
     public Time(int hour, int minutes, int seconds, String amPm) {
-        if(amPm.equals(PM)) {
+        if (amPm.equals(PM) && hour != 12) {
             hour += 12;
+        }else if(amPm.equals(AM) && hour == 12) {
+            hour = 0;
         }
 
         this.time = LocalTime.of(hour, minutes, seconds);
     }
 
-    public String getTime(){
+    public String getFormattedTime(){
         return this.time.format(DateTimeFormatter.ofPattern("h:mm a"));
+    }
+
+    public void incrementByMinutes(int minutes){
+        this.time = this.time.plusMinutes(minutes);
     }
 
     public void incrementBySecond(){

@@ -1,16 +1,16 @@
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
+public class Clock{
+    private Time time;
 
-public abstract class Clock{
-    private LocalTime time;
-    private DateTimeFormatter timeFormatter;
-
-    public Clock(int hour, int minute, int second) {
-        this.time = LocalTime.of(hour, minute, second);
-        this.timeFormatter = DateTimeFormatter.ofPattern("h:mm:ss a");
+    public Clock(int hour, int minutes, int seconds, String amPm) {
+        this.time = new Time(hour, minutes, seconds, amPm);
     }
 
+    public void showTime(){
+        System.out.println(this.time.getTime());
+    }
+
+
     public void tick(){
-        this.time = this.time.plusSeconds(1);
+        this.time.incrementBySecond();
     }
 }

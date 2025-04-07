@@ -31,9 +31,12 @@ import maze.ui.MazeViewer;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * 
@@ -74,13 +77,107 @@ public class SimpleMazeGame
 
 	public static Maze loadMaze(final String path)
 	{
-		return new Maze();
+		Maze newMaze = new Maze();
+
+		try {
+			File mazeFile = new File(path);
+
+			Map<Integer, Room> rooms = new HashMap<>();
+			Map<String, Door> doors = new HashMap<>();
+
+			List<String> lines = Files.readAllLines(mazeFile.toPath());
+			List<String[]> tokenizedLines = lines
+					.stream()
+					.map(line -> line.strip().replaceAll("\\s++", " ").split(" "))
+					.collect(Collectors.toList());
+
+			// Add rooms first
+			for(String[] lineTokens : tokenizedLines){
+				String objectName = lineTokens[0];
+
+				if(objectName.equalsIgnoreCase("room")){
+					int roomNumber = Integer.parseInt(lineTokens[1]);
+					Room newRoom = new Room(roomNumber);
+
+					rooms.put(roomNumber, newRoom);
+
+					newMaze.addRoom(newRoom);
+				}
+			}
+
+			// Add doors next
+			for(String[] lineTokens : tokenizedLines){
+				String objectName = lineTokens[0];
+
+				if(objectName.equalsIgnoreCase("door")){
+					String doorIdentifier = lineTokens[1];
+					int roomOneNumber = Integer.parseInt(lineTokens[2]);
+					int roomTwoNumber = Integer.parseInt(lineTokens[3]);
+
+
+					boolean isOpen = lineTokens[4].equalsIgnoreCase("open");
+
+					Room roomOne = rooms.get(roomOneNumber);
+					Room roomTwo = rooms.get(roomTwoNumber);
+
+					Door door = new Door(roomOne, roomTwo);
+					door.setOpen(isOpen);
+
+					doors.put(doorIdentifier, door);
+				}
+			}
+
+			// Now can add sides to rooms now that all doors have been identified & stored
+			for(String[] lineTokens : tokenizedLines){
+				String objectName = lineTokens[0];
+
+				if(objectName.equalsIgnoreCase("room")){
+					int roomNumber = Integer.parseInt(lineTokens[1]);
+					Room room = rooms.get(roomNumber);
+
+					for(int i = 0; i < 4; i++){
+						Direction direction = Direction.values()[i];
+
+						String objectIdentifier = lineTokens[2+i];
+
+						if(objectIdentifier.equalsIgnoreCase("wall")){
+							room.setSide(direction, new Wall());
+
+						}else if(objectIdentifier.startsWith("d")){
+							Door door = doors.get(objectIdentifier);
+							room.setSide(direction, door);
+
+						}else{
+							int doorNumber = Integer.parseInt(objectIdentifier);
+							room.setSide(direction, rooms.get(doorNumber));
+						}
+
+					}
+				}
+			}
+
+			newMaze.setCurrentRoom(rooms.get(0));
+
+		} catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        return newMaze;
 	}
 
 	public static void main(String[] args)
 	{
-		Maze maze = createMaze();
-	    MazeViewer viewer = new MazeViewer(maze);
+		Maze maze;
+
+		String largeMazePath = "large.maze";
+		File largeMazeFile = new File(largeMazePath);
+		if(largeMazeFile.exists()){
+			maze = loadMaze(largeMazePath);
+		}else{
+			maze = createMaze();
+		}
+
+		MazeViewer viewer = new MazeViewer(maze);
 	    viewer.run();
 	}
 }

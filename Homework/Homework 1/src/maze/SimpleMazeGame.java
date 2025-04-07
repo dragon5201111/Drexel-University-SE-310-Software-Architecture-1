@@ -28,13 +28,8 @@
 package maze;
 
 import maze.ui.MazeViewer;
-
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -113,7 +108,6 @@ public class SimpleMazeGame
 					String doorIdentifier = lineTokens[1];
 					int roomOneNumber = Integer.parseInt(lineTokens[2]);
 					int roomTwoNumber = Integer.parseInt(lineTokens[3]);
-
 
 					boolean isOpen = lineTokens[4].equalsIgnoreCase("open");
 

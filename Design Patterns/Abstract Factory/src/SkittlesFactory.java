@@ -1,4 +1,4 @@
-public class SkittlesCandyFactory implements AbstractCandyFactory{
+public class SkittlesFactory implements AbstractCandyFactory{
     @Override
     public Candy createCandy() {
         return new Skittles();

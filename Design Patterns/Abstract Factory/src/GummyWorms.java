@@ -1,5 +1,5 @@
 public class GummyWorms extends Candy{
     public GummyWorms() {
-        super("Gummy Worms", 5);
+        super(CandyName.GUMMY_WORMS, CandySweetness.FIVE);
     }
 }

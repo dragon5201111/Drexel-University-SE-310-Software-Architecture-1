@@ -1,4 +1,4 @@
-public class GummyWormsCandyFactory implements AbstractCandyFactory {
+public class GummyWormsFactory implements AbstractCandyFactory {
 
     @Override
     public Candy createCandy() {

@@ -1,0 +1,3 @@
+room 0 wall 1 wall wall
+room 1 d1 wall wall wall
+door d1 0 1 open

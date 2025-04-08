@@ -80,8 +80,9 @@ public class SimpleMazeGame
 			Map<Integer, Room> rooms = new HashMap<>();
 			Map<String, Door> doors = new HashMap<>();
 
-			List<String> lines = Files.readAllLines(mazeFile.toPath());
-			List<String[]> tokenizedLines = lines
+			List<String> fileLines = Files.readAllLines(mazeFile.toPath());
+			// Create tokens for easier parsing
+			List<String[]> tokenizedLines = fileLines
 					.stream()
 					.map(line -> line.strip().replaceAll("\\s++", " ").split(" "))
 					.collect(Collectors.toList());
@@ -121,7 +122,7 @@ public class SimpleMazeGame
 				}
 			}
 
-			// Now can add sides to rooms now that all doors have been identified & stored
+			// We now can add sides to rooms now that all doors have been identified & stored in map
 			for(String[] lineTokens : tokenizedLines){
 				String objectName = lineTokens[0];
 
@@ -134,22 +135,23 @@ public class SimpleMazeGame
 
 						String objectIdentifier = lineTokens[2+i];
 
+						MapSite site;
 						if(objectIdentifier.equalsIgnoreCase("wall")){
-							room.setSide(direction, new Wall());
-
+							site = new Wall();
 						}else if(objectIdentifier.startsWith("d")){
-							Door door = doors.get(objectIdentifier);
-							room.setSide(direction, door);
-
+							site = doors.get(objectIdentifier);
 						}else{
+							// Is a room or invalid objectIdentifier
 							int doorNumber = Integer.parseInt(objectIdentifier);
-							room.setSide(direction, rooms.get(doorNumber));
+							site = rooms.get(doorNumber);
 						}
 
+						room.setSide(direction, site);
 					}
 				}
 			}
 
+			// Set current room to the first room in list
 			newMaze.setCurrentRoom(rooms.get(0));
 
 		} catch (Exception e) {

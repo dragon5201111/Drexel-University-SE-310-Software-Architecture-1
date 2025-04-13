@@ -1,2 +1,2 @@
-public class ShortAnswer {
+public class ShortAnswer extends Essay{
 }

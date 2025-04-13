@@ -1,4 +1,4 @@
-import java.io.Serializable;
+public abstract class Question {
+    abstract public void display();
 
-public abstract class Question implements Serializable {
 }

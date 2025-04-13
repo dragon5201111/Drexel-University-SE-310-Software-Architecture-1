@@ -1,2 +1,2 @@
-public class Matching {
+public class Matching extends Question{
 }

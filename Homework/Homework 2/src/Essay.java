@@ -1,2 +1,2 @@
-public class Essay {
+public class Essay extends Question{
 }

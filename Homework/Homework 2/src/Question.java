@@ -1,4 +1,5 @@
 public abstract class Question {
-    abstract public void display();
-
+    protected String prompt;
+    abstract public void displayQuestion();
+    abstract public void takeQuestion();
 }

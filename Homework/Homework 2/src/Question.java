@@ -7,7 +7,7 @@ import java.util.List;
 public abstract class Question implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private Response response;
+    private final Response response;
     private String prompt;
 
     protected final ConsoleInputDriver consoleInputDriver = new ConsoleInputDriver();

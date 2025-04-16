@@ -18,12 +18,12 @@ public class ShortAnswer extends Essay implements Serializable {
                 break;
             }
 
-            this.consoleOutputDriver.print("Response exceeds the limit of " + this.getResponseLimit() + " characters.");
+            this.consoleOutputDriver.println("Response exceeds the limit of " + this.getResponseLimit() + " characters.");
         }
     }
 
     @Override
     public void displayResponse() {
-        this.consoleOutputDriver.print(this.getResponseList().get(0));
+        this.consoleOutputDriver.println(this.getFirstResponse());
     }
 }

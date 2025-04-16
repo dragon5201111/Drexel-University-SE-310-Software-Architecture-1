@@ -13,4 +13,8 @@ public class Response implements Serializable {
     public List<String> getResponseList() {
         return this.responseList;
     }
+
+    public String getFirstResponse(){
+        return this.responseList.get(0);
+    }
 }

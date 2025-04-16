@@ -41,6 +41,10 @@ public abstract class Question implements Serializable {
 
     // Template method
     public void modifyQuestion(){
+        if(!userWantsToModify("question")){
+            return;
+        }
+
         if(userWantsToModify("prompt")){
             this.setPrompt();
         }
@@ -56,6 +60,10 @@ public abstract class Question implements Serializable {
 
     public List<String> getResponseList(){
         return this.response.getResponseList();
+    }
+
+    public String getFirstResponse(){
+        return this.response.getFirstResponse();
     }
 
 }

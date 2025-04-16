@@ -12,7 +12,7 @@ public class Essay extends Question implements Serializable {
 
     @Override
     public void displayQuestion() {
-        this.consoleOutputDriver.print(this.getPrompt());
+        this.consoleOutputDriver.println(this.getPrompt());
     }
 
     @Override
@@ -33,7 +33,7 @@ public class Essay extends Question implements Serializable {
     @Override
     public void displayResponse() {
         for(String response: this.getResponseList()){
-            this.consoleOutputDriver.print(response);
+            this.consoleOutputDriver.println(response);
         }
     }
 

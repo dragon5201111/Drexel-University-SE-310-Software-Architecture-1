@@ -1,7 +1,9 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class SurveyDriver {
-    public static void main(String[] args) {
+    public static void test(Question question){
         System.out.println("Question Test:");
-        Question question = new ShortAnswer("Enter two letter word.", 2);
 
         System.out.println("Displaying Question:");
         question.displayQuestion();
@@ -18,6 +20,25 @@ public class SurveyDriver {
         System.out.println("Displaying Question Response:");
         question.displayResponse();
         System.out.println();
+    }
+
+    public static void main(String[] args) {
+        List<Question> questions = new ArrayList<>();
+        questions.add(new Essay("In two parts explain ...", 2));
+        questions.add(new ShortAnswer("Give two letter word ...", 2));
+
+        List<String> choices = new ArrayList<>();
+        choices.add("Star Wars");
+        choices.add("Benz");
+        choices.add("Brazilian");
+        choices.add("China");
+        choices.add("India");
+
+        questions.add(new MultipleChoice("Select three", choices, 3));
+        questions.add(new ValidDate("Enter birthday"));
+        for(Question question : questions){
+            test(question);
+        }
 
     }
 }

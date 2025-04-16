@@ -13,6 +13,11 @@ public class ConsoleInputDriver extends InputDriver{
 
     @Override
     public int getIntegerInput(String prompt) {
+        return this.getIntegerInput(prompt, Integer.MAX_VALUE - 1);
+    }
+
+    @Override
+    public int getIntegerInput(String prompt, int max) {
         int input;
 
         while(true){
@@ -20,7 +25,7 @@ public class ConsoleInputDriver extends InputDriver{
                 System.out.print(prompt);
                 input = Integer.parseInt(scanner.nextLine());
 
-                if(input < 1){
+                if(input < 1 || input > max){
                     throw new NumberFormatException();
                 }
 

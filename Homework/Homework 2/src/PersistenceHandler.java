@@ -3,7 +3,7 @@ import java.io.*;
 public class PersistenceHandler {
     private String SER_DES_EXTENSION = ".ser";
 
-    public void serialize(Object object, String fileName) throws Exception {
+    public void serialize(Object object, String fileName){
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(fileName + SER_DES_EXTENSION);
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
@@ -15,7 +15,7 @@ public class PersistenceHandler {
         }
     }
 
-    public Object deserialize(String fileName) throws Exception {
+    public Object deserialize(String fileName){
         fileName = fileName + SER_DES_EXTENSION;
 
         try {

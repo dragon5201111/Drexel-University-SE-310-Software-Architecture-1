@@ -31,7 +31,7 @@ public class ValidDate extends Question implements Serializable {
                 simpleDateFormat.parse(validDate);
                 break;
             } catch (ParseException e) {
-                consoleOutputDriver.println("Invalid date: " + validDate);
+                consoleOutputDriver.println("Invalid date entered. Try again: " + validDate);
             }
         }
 

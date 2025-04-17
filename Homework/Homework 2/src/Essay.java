@@ -20,7 +20,7 @@ public class Essay extends Question implements Serializable {
         this.displayQuestion();
 
         for(int i = 1; i <= this.responseLimit; i++){
-            String response = this.consoleInputDriver.getStringInput(i + ": ");
+            String response = this.consoleInputDriver.getStringInput((char)('a'+i-1) + ") ");
             this.addResponse(response);
         }
     }

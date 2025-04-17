@@ -25,8 +25,8 @@ public abstract class Question implements Serializable {
 
     public abstract void displayResponse();
 
-    private boolean userWantsToModify(String what) {
-        String input = consoleInputDriver.getStringInput("Do you wish to modify the " + what + "? Yes or No: ");
+    protected boolean userWantsToModify(String what) {
+        String input = consoleInputDriver.getStringInput("Do you wish to modify the " + what + "? yes or no: ");
         return input.equalsIgnoreCase("yes");
     }
 

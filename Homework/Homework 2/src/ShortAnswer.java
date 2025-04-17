@@ -13,6 +13,7 @@ public class ShortAnswer extends Essay implements Serializable {
 
         while(true){
             String response = this.consoleInputDriver.getStringInput(": ");
+
             if(response.length() <= this.getResponseLimit()){
                 this.addResponse(response);
                 break;

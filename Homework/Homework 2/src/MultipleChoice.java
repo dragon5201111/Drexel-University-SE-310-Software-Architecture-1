@@ -2,11 +2,11 @@ import java.io.Serializable;
 import java.util.List;
 
 public class MultipleChoice extends Question implements Serializable {
-    private final static long serialVersionUID = 1L;
     private final char CHAR_BASE = 'a';
+    private final static long serialVersionUID = 1L;
 
 
-    private List<String> choices;
+    private final List<String> choices;
     private int numberOfChoices;
 
     public MultipleChoice(String prompt, List<String> choices, int numberOfChoices) {
@@ -17,7 +17,7 @@ public class MultipleChoice extends Question implements Serializable {
 
     private void displayChoicesList(){
         for (int i = 0; i < this.choices.size(); i++) {
-            consoleOutputDriver.println((char)(CHAR_BASE + i) + ") " + this.choices.get(i));
+            consoleOutputDriver.println((char)(this.CHAR_BASE + i) + ") " + this.choices.get(i));
         }
     }
 
@@ -38,7 +38,7 @@ public class MultipleChoice extends Question implements Serializable {
             return -1;
         }
 
-        return (int)(choice.charAt(0))- (int)CHAR_BASE;
+        return (int)(choice.charAt(0))- (int)this.CHAR_BASE;
     }
 
     @Override
@@ -64,13 +64,14 @@ public class MultipleChoice extends Question implements Serializable {
     @Override
     public void modifyQuestionParameters() {
         this.numberOfChoices = consoleInputDriver.getIntegerInput("Enter number of choices for question: ");
+
         consoleOutputDriver.println("Select a choice from the list to modify: ");
         this.displayChoicesList();
 
-        String choice = consoleInputDriver.getStringInput("Choice to modify: ");
+        String choice = consoleInputDriver.getStringInput("Choice to modify (a,b,c,d,...): ");
         int choiceIndex = getChoiceIndex(choice);
 
-        String newChoice = consoleInputDriver.getStringInput("New choice to overwrite '" + this.choices.get(choiceIndex) + "': " );
+        String newChoice = consoleInputDriver.getStringInput("Overwriting '" + this.choices.get(choiceIndex) + "': " );
         this.choices.set(choiceIndex, newChoice);
     }
 

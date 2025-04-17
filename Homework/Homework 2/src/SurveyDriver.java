@@ -24,18 +24,30 @@ public class SurveyDriver {
 
     public static void main(String[] args) {
         List<Question> questions = new ArrayList<>();
-        questions.add(new Essay("In two parts explain ...", 2));
-        questions.add(new ShortAnswer("Give two letter word ...", 2));
+//        questions.add(new Essay("In two parts explain ...", 2));
+//        questions.add(new ShortAnswer("Give two letter word ...", 2));
+//
+//        List<String> choices = new ArrayList<>();
+//        choices.add("Star Wars");
+//        choices.add("Benz");
+//        choices.add("Brazilian");
+//
+//
+//        questions.add(new MultipleChoice("Select three", choices, 3));
+//        questions.add(new ValidDate("Enter birthday"));
+//        questions.add(new TrueFalse("Batman is cool T/F?"));
 
-        List<String> choices = new ArrayList<>();
-        choices.add("Star Wars");
-        choices.add("Benz");
-        choices.add("Brazilian");
-        choices.add("China");
-        choices.add("India");
+        List<String> leftSet = new ArrayList<>();
+        List<String> rightSet = new ArrayList<>();
 
-        questions.add(new MultipleChoice("Select three", choices, 3));
-        questions.add(new ValidDate("Enter birthday"));
+        for (int i = 0; i < 5; i++) {
+            leftSet.add(String.valueOf(i));
+            rightSet.add(String.valueOf((char)(i + 65)));
+        }
+
+        questions.add(new Matching("Who let the dogs out?", leftSet, rightSet));
+
+
         for(Question question : questions){
             test(question);
         }

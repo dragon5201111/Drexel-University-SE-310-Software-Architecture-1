@@ -2,55 +2,44 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SurveyDriver {
-    public static void test(Question question){
-        System.out.println("Question Test:");
+   public static MultipleChoice constructMC(){
+       List<String> choices = new ArrayList<>();
+       choices.add("Fantasy");
+       choices.add("Math");
+       choices.add("Science");
+       return new MultipleChoice("Select 3", choices, 3);
+   }
 
-        System.out.println("Displaying Question:");
-        question.displayQuestion();
-        System.out.println();
+   public static Matching constructMatching(){
+       List<String> leftSet  = new ArrayList<>();
+       List<String> rightSet = new ArrayList<>();
 
-        System.out.println("Modifying Question:");
-        question.modifyQuestion();
-        System.out.println();
+       leftSet.add("Java");
+       leftSet.add("C");
+       leftSet.add("C++");
+       leftSet.add("GO");
+       leftSet.add("Assembly");
 
-        System.out.println("Answering Question:");
-        question.answerQuestion();
-        System.out.println();
+       rightSet.add("Rust");
+       rightSet.add("Lua");
+       rightSet.add("C#");
+       rightSet.add("Python");
+       rightSet.add("Bash");
 
-        System.out.println("Displaying Question Response:");
-        question.displayResponse();
-        System.out.println();
-    }
+       return new Matching("Match like languages", leftSet, rightSet);
+   }
 
     public static void main(String[] args) {
-        List<Question> questions = new ArrayList<>();
-//        questions.add(new Essay("In two parts explain ...", 2));
-//        questions.add(new ShortAnswer("Give two letter word ...", 2));
-//
-//        List<String> choices = new ArrayList<>();
-//        choices.add("Star Wars");
-//        choices.add("Benz");
-//        choices.add("Brazilian");
-//
-//
-//        questions.add(new MultipleChoice("Select three", choices, 3));
-//        questions.add(new ValidDate("Enter birthday"));
-//        questions.add(new TrueFalse("Batman is cool T/F?"));
+        Survey survey = new Survey("Foo bar");
 
-        List<String> leftSet = new ArrayList<>();
-        List<String> rightSet = new ArrayList<>();
+        survey.addQuestion(new TrueFalse("The sky is blue?"));
+        survey.addQuestion(new ShortAnswer("Enter a five letter word.", 5));
+        survey.addQuestion(new Essay("List two of the best movies.", 2));
+        survey.addQuestion(constructMC());
+        survey.addQuestion(constructMatching());
+        survey.addQuestion(new ValidDate("Enter a valid date."));
 
-        for (int i = 0; i < 5; i++) {
-            leftSet.add(String.valueOf(i));
-            rightSet.add(String.valueOf((char)(i + 65)));
-        }
-
-        questions.add(new Matching("Who let the dogs out?", leftSet, rightSet));
-
-
-        for(Question question : questions){
-            test(question);
-        }
-
+        survey.modifySurvey();
+        survey.takeSurvey();
     }
 }

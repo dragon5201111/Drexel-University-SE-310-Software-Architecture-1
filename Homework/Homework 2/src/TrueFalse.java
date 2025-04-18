@@ -21,6 +21,8 @@ public class TrueFalse extends Question implements Serializable {
 
     @Override
     public void answerQuestion() {
+        this.displayQuestion();
+
         while(true){
             String response = consoleInputDriver.getStringInput(TRUE + "/" + FALSE + ": ");
 

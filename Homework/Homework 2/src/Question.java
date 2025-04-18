@@ -25,10 +25,6 @@ public abstract class Question implements Serializable {
 
     public abstract void displayResponse();
 
-    protected boolean userWantsToModify(String what) {
-        String input = consoleInputDriver.getStringInput("Do you wish to modify the " + what + "? yes or no: ");
-        return input.equalsIgnoreCase("yes");
-    }
 
     public void setPrompt(){
         this.displayQuestion();
@@ -41,15 +37,15 @@ public abstract class Question implements Serializable {
 
     // Template method
     public void modifyQuestion(){
-        if(!userWantsToModify("question")){
+        if(!this.consoleInputDriver.userWantsToModify("modify","question")){
             return;
         }
 
-        if(userWantsToModify("prompt")){
+        if(this.consoleInputDriver.userWantsToModify("modify","prompt")){
             this.setPrompt();
         }
 
-        if(userWantsToModify("question parameters")){
+        if(this.consoleInputDriver.userWantsToModify("modify","question parameters")){
             this.modifyQuestionParameters();
         }
     }

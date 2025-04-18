@@ -17,8 +17,14 @@ public class MultipleChoice extends Question implements Serializable {
 
     private void displayChoicesList(){
         for (int i = 0; i < this.choices.size(); i++) {
-            consoleOutputDriver.println((char)(this.CHAR_BASE + i) + ") " + this.choices.get(i));
+            String choiceText = String.format("%c) %s", this.CHAR_BASE + i, this.choices.get(i));
+            if (i < this.choices.size() - 1) {
+                choiceText += "  "; // Add space between choices
+            }
+            consoleOutputDriver.print(choiceText);
         }
+
+        consoleOutputDriver.println();
     }
 
     @Override
@@ -56,6 +62,7 @@ public class MultipleChoice extends Question implements Serializable {
                     break;
                 }
 
+                consoleOutputDriver.println("Invalid Choice. Please try again.");
             }
         }
 

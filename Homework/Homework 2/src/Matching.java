@@ -79,7 +79,6 @@ public class Matching extends Question implements Serializable {
         }
     }
 
-
     private void modifySet(List<String> set, String side){
         while (true) {
             String selection = consoleInputDriver.getStringInput("Enter a selection to modify in the " + side + " set: ");
@@ -116,19 +115,17 @@ public class Matching extends Question implements Serializable {
     public void modifyQuestionParameters() {
         this.displayQuestion();
 
-        if(this.userWantsToModify(LEFT_SET)){
+        if(this.consoleInputDriver.userWantsToModify("modify", LEFT_SET)){
             this.modifySet(leftSet, LEFT_SET);
         }
 
-        if (this.userWantsToModify(RIGHT_SET)) {
+        if (this.consoleInputDriver.userWantsToModify("modify", RIGHT_SET)) {
            this.modifySet(rightSet, RIGHT_SET);
         }
     }
 
     @Override
     public void displayResponse() {
-        for(String pair : getResponseList()){
-            consoleOutputDriver.println(pair);
-        }
+        consoleOutputDriver.printLines(this.getResponseList());
     }
 }

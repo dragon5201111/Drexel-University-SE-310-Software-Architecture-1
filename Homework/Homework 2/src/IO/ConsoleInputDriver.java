@@ -5,6 +5,11 @@ import java.util.Scanner;
 public class ConsoleInputDriver extends InputDriver{
     private final Scanner scanner = new Scanner(System.in);
 
+    public boolean userWantsToModify(String verb, String subject) {
+        String input = this.getStringInput("Do you wish to " + verb + " the " + subject + "? yes or no: ");
+        return input.equalsIgnoreCase("yes");
+    }
+
     @Override
     public String getStringInput(String prompt) {
         System.out.print(prompt);
@@ -31,7 +36,7 @@ public class ConsoleInputDriver extends InputDriver{
 
                 break;
             } catch (NumberFormatException ignored) {
-                System.out.println("Invalid integer input.");
+                System.out.println("Invalid integer input. Out of range.");
             }
         }
 

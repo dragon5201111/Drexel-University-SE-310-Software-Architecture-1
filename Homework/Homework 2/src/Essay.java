@@ -32,9 +32,7 @@ public class Essay extends Question implements Serializable {
 
     @Override
     public void displayResponse() {
-        for(String response: this.getResponseList()){
-            this.consoleOutputDriver.println(response);
-        }
+        consoleOutputDriver.printLines(this.getResponseList());
     }
 
     public int getResponseLimit(){

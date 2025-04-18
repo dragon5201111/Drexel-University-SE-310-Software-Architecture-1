@@ -15,6 +15,9 @@ public class Response implements Serializable {
     }
 
     public String getFirstResponse(){
+        if(responseList.isEmpty()){
+            return "";
+        }
         return this.responseList.get(0);
     }
 }

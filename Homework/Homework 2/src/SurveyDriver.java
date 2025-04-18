@@ -41,5 +41,6 @@ public class SurveyDriver {
 
         survey.modifySurvey();
         survey.takeSurvey();
+        survey.displaySurvey();
     }
 }

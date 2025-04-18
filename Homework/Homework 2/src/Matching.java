@@ -79,6 +79,24 @@ public class Matching extends Question implements Serializable {
         }
     }
 
+    private int getSetIndex(String side, String selection){
+        int setIndex;
+        while(true){
+            try {
+                if (side.equals(LEFT_SET)) {
+                    setIndex = selection.toLowerCase().charAt(0) - 'a';
+                } else {
+                    setIndex = Integer.parseInt(selection) - 1;
+                }
+                break;
+            } catch (Exception e) {
+                consoleOutputDriver.println("Invalid input format.");
+            }
+
+        }
+        return setIndex;
+    }
+
     private void modifySet(List<String> set, String side){
         while (true) {
             String selection = consoleInputDriver.getStringInput("Enter a selection to modify in the " + side + " set: ");
@@ -87,18 +105,7 @@ public class Matching extends Question implements Serializable {
                 continue;
             }
 
-            int setIndex;
-
-            try {
-                if (side.equals(LEFT_SET)) {
-                    setIndex = selection.toLowerCase().charAt(0) - 'a';
-                } else {
-                    setIndex = Integer.parseInt(selection) - 1;
-                }
-            } catch (Exception e) {
-                consoleOutputDriver.println("Invalid input format.");
-                continue;
-            }
+            int setIndex = getSetIndex(side, selection);
 
             if (!indexIsInList(setIndex, set)) {
                 consoleOutputDriver.println("Invalid selection for " + side + " set.");

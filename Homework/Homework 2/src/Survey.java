@@ -25,15 +25,15 @@ public class Survey implements Serializable {
         this.questions.add(question);
     }
 
-    public Question getQuestion(int index){
+    private Question getQuestion(int index){
         return this.questions.get(index);
     }
 
-    public void removeQuestion(int questionIndex){
+    private void removeQuestion(int questionIndex){
         this.questions.remove(questionIndex);
     }
 
-    public void setSurveyTitle(String surveyTitle){
+    private void setSurveyTitle(String surveyTitle){
         this.surveyTitle = surveyTitle;
     }
 

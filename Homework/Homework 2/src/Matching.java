@@ -21,7 +21,27 @@ public class Matching extends Question implements Serializable {
     public void displayQuestion() {
         this.consoleOutputDriver.println(this.getPrompt());
         for(int i = 0; i < this.leftSet.size(); i++){
-            consoleOutputDriver.println(String.format("%c)%-15s %d)%s", (char)('a'+i),this.leftSet.get(i), i+1,this.rightSet.get(i)));
+            consoleOutputDriver.println(String.format("%c)%-15s %d)%s", (char)(this.consoleInputDriver.CHAR_BASE+i),this.leftSet.get(i), i+1,this.rightSet.get(i)));
+        }
+    }
+
+    @Override
+    public void answerQuestionBody() {
+        String pair;
+        for(int i = 0; i < this.leftSet.size(); i++){
+
+            while(true){
+                pair = consoleInputDriver.getStringInput("Enter a pair (" + (i+1) + "):");
+
+                if(isValidPair(pair)){
+                    break;
+                }
+
+                consoleOutputDriver.println("Invalid pair. Enter a character followed by an integer.");
+            }
+
+            int[] pairIndexes = getPairIndexes(pair);
+            this.addResponse(leftSet.get(pairIndexes[0]) + "," + rightSet.get(pairIndexes[1]));
         }
     }
 
@@ -44,7 +64,7 @@ public class Matching extends Question implements Serializable {
     }
 
     private int[] getPairIndexes(String pair){
-        int leftIndex = pair.toLowerCase().charAt(0) - 'a';
+        int leftIndex = convertCharToInt(pair.charAt(0));
 
         String rightPart = pair.substring(1);
         int rightIndex;
@@ -57,26 +77,9 @@ public class Matching extends Question implements Serializable {
         return new int[]{leftIndex, rightIndex};
     }
 
-    @Override
-    public void answerQuestion() {
-        this.displayQuestion();
 
-        String pair;
-        for(int i = 0; i < this.leftSet.size(); i++){
-
-            while(true){
-                pair = consoleInputDriver.getStringInput("Enter a pair (" + (i+1) + "):");
-
-                if(isValidPair(pair)){
-                    break;
-                }
-
-                consoleOutputDriver.println("Invalid pair. Enter a character followed by an integer.");
-            }
-
-            int[] pairIndexes = getPairIndexes(pair);
-            this.addResponse(leftSet.get(pairIndexes[0]) + "," + rightSet.get(pairIndexes[1]));
-        }
+    private int convertCharToInt(char c){
+        return c - this.consoleInputDriver.CHAR_BASE;
     }
 
     private int getSetIndex(String side, String selection){
@@ -84,7 +87,7 @@ public class Matching extends Question implements Serializable {
         while(true){
             try {
                 if (side.equals(LEFT_SET)) {
-                    setIndex = selection.toLowerCase().charAt(0) - 'a';
+                    setIndex = convertCharToInt(selection.charAt(0));
                 } else {
                     setIndex = Integer.parseInt(selection) - 1;
                 }

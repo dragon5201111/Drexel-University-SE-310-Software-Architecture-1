@@ -1,7 +1,7 @@
 import java.io.*;
 
 public class PersistenceHandler {
-    private String SER_DES_EXTENSION = ".ser";
+    private final String SER_DES_EXTENSION = ".ser";
 
     public void serialize(Object object, String fileName){
         try {

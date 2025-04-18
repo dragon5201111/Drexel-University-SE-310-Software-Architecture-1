@@ -18,9 +18,7 @@ public class ValidDate extends Question implements Serializable {
     }
 
     @Override
-    public void answerQuestion(){
-        this.displayQuestion();
-
+    public void answerQuestionBody() {
         String validDate;
 
         while(true){
@@ -37,6 +35,7 @@ public class ValidDate extends Question implements Serializable {
 
         this.addResponse(validDate);
     }
+
 
     @Override
     public void modifyQuestionParameters() {

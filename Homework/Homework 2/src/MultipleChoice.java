@@ -2,7 +2,6 @@ import java.io.Serializable;
 import java.util.List;
 
 public class MultipleChoice extends Question implements Serializable {
-    private final char CHAR_BASE = 'a';
     private final static long serialVersionUID = 1L;
 
 
@@ -17,7 +16,7 @@ public class MultipleChoice extends Question implements Serializable {
 
     private void displayChoicesList(){
         for (int i = 0; i < this.choices.size(); i++) {
-            String choiceText = String.format("%c) %s", this.CHAR_BASE + i, this.choices.get(i));
+            String choiceText = String.format("%c) %s", this.consoleInputDriver.CHAR_BASE + i, this.choices.get(i));
             if (i < this.choices.size() - 1) {
                 choiceText += "  "; // Add space between choices
             }
@@ -33,24 +32,8 @@ public class MultipleChoice extends Question implements Serializable {
         this.displayChoicesList();
     }
 
-    private boolean isValidChoiceIndex(int index) {
-        return index >= 0 && index < this.choices.size();
-    }
-
-
-
-    private int getChoiceIndex(String choice) {
-        if(choice.isEmpty()){
-            return -1;
-        }
-
-        return (int)(choice.charAt(0))- (int)this.CHAR_BASE;
-    }
-
     @Override
-    public void answerQuestion() {
-        this.displayQuestion();
-
+    public void answerQuestionBody() {
         for(int i = 0; i < this.numberOfChoices; i++){
             while (true) {
                 String choice = consoleInputDriver.getStringInput("Choice " + (i + 1) + ": ");
@@ -65,8 +48,22 @@ public class MultipleChoice extends Question implements Serializable {
                 consoleOutputDriver.println("Invalid Choice. Please try again.");
             }
         }
-
     }
+
+    private boolean isValidChoiceIndex(int index) {
+        return index >= 0 && index < this.choices.size();
+    }
+
+
+
+    private int getChoiceIndex(String choice) {
+        if(choice.isEmpty()){
+            return -1;
+        }
+
+        return (int)(choice.charAt(0))- (int)this.consoleInputDriver.CHAR_BASE;
+    }
+
 
     @Override
     public void modifyQuestionParameters() {

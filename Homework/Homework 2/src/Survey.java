@@ -37,6 +37,32 @@ public class Survey implements Serializable {
         this.surveyTitle = surveyTitle;
     }
 
+
+    private void modifyQuestions(){
+        while(true){
+            if(this.questions.isEmpty()){
+                consoleOutputDriver.println("No survey questions to modify.");
+                break;
+            }
+
+            this.displaySurvey();
+
+            int questionIndex = consoleInputDriver.getIntegerInput("Enter a corresponding question number to modify: ", questions.size()) - 1;
+            Question correspondingQuestion = this.getQuestion(questionIndex);
+
+            if(consoleInputDriver.userWantsToModify("delete", "question")){
+                this.removeQuestion(questionIndex);
+                consoleOutputDriver.println("Question deleted.");
+            }
+
+            correspondingQuestion.modifyQuestion();
+
+            if(!this.consoleInputDriver.userWantsToModify("continue modifying", "questions")){
+                break;
+            }
+        }
+    }
+
     public void modifySurvey(){
         if(!this.consoleInputDriver.userWantsToModify("modify","survey")){
             return;
@@ -46,53 +72,50 @@ public class Survey implements Serializable {
             this.setSurveyTitle(this.consoleInputDriver.getStringInput("Enter survey title: "));
         }
 
-        this.displaySurvey();
-
-        int questionIndex = consoleInputDriver.getIntegerInput("Enter a corresponding question number: ", questions.size()) - 1;
-        Question question = this.getQuestion(questionIndex);
-
-        if(!consoleInputDriver.userWantsToModify("delete", "question")){
-            question.modifyQuestion();
-            return;
+        if(this.consoleInputDriver.userWantsToModify("modify", "questions")) {
+            this.modifyQuestions();
         }
 
-        this.removeQuestion(questionIndex);
-        consoleOutputDriver.println("Question deleted.");
+        consoleOutputDriver.println();
     }
 
     public void takeSurvey(){
-        this.displaySurveyTitle();
-
-        int questionNumber = 1;
-        for(Question question : questions){
-            consoleOutputDriver.print(questionNumber + ") ");
-            question.answerQuestion();
-            consoleOutputDriver.println();
-            questionNumber++;
-        }
+        processSurvey(Question::answerQuestion);
     }
 
 
     public void displaySurvey(){
+        processSurvey(question -> {
+            question.displayQuestion();
+            question.displayResponse();
+        });
+    }
+
+    private void processSurvey(QuestionAction questionAction) {
         this.displaySurveyTitle();
 
         int questionNumber = 1;
-        for(Question question : questions){
-            consoleOutputDriver.print(questionNumber + ") ");
-            question.displayQuestion();
-            question.displayResponse();
-            consoleOutputDriver.println();
+        for(Question question : questions) {
+            this.consoleOutputDriver.print(questionNumber + ") ");
+
+            questionAction.perform(question);
+
+            this.consoleOutputDriver.println();
             questionNumber++;
         }
     }
 
+    @FunctionalInterface
+    private interface QuestionAction {
+        void perform(Question question);
+    }
 
     public String getSurveyTitle() {
         return surveyTitle;
     }
 
     public void displaySurveyTitle(){
-        consoleOutputDriver.println("Survey Name: "+this.getSurveyTitle());
+        this.consoleOutputDriver.println("Survey Name: " + this.getSurveyTitle());
     }
 
 }

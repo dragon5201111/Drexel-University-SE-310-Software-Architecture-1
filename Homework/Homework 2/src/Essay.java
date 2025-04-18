@@ -15,15 +15,29 @@ public class Essay extends Question implements Serializable {
         this.consoleOutputDriver.println(this.getPrompt());
     }
 
-    @Override
-    public void answerQuestion() {
-        this.displayQuestion();
 
+    public boolean responseIsValid(String response){
+        return !response.isEmpty();
+    }
+
+
+    @Override
+    public void answerQuestionBody() {
         for(int i = 1; i <= this.responseLimit; i++){
-            String response = this.consoleInputDriver.getStringInput((char)('a'+i-1) + ") ");
-            this.addResponse(response);
+          while (true){
+              String response = this.consoleInputDriver.getStringInput((char)(this.consoleInputDriver.CHAR_BASE+i-1) + ") ");
+
+              if(responseIsValid(response)){
+                  this.addResponse(response);
+                  break;
+              }
+
+              this.consoleOutputDriver.println("Invalid response. Response cannot be empty.");
+
+          }
         }
     }
+
 
     @Override
     public void modifyQuestionParameters() {

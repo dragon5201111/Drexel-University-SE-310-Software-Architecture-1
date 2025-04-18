@@ -1,8 +1,10 @@
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Response implements Serializable {
+    private final String RESPONSE_DEFAULT = "-";
     private static final long serialVersionUID = 1L;
     private final List<String> responseList = new ArrayList<>();
 
@@ -11,12 +13,15 @@ public class Response implements Serializable {
     }
 
     public List<String> getResponseList() {
-        return this.responseList;
+        if (responseList.isEmpty()) {
+            return Collections.singletonList(RESPONSE_DEFAULT);
+        }
+        return responseList;
     }
 
     public String getFirstResponse(){
         if(responseList.isEmpty()){
-            return "";
+            return RESPONSE_DEFAULT;
         }
         return this.responseList.get(0);
     }

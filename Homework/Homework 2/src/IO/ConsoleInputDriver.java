@@ -3,6 +3,7 @@ package IO;
 import java.util.Scanner;
 
 public class ConsoleInputDriver extends InputDriver{
+    public final char CHAR_BASE = 'A';
     private final Scanner scanner = new Scanner(System.in);
 
     public boolean userWantsToModify(String verb, String subject) {

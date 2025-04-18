@@ -15,14 +15,8 @@ public class TrueFalse extends Question implements Serializable {
         this.consoleOutputDriver.println(this.getPrompt());
     }
 
-    private boolean isTrueOrFalse(String string){
-        return string.equalsIgnoreCase(TRUE) || string.equalsIgnoreCase(FALSE);
-    }
-
     @Override
-    public void answerQuestion() {
-        this.displayQuestion();
-
+    public void answerQuestionBody() {
         while(true){
             String response = consoleInputDriver.getStringInput(TRUE + "/" + FALSE + ": ");
 
@@ -33,6 +27,10 @@ public class TrueFalse extends Question implements Serializable {
 
             consoleOutputDriver.println("Invalid answer. Must be " + TRUE + "/" + FALSE + ".");
         }
+    }
+
+    private boolean isTrueOrFalse(String string){
+        return string.equals(TRUE) || string.equals(FALSE);
     }
 
     @Override

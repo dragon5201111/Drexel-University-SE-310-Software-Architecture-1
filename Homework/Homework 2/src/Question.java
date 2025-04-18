@@ -18,12 +18,17 @@ public abstract class Question implements Serializable {
         this.response = new Response();
     }
 
-    // Template steps
-    public abstract void displayQuestion();
-    public abstract void answerQuestion();
     public abstract void modifyQuestionParameters();
-
     public abstract void displayResponse();
+
+    public abstract void displayQuestion();
+    public abstract void answerQuestionBody();
+
+    // Template method
+    public void answerQuestion() {
+        this.displayQuestion();
+        this.answerQuestionBody();
+    }
 
 
     public void setPrompt(){

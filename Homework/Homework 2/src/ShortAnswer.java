@@ -7,24 +7,29 @@ public class ShortAnswer extends Essay implements Serializable {
         super(prompt, wordLimit);
     }
 
-    @Override
-    public void answerQuestion() {
-        this.displayQuestion();
-
-        while(true){
-            String response = this.consoleInputDriver.getStringInput(": ");
-
-            if(response.length() <= this.getResponseLimit()){
-                this.addResponse(response);
-                break;
-            }
-
-            this.consoleOutputDriver.println("Response exceeds the limit of " + this.getResponseLimit() + " characters.");
-        }
-    }
 
     @Override
     public void displayResponse() {
         this.consoleOutputDriver.println(this.getFirstResponse());
+    }
+
+
+    @Override
+    public boolean responseIsValid(String response){
+        return response.length() <= this.getResponseLimit() && !response.isEmpty();
+    }
+
+    @Override
+    public void answerQuestionBody() {
+        while(true){
+            String response = this.consoleInputDriver.getStringInput("- ");
+
+            if(this.responseIsValid(response)){
+                this.addResponse(response);
+                break;
+            }
+
+            this.consoleOutputDriver.println("Invalid response. Response exceeds the limit of " + this.getResponseLimit() + " characters or is empty.");
+        }
     }
 }

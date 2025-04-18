@@ -35,10 +35,11 @@ public class SurveyDriver {
         survey.addQuestion(new TrueFalse("The sky is blue?"));
         survey.addQuestion(new ShortAnswer("Enter a five letter word.", 5));
         survey.addQuestion(new Essay("List two of the best movies.", 2));
-        survey.addQuestion(constructMC());
-        survey.addQuestion(constructMatching());
-        survey.addQuestion(new ValidDate("Enter a valid date."));
+//        survey.addQuestion(constructMC());
+//        survey.addQuestion(constructMatching());
+//        survey.addQuestion(new ValidDate("Enter a valid date."));
 
+        survey.displaySurvey();
         survey.modifySurvey();
         survey.takeSurvey();
         survey.displaySurvey();

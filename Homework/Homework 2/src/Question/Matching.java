@@ -23,8 +23,12 @@ public class Matching extends Question implements Serializable {
     public void displayQuestion() {
         this.consoleOutputDriver.println(this.getPrompt());
         for(int i = 0; i < this.leftSet.size(); i++){
-            consoleOutputDriver.println(String.format("%c)%-15s %d)%s", (char)(this.consoleInputDriver.CHAR_BASE+i),this.leftSet.get(i), i+1,this.rightSet.get(i)));
+            consoleOutputDriver.println(constructPairString(i, i));
         }
+    }
+
+    private String constructPairString(int leftIndex, int rightIndex){
+        return String.format("%c) %-15s %d) %s", (char)(this.consoleInputDriver.CHAR_BASE+leftIndex),this.leftSet.get(leftIndex), rightIndex+1,this.rightSet.get(rightIndex));
     }
 
     @Override
@@ -43,9 +47,10 @@ public class Matching extends Question implements Serializable {
             }
 
             int[] pairIndexes = getPairIndexes(pair);
-            this.addResponse(leftSet.get(pairIndexes[0]) + "," + rightSet.get(pairIndexes[1]));
+            this.addResponse(constructPairString(pairIndexes[0], pairIndexes[1]));
         }
     }
+
 
     private boolean indexIsInList(int index, List<String> list){
         return index >= 0 && index < list.size();

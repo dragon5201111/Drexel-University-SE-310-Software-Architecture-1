@@ -1,8 +1,10 @@
-package IO;
+package IO.Console;
+
+import IO.InputDriver;
 
 import java.util.Scanner;
 
-public class ConsoleInputDriver extends InputDriver{
+public class ConsoleInputDriver extends InputDriver {
     public final char CHAR_BASE = 'A';
     private final Scanner scanner = new Scanner(System.in);
 

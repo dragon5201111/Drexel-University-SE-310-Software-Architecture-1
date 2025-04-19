@@ -1,3 +1,5 @@
+package Question;
+
 import java.io.Serializable;
 
 public class ShortAnswer extends Essay implements Serializable {
@@ -29,7 +31,7 @@ public class ShortAnswer extends Essay implements Serializable {
                 break;
             }
 
-            this.consoleOutputDriver.println("Invalid response. Response exceeds the limit of " + this.getResponseLimit() + " characters or is empty.");
+            this.consoleOutputDriver.println("Invalid response. Question.Response exceeds the limit of " + this.getResponseLimit() + " characters or is empty.");
         }
     }
 }

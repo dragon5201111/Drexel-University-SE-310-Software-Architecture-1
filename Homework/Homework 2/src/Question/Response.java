@@ -1,3 +1,5 @@
+package Question;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -24,5 +26,9 @@ public class Response implements Serializable {
             return RESPONSE_DEFAULT;
         }
         return this.responseList.get(0);
+    }
+
+    public void clearResponseList(){
+        this.responseList.clear();
     }
 }

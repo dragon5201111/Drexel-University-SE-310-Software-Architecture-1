@@ -64,7 +64,7 @@
 											"top": 1135,
 											"width": 165.3662109375,
 											"height": 13,
-											"text": "Essay"
+											"text": "Question.Essay"
 										},
 										{
 											"_type": "LabelView",
@@ -215,7 +215,7 @@
 											"top": 1183,
 											"width": 165.3662109375,
 											"height": 13,
-											"text": "+Essay(prompt: String): void",
+											"text": "+Question.Essay(prompt: String): void",
 											"horizontalAlignment": 0
 										},
 										{
@@ -401,7 +401,7 @@
 											"top": 1303,
 											"width": 200.51318359375,
 											"height": 13,
-											"text": "ShortAnswer"
+											"text": "Question.ShortAnswer"
 										},
 										{
 											"_type": "LabelView",
@@ -551,7 +551,7 @@
 											"top": 1366,
 											"width": 200.51318359375,
 											"height": 13,
-											"text": "+ShortAnswer(wordLimit: int): void",
+											"text": "+Question.ShortAnswer(wordLimit: int): void",
 											"horizontalAlignment": 0
 										},
 										{
@@ -773,7 +773,7 @@
 											"top": 1239,
 											"width": 219.6005859375,
 											"height": 13,
-											"text": "Matching"
+											"text": "Question.Matching"
 										},
 										{
 											"_type": "LabelView",
@@ -979,7 +979,7 @@
 											"top": 1317,
 											"width": 219.6005859375,
 											"height": 13,
-											"text": "+Matching(prompt: String): void",
+											"text": "+Question.Matching(prompt: String): void",
 											"horizontalAlignment": 0
 										},
 										{
@@ -1165,7 +1165,7 @@
 											"top": 1055,
 											"width": 215.22705078125,
 											"height": 13,
-											"text": "MultipleChoice"
+											"text": "Question.MultipleChoice"
 										},
 										{
 											"_type": "LabelView",
@@ -1391,7 +1391,7 @@
 											"top": 1120,
 											"width": 215.22705078125,
 											"height": 13,
-											"text": "+MultipleChoice(prompt: String): void",
+											"text": "+Question.MultipleChoice(prompt: String): void",
 											"horizontalAlignment": 0
 										},
 										{
@@ -1577,7 +1577,7 @@
 											"top": 1239,
 											"width": 191,
 											"height": 13,
-											"text": "TrueFalse"
+											"text": "Question.TrueFalse"
 										},
 										{
 											"_type": "LabelView",
@@ -1690,7 +1690,7 @@
 											"top": 1285,
 											"width": 191,
 											"height": 13,
-											"text": "+TrueFalse(prompt: String): void",
+											"text": "+Question.TrueFalse(prompt: String): void",
 											"horizontalAlignment": 0
 										},
 										{
@@ -1876,7 +1876,7 @@
 											"top": 567,
 											"width": 336.841796875,
 											"height": 13,
-											"text": "Survey"
+											"text": "Survey.Survey"
 										},
 										{
 											"_type": "LabelView",
@@ -1952,7 +1952,7 @@
 											"top": 590,
 											"width": 336.841796875,
 											"height": 13,
-											"text": "-questions: List<Question>",
+											"text": "-questions: List<Question.Question>",
 											"horizontalAlignment": 0
 										},
 										{
@@ -2043,7 +2043,7 @@
 											"top": 658,
 											"width": 336.841796875,
 											"height": 13,
-											"text": "+Survey(surveyTitle: String, numQuestions: int): void",
+											"text": "+Survey.Survey(surveyTitle: String, numQuestions: int): void",
 											"horizontalAlignment": 0
 										},
 										{
@@ -2061,7 +2061,7 @@
 											"top": 673,
 											"width": 336.841796875,
 											"height": 13,
-											"text": "+addQuestion(question: Question): void",
+											"text": "+addQuestion(question: Question.Question): void",
 											"horizontalAlignment": 0
 										},
 										{
@@ -2079,7 +2079,7 @@
 											"top": 688,
 											"width": 336.841796875,
 											"height": 13,
-											"text": "+removeQuestion(question: Question): void",
+											"text": "+removeQuestion(question: Question.Question): void",
 											"horizontalAlignment": 0
 										},
 										{
@@ -2154,7 +2154,7 @@
 											"top": 703,
 											"width": 336.841796875,
 											"height": 13,
-											"text": "+getQuestion(): Question",
+											"text": "+getQuestion(): Question.Question",
 											"horizontalAlignment": 0
 										},
 										{
@@ -2172,7 +2172,7 @@
 											"top": 718,
 											"width": 336.841796875,
 											"height": 13,
-											"text": "+getQuestions(): List<Question>",
+											"text": "+getQuestions(): List<Question.Question>",
 											"horizontalAlignment": 0
 										},
 										{
@@ -2486,7 +2486,7 @@
 											"top": 853,
 											"width": 336.841796875,
 											"height": 13,
-											"text": "+deserialize(fileName: String): Survey",
+											"text": "+deserialize(fileName: String): Survey.Survey",
 											"horizontalAlignment": 0
 										}
 									],
@@ -2600,7 +2600,7 @@
 											"top": 935,
 											"width": 352.5458984375,
 											"height": 13,
-											"text": "Question"
+											"text": "Question.Question"
 										},
 										{
 											"_type": "LabelView",
@@ -2789,7 +2789,7 @@
 											"top": 973,
 											"width": 352.5458984375,
 											"height": 13,
-											"text": "#response: Response",
+											"text": "#response: Question.Response",
 											"horizontalAlignment": 0
 										},
 										{
@@ -3357,7 +3357,7 @@
 											"top": 1231,
 											"width": 219.6005859375,
 											"height": 13,
-											"text": "ValidDate"
+											"text": "Question.ValidDate"
 										},
 										{
 											"_type": "LabelView",
@@ -3489,7 +3489,7 @@
 											"top": 1279,
 											"width": 219.6005859375,
 											"height": 13,
-											"text": "+ValidDate(prompt: String): void",
+											"text": "+Question.ValidDate(prompt: String): void",
 											"horizontalAlignment": 0
 										},
 										{
@@ -3848,7 +3848,7 @@
 											"top": 678,
 											"width": 222.45068359375,
 											"height": 13,
-											"text": "-currentSurvey: Survey",
+											"text": "-currentSurvey: Survey.Survey",
 											"horizontalAlignment": 0
 										}
 									],
@@ -3960,7 +3960,7 @@
 											"top": 718,
 											"width": 222.45068359375,
 											"height": 13,
-											"text": "+createSurvey(): Survey",
+											"text": "+createSurvey(): Survey.Survey",
 											"horizontalAlignment": 0
 										},
 										{
@@ -3978,7 +3978,7 @@
 											"top": 733,
 											"width": 222.45068359375,
 											"height": 13,
-											"text": "+modfiySurvey(survey: Survey): void",
+											"text": "+modfiySurvey(survey: Survey.Survey): void",
 											"horizontalAlignment": 0
 										},
 										{
@@ -3996,7 +3996,7 @@
 											"top": 748,
 											"width": 222.45068359375,
 											"height": 13,
-											"text": "+saveSurvey(survey: Survey): void",
+											"text": "+saveSurvey(survey: Survey.Survey): void",
 											"horizontalAlignment": 0
 										},
 										{
@@ -4032,7 +4032,7 @@
 											"top": 778,
 											"width": 222.45068359375,
 											"height": 13,
-											"text": "+takeSurvey(survey: Survey): void",
+											"text": "+takeSurvey(survey: Survey.Survey): void",
 											"horizontalAlignment": 0
 										},
 										{
@@ -4050,7 +4050,7 @@
 											"top": 793,
 											"width": 222.45068359375,
 											"height": 13,
-											"text": "+displaySurvey(survey: Survey): void",
+											"text": "+displaySurvey(survey: Survey.Survey): void",
 											"horizontalAlignment": 0
 										}
 									],
@@ -4917,7 +4917,7 @@
 											"top": 975,
 											"width": 223.21240234375,
 											"height": 13,
-											"text": "Response"
+											"text": "Question.Response"
 										},
 										{
 											"_type": "LabelView",
@@ -7431,7 +7431,7 @@
 							"top": 1096,
 							"width": 168,
 							"height": 103,
-							"text": "Each Question subclass will define how to answer, display and modify itself. Hence, the lack of operations for the subclasses in this diagram."
+							"text": "Each Question.Question subclass will define how to answer, display and modify itself. Hence, the lack of operations for the subclasses in this diagram."
 						},
 						{
 							"_type": "UMLNoteLinkView",
@@ -8040,7 +8040,7 @@
 					"_parent": {
 						"$ref": "AAAAAAGWLyczkHZczfU="
 					},
-					"name": "Essay",
+					"name": "Question.Essay",
 					"ownedElements": [
 						{
 							"_type": "UMLGeneralization",
@@ -8136,7 +8136,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGWLyyJZneVAFM="
 							},
-							"name": "Essay",
+							"name": "Question.Essay",
 							"parameters": [
 								{
 									"_type": "UMLParameter",
@@ -8242,7 +8242,7 @@
 					"_parent": {
 						"$ref": "AAAAAAGWLyczkHZczfU="
 					},
-					"name": "ShortAnswer",
+					"name": "Question.ShortAnswer",
 					"ownedElements": [
 						{
 							"_type": "UMLGeneralization",
@@ -8338,7 +8338,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGWLy0CV3fRgZI="
 							},
-							"name": "ShortAnswer",
+							"name": "Question.ShortAnswer",
 							"parameters": [
 								{
 									"_type": "UMLParameter",
@@ -8491,7 +8491,7 @@
 					"_parent": {
 						"$ref": "AAAAAAGWLyczkHZczfU="
 					},
-					"name": "Matching",
+					"name": "Question.Matching",
 					"ownedElements": [
 						{
 							"_type": "UMLGeneralization",
@@ -8617,7 +8617,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGWLy4383gOlBY="
 							},
-							"name": "Matching",
+							"name": "Question.Matching",
 							"parameters": [
 								{
 									"_type": "UMLParameter",
@@ -8723,7 +8723,7 @@
 					"_parent": {
 						"$ref": "AAAAAAGWLyczkHZczfU="
 					},
-					"name": "MultipleChoice",
+					"name": "Question.MultipleChoice",
 					"ownedElements": [
 						{
 							"_type": "UMLGeneralization",
@@ -8957,7 +8957,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGWLy5zj3hKGR0="
 							},
-							"name": "MultipleChoice",
+							"name": "Question.MultipleChoice",
 							"parameters": [
 								{
 									"_type": "UMLParameter",
@@ -9063,7 +9063,7 @@
 					"_parent": {
 						"$ref": "AAAAAAGWLyczkHZczfU="
 					},
-					"name": "TrueFalse",
+					"name": "Question.TrueFalse",
 					"ownedElements": [
 						{
 							"_type": "UMLGeneralization",
@@ -9152,7 +9152,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGWLy6v3HiG1KE="
 							},
-							"name": "TrueFalse",
+							"name": "Question.TrueFalse",
 							"parameters": [
 								{
 									"_type": "UMLParameter",
@@ -9258,7 +9258,7 @@
 					"_parent": {
 						"$ref": "AAAAAAGWLyczkHZczfU="
 					},
-					"name": "Survey",
+					"name": "Survey.Survey",
 					"ownedElements": [
 						{
 							"_type": "UMLInterfaceRealization",
@@ -9389,7 +9389,7 @@
 							},
 							"name": "questions",
 							"visibility": "private",
-							"type": "List<Question>"
+							"type": "List<Question.Question>"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -9430,7 +9430,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGWLzAS8Xj56Cw="
 							},
-							"name": "Survey",
+							"name": "Survey.Survey",
 							"parameters": [
 								{
 									"_type": "UMLParameter",
@@ -9624,7 +9624,7 @@
 									"_parent": {
 										"$ref": "AAAAAAGWMQaE/7AyYrQ="
 									},
-									"type": "List<Question>",
+									"type": "List<Question.Question>",
 									"direction": "return"
 								}
 							]
@@ -9987,7 +9987,7 @@
 					"_parent": {
 						"$ref": "AAAAAAGWLyczkHZczfU="
 					},
-					"name": "Question",
+					"name": "Question.Question",
 					"ownedElements": [
 						{
 							"_type": "UMLAssociation",
@@ -10502,7 +10502,7 @@
 					"_parent": {
 						"$ref": "AAAAAAGWLyczkHZczfU="
 					},
-					"name": "ValidDate",
+					"name": "Question.ValidDate",
 					"ownedElements": [
 						{
 							"_type": "UMLGeneralization",
@@ -10561,7 +10561,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGWL3Y/CJ7vquA="
 							},
-							"name": "ValidDate",
+							"name": "Question.ValidDate",
 							"parameters": [
 								{
 									"_type": "UMLParameter",
@@ -11429,7 +11429,7 @@
 					"_parent": {
 						"$ref": "AAAAAAGWLyczkHZczfU="
 					},
-					"name": "Response"
+					"name": "Question.Response"
 				},
 				{
 					"_type": "UMLClass",
@@ -11653,7 +11653,7 @@
 					"_parent": {
 						"$ref": "AAAAAAGWLyczkHZczfU="
 					},
-					"name": "Response",
+					"name": "Question.Response",
 					"ownedElements": [
 						{
 							"_type": "UMLAssociation",

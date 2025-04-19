@@ -1,3 +1,5 @@
+package Question;
+
 import java.io.Serializable;
 
 public class Essay extends Question implements Serializable {
@@ -25,14 +27,16 @@ public class Essay extends Question implements Serializable {
     public void answerQuestionBody() {
         for(int i = 1; i <= this.responseLimit; i++){
           while (true){
-              String response = this.consoleInputDriver.getStringInput((char)(this.consoleInputDriver.CHAR_BASE+i-1) + ") ");
+              char questionChar = (char) (this.consoleInputDriver.CHAR_BASE + i - 1);
+              String questionLetter = questionChar + ") ";
+              String response = this.consoleInputDriver.getStringInput(questionLetter);
 
               if(responseIsValid(response)){
-                  this.addResponse(response);
+                  this.addResponse(questionLetter + response);
                   break;
               }
 
-              this.consoleOutputDriver.println("Invalid response. Response cannot be empty.");
+              this.consoleOutputDriver.println("Invalid response. Question.Response cannot be empty.");
 
           }
         }

@@ -1,5 +1,8 @@
-import IO.ConsoleInputDriver;
-import IO.ConsoleOutputDriver;
+package Survey;
+
+import IO.Console.ConsoleInputDriver;
+import IO.Console.ConsoleOutputDriver;
+import Question.Question;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -52,7 +55,7 @@ public class Survey implements Serializable {
 
             if(consoleInputDriver.userWantsToModify("delete", "question")){
                 this.removeQuestion(questionIndex);
-                consoleOutputDriver.println("Question deleted.");
+                consoleOutputDriver.println("Question.Question deleted.");
             }
 
             correspondingQuestion.modifyQuestion();
@@ -69,6 +72,7 @@ public class Survey implements Serializable {
         }
 
         if(this.consoleInputDriver.userWantsToModify("modify", "survey title")){
+            this.displaySurveyTitle();
             this.setSurveyTitle(this.consoleInputDriver.getStringInput("Enter survey title: "));
         }
 
@@ -115,7 +119,7 @@ public class Survey implements Serializable {
     }
 
     public void displaySurveyTitle(){
-        this.consoleOutputDriver.println("Survey Name: " + this.getSurveyTitle());
+        this.consoleOutputDriver.println("Survey.Survey Name: " + this.getSurveyTitle());
     }
 
 }

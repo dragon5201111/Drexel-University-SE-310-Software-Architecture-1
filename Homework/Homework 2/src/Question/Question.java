@@ -1,5 +1,7 @@
-import IO.ConsoleInputDriver;
-import IO.ConsoleOutputDriver;
+package Question;
+
+import IO.Console.ConsoleInputDriver;
+import IO.Console.ConsoleOutputDriver;
 
 import java.io.Serializable;
 import java.util.List;
@@ -27,6 +29,7 @@ public abstract class Question implements Serializable {
     // Template method
     public void answerQuestion() {
         this.displayQuestion();
+        this.removeResponses();
         this.answerQuestionBody();
     }
 
@@ -57,6 +60,10 @@ public abstract class Question implements Serializable {
 
     public void addResponse(String response){
         this.response.addResponse(response);
+    }
+
+    public void removeResponses(){
+        this.response.clearResponseList();
     }
 
     public List<String> getResponseList(){

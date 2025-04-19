@@ -1,4 +1,6 @@
-package IO;
+package IO.Console;
+
+import IO.OutputDriver;
 
 import java.util.List;
 
@@ -33,6 +35,16 @@ public class ConsoleOutputDriver extends OutputDriver {
 
         for(; startIndex < lines.size(); startIndex++) {
             System.out.println(lines.get(startIndex));
+        }
+    }
+
+    public void printNumberedLines(List<String> lines, int maxLines) {
+        if(lines.isEmpty()){
+            return;
+        }
+
+        for(int i = 0; i < lines.size() && i < maxLines; i++){
+            System.out.println((i+1) + ") " + lines.get(i));
         }
     }
 }

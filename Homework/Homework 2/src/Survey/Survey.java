@@ -55,10 +55,10 @@ public class Survey implements Serializable {
 
             if(consoleInputDriver.userWantsToModify("delete", "question")){
                 this.removeQuestion(questionIndex);
-                consoleOutputDriver.println("Question.Question deleted.");
+                consoleOutputDriver.println("Question deleted.");
+            }else{
+                correspondingQuestion.modifyQuestion();
             }
-
-            correspondingQuestion.modifyQuestion();
 
             if(!this.consoleInputDriver.userWantsToModify("continue modifying", "questions")){
                 break;
@@ -119,7 +119,7 @@ public class Survey implements Serializable {
     }
 
     public void displaySurveyTitle(){
-        this.consoleOutputDriver.println("Survey.Survey Name: " + this.getSurveyTitle());
+        this.consoleOutputDriver.println("Survey Name: " + this.getSurveyTitle());
     }
 
 }

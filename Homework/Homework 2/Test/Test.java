@@ -22,6 +22,18 @@ public class Test {
         return new Matching("Match Like Objects", leftSet, rightSet);
     }
 
+    public static MultipleChoice constructMultipleChoiceQuestion(){
+        List<String> choices = new ArrayList<>();
+        choices.add("Star Wars");
+        choices.add("Video Games");
+        choices.add("C");
+        choices.add("Vision");
+        choices.add("Cars");
+        choices.add("Life is cool");
+
+        return new MultipleChoice("Select 4", choices, 4);
+    }
+
     public static void main(String[] args) {
         Survey testSurvey = new Survey("Test Survey");
         testSurvey.addQuestion(new Essay("Write 3 paragraphs.", 3));
@@ -29,6 +41,7 @@ public class Test {
         testSurvey.addQuestion(new ShortAnswer("Write three words.", 3));
         testSurvey.addQuestion(new ValidDate("Enter your birthdate."));
         testSurvey.addQuestion(constructMatchingQuestion());
+        testSurvey.addQuestion(constructMultipleChoiceQuestion());
 
         SurveyMenu surveyMenu = new SurveyMenu();
         surveyMenu.setLoadedSurvey(testSurvey);

@@ -32,7 +32,7 @@ public class SurveyLoadOption extends SurveyActionOption{
         String surveyName = serializedFiles.get(selection - 1);
         Survey surveyToLoad = (Survey) objectSerializer.deserialize(surveyName);
 
-        this.surveyMenu.setLoadedSurvey(surveyToLoad);
-        this.consoleOutputDriver.println("Loaded Survey: " + surveyName);
+        this.surveyMenu.setLoadedSurvey(surveyToLoad, surveyName);
+        this.consoleOutputDriver.println("Load success! Loaded Survey: " + surveyName);
     }
 }

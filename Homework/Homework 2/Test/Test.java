@@ -10,16 +10,14 @@ public class Test {
     public static Matching constructMatchingQuestion(){
         List<String> leftSet = new ArrayList<>();
         List<String> rightSet = new ArrayList<>();
-
         leftSet.add("Minecraft");
         rightSet.add("Video Games");
-
         leftSet.add("Java");
         rightSet.add("C++");
-
         leftSet.add("Colors");
         rightSet.add("Vision");
-
+        leftSet.add("Sound");
+        rightSet.add("Whistling");
         return new Matching("Match Like Objects", leftSet, rightSet);
     }
 
@@ -31,7 +29,6 @@ public class Test {
         choices.add("Vision");
         choices.add("Cars");
         choices.add("Life is cool");
-
         return new MultipleChoice("Select 4", choices, 4);
     }
 

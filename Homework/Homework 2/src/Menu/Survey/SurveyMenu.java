@@ -7,6 +7,8 @@ import Survey.Survey;
 
 public class SurveyMenu extends Menu {
     private Survey loadedSurvey = null;
+    private String loadedSurveyName = null;
+
     private final ConsoleInputDriver consoleInputDriver = new ConsoleInputDriver();
     private final ConsoleOutputDriver consoleOutputDriver = new ConsoleOutputDriver();
 
@@ -39,12 +41,17 @@ public class SurveyMenu extends Menu {
         this.addMenuOption(new SurveyExitOption());
     }
 
-    public void setLoadedSurvey(Survey loadedSurvey) {
+    public void setLoadedSurvey(Survey loadedSurvey, String loadedSurveyName) {
         this.loadedSurvey = loadedSurvey;
+        this.loadedSurveyName = loadedSurveyName;
     }
 
     public Survey getLoadedSurvey() {
         return this.loadedSurvey;
+    }
+
+    public String getLoadedSurveyName() {
+        return this.loadedSurveyName;
     }
 
 }

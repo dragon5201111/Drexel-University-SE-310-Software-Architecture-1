@@ -2,6 +2,7 @@ package Menu;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public abstract class Menu {
     private final List<MenuOption> menuOptions;
@@ -15,6 +16,13 @@ public abstract class Menu {
     public abstract void displayMainMenu();
     public abstract void start();
     public abstract void initializeOptions();
+
+    public List<String> getMenuOptionLabels() {
+        return this.getMenuOptions()
+                .stream()
+                .map(option -> option.getOptionLabel())
+                .collect(Collectors.toList());
+    }
 
     public void addMenuOption(MenuOption menuOption) {
         this.menuOptions.add(menuOption);

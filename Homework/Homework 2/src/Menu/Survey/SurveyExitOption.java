@@ -1,14 +1,21 @@
 package Menu.Survey;
 
 import Menu.MenuOption;
+import Survey.Survey;
 
-public class SurveyExitOption extends MenuOption {
+public class SurveyExitOption extends SurveyActionOption {
+
     public SurveyExitOption() {
-        super("Exit");
+        super("Quit", null);
     }
 
     @Override
-    public void execute() {
+    public void execute(){
+        this.performAction(null);
+    }
+
+    @Override
+    protected void performAction(Survey survey) {
         System.exit(0);
     }
 }

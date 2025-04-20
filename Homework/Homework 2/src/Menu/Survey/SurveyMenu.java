@@ -3,11 +3,7 @@ package Menu.Survey;
 import IO.Console.ConsoleInputDriver;
 import IO.Console.ConsoleOutputDriver;
 import Menu.Menu;
-import Question.Essay;
 import Survey.Survey;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class SurveyMenu extends Menu {
     private Survey loadedSurvey = null;
@@ -21,11 +17,7 @@ public class SurveyMenu extends Menu {
 
     @Override
     public void displayMainMenu() {
-        List<String> menuOptionLabels = this.getMenuOptions()
-                .stream()
-                .map(option -> option.getOptionLabel())
-                .collect(Collectors.toList());
-        this.consoleOutputDriver.printNumberedLines(menuOptionLabels, this.getMenuOptionSize());
+        this.consoleOutputDriver.printNumberedLines(this.getMenuOptionLabels(), this.getMenuOptionSize());
     }
 
     @Override

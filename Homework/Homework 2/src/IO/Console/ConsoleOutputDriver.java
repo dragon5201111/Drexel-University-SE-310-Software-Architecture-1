@@ -2,9 +2,10 @@ package IO.Console;
 
 import IO.OutputDriver;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class ConsoleOutputDriver extends OutputDriver {
+public class ConsoleOutputDriver extends OutputDriver implements Serializable {
     @Override
     public void println(String s) {
         System.out.println(s);

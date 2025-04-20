@@ -2,9 +2,14 @@ package IO.Console;
 
 import IO.InputDriver;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.Scanner;
 
-public class ConsoleInputDriver extends InputDriver {
+public class ConsoleInputDriver extends InputDriver implements Serializable {
+    @Serial
+    private final static long serialVersionUID = 1L;
+
     public final char CHAR_BASE = 'A';
     private static final Scanner scanner = new Scanner(System.in);
 

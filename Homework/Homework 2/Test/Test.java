@@ -35,17 +35,20 @@ public class Test {
         return new MultipleChoice("Select 4", choices, 4);
     }
 
-    public static void main(String[] args) {
+    public static void serializeTestSurvey(){
+        ObjectSerializer serializer = new ObjectSerializer();
         Survey testSurvey = new Survey("Test Survey");
-        testSurvey.addQuestion(new Essay("Write 3 paragraphs.", 3));
-        testSurvey.addQuestion(new TrueFalse("The air is visible?"));
-        testSurvey.addQuestion(new ShortAnswer("Write three words.", 3));
-        testSurvey.addQuestion(new ValidDate("Enter your birthdate."));
         testSurvey.addQuestion(constructMatchingQuestion());
         testSurvey.addQuestion(constructMultipleChoiceQuestion());
+        testSurvey.addQuestion(new Essay("List two movies", 2));
+        testSurvey.addQuestion(new ShortAnswer("List a three letter word", 3));
+        testSurvey.addQuestion(new TrueFalse("Batman is evil"));
+        testSurvey.addQuestion(new ValidDate("Enter your birthdate"));
+        serializer.serialize(testSurvey, "sampleAllQs");
+    }
 
+    public static void main(String[] args) {
         SurveyMenu surveyMenu = new SurveyMenu();
-        surveyMenu.setLoadedSurvey(testSurvey);
         surveyMenu.start();
     }
 }

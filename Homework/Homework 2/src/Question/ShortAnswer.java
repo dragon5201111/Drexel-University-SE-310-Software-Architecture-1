@@ -1,9 +1,11 @@
 package Question;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 public class ShortAnswer extends Essay implements Serializable {
-    private static final long serialVersionUID = 1L;
+    @Serial
+    private final static long serialVersionUID = 8L;
 
     public ShortAnswer(String prompt, int wordLimit) {
         super(prompt, wordLimit);

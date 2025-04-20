@@ -1,17 +1,20 @@
 package Menu.Survey;
 
+import IO.Console.ConsoleInputDriver;
 import IO.Console.ConsoleOutputDriver;
 import Menu.MenuOption;
 import Survey.Survey;
 
 public abstract class SurveyActionOption extends MenuOption {
-    protected SurveyMenu surveyMenu;
-    protected ConsoleOutputDriver consoleOutputDriver;
+    protected final SurveyMenu surveyMenu;
+    protected final ConsoleOutputDriver consoleOutputDriver;
+    protected final ConsoleInputDriver consoleInputDriver;
 
     public SurveyActionOption(String optionLabel, SurveyMenu surveyMenu) {
         super(optionLabel);
         this.surveyMenu = surveyMenu;
         this.consoleOutputDriver = new ConsoleOutputDriver();
+        this.consoleInputDriver = new ConsoleInputDriver();
     }
 
     @Override

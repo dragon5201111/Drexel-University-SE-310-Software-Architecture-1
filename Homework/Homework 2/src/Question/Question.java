@@ -3,11 +3,13 @@ package Question;
 import IO.Console.ConsoleInputDriver;
 import IO.Console.ConsoleOutputDriver;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.List;
 
 public abstract class Question implements Serializable {
-    private static final long serialVersionUID = 1L;
+    @Serial
+    private final static long serialVersionUID = 6L;
 
     private final Response response;
     private String prompt;

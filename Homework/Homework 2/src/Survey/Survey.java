@@ -4,18 +4,20 @@ import IO.Console.ConsoleInputDriver;
 import IO.Console.ConsoleOutputDriver;
 import Question.Question;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Survey implements Serializable {
+    @Serial
+    private final static long serialVersionUID = 11L;
+
     private final ConsoleOutputDriver consoleOutputDriver;
     private final ConsoleInputDriver consoleInputDriver;
     private final List<Question> questions;
 
-
     private String surveyTitle;
-    private static final long serialVersionUID = 1L;
 
     public Survey(String surveyTitle) {
         this.surveyTitle = surveyTitle;

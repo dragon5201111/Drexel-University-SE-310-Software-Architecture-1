@@ -1,13 +1,24 @@
 package Serialization;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
-public class ObjectSerializer {
-    private final String SER_DES_EXTENSION = ".ser";
+public class ObjectSerializer{
+    private final String SER_DIRECTORY = System.getProperty("user.dir") + File.separator + "ser" + File.separator;
+    private final String SER_EXTENSION = ".ser";
+
+    private String getSavePath(){
+        return SER_DIRECTORY;
+    }
+
+    private String getFilePath(String fileName) {
+        return this.getSavePath() + fileName + SER_EXTENSION;
+    }
 
     public void serialize(Object object, String fileName){
         try {
-            FileOutputStream fileOutputStream = new FileOutputStream(fileName + SER_DES_EXTENSION);
+            FileOutputStream fileOutputStream = new FileOutputStream(this.getFilePath(fileName));
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
             objectOutputStream.writeObject(object);
             objectOutputStream.close();
@@ -18,10 +29,8 @@ public class ObjectSerializer {
     }
 
     public Object deserialize(String fileName){
-        fileName = fileName + SER_DES_EXTENSION;
-
         try {
-            FileInputStream fileInputStream = new FileInputStream(fileName);
+            FileInputStream fileInputStream = new FileInputStream(this.getFilePath(fileName));
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
             Object returnObject = objectInputStream.readObject();
             objectInputStream.close();
@@ -30,5 +39,29 @@ public class ObjectSerializer {
         } catch (IOException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private String stripExtension(String fileName) {
+        return fileName.substring(0, fileName.lastIndexOf('.'));
+    }
+
+    public List<String> getSerializedFiles(){
+        File directory = new File(this.getSavePath());
+        File[] files = directory.listFiles();
+
+        List<String> serializedFiles = new ArrayList<>();
+        if(files == null){
+            return serializedFiles;
+        }
+
+        for(File file : files){
+            String fileName = file.getName();
+
+            if(fileName.endsWith(SER_EXTENSION)){
+                serializedFiles.add(this.stripExtension(fileName));
+            }
+        }
+
+        return serializedFiles;
     }
 }

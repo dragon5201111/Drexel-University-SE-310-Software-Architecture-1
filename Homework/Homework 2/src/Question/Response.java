@@ -1,13 +1,16 @@
 package Question;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class Response implements Serializable {
+    @Serial
+    private final static long serialVersionUID = 7L;
+
     private final String RESPONSE_DEFAULT = "-";
-    private static final long serialVersionUID = 1L;
     private final List<String> responseList = new ArrayList<>();
 
     public void addResponse(String response){
@@ -25,7 +28,7 @@ public class Response implements Serializable {
         if(responseList.isEmpty()){
             return RESPONSE_DEFAULT;
         }
-        return this.responseList.get(0);
+        return this.responseList.getFirst();
     }
 
     public void clearResponseList(){

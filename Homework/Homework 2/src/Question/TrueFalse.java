@@ -1,12 +1,14 @@
 package Question;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 public class TrueFalse extends Question implements Serializable {
+    @Serial
+    private final static long serialVersionUID = 9L;
+
     private final String TRUE = "T";
     private final String FALSE = "F";
-
-    private static final long serialVersionUID = 1L;
 
     public TrueFalse(String prompt) {
         super(prompt);

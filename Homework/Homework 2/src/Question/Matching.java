@@ -1,10 +1,12 @@
 package Question;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.List;
 
 public class Matching extends Question implements Serializable {
-    private static final long serialVersionUID = 1L;
+    @Serial
+    private final static long serialVersionUID = 4L;
 
     private final String LEFT_SET = "left-Set";
     private final String RIGHT_SET = "right-Set";

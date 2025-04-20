@@ -1,11 +1,12 @@
 package Question;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.List;
 
 public class MultipleChoice extends Question implements Serializable {
-    private final static long serialVersionUID = 1L;
-
+    @Serial
+    private final static long serialVersionUID = 5L;
 
     private final List<String> choices;
     private int numberOfChoices;

@@ -1,6 +1,4 @@
 package Menu.Survey;
-
-import Menu.MenuOption;
 import Survey.Survey;
 
 public class SurveyExitOption extends SurveyActionOption {

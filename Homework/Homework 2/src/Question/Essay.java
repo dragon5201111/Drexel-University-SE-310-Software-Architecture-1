@@ -1,16 +1,18 @@
 package Question;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 public class Essay extends Question implements Serializable {
-    private static final long serialVersionUID = 1L;
+    @Serial
+    private final static long serialVersionUID = 3L;
+
     private int responseLimit;
 
     public Essay(String prompt, int responseLimit) {
         super(prompt);
         this.responseLimit = responseLimit;
     }
-
 
     @Override
     public void displayQuestion() {

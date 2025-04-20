@@ -35,6 +35,7 @@ public class SurveyMenu extends Menu {
         this.addMenuOption(new SurveyModifyOption(this));
         this.addMenuOption(new SurveyTakeOption(this));
         this.addMenuOption(new SurveyDisplayOption(this));
+        this.addMenuOption(new SurveyLoadOption(this));
         this.addMenuOption(new SurveyExitOption());
     }
 

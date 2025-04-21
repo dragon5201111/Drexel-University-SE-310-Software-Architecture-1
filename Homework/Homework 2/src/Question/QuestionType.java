@@ -47,8 +47,7 @@ public enum QuestionType {
                 return type;
             }
         }
-
-        // Default is to return true false
+        // Default is to return TRUE_FALSE as to throwing exception
         return TRUE_FALSE;
     }
 

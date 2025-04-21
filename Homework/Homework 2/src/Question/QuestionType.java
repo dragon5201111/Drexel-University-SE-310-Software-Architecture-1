@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public enum QuestionType {
+    // Value must be in increasing in increments of one
     TRUE_FALSE(1, "True/False"),
     MULTIPLE_CHOICE(2, "Multiple Choice"),
     SHORT_ANSWER(3, "Short Answer"),

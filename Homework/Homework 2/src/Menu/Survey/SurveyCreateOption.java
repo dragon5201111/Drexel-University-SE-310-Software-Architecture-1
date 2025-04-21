@@ -37,6 +37,7 @@ public class SurveyCreateOption extends SurveyActionOption{
         Survey newSurvey = new Survey(surveyTitle);
 
         while (this.consoleInputDriver.userWantsToModify("add a question", "survey")) {
+            // TODO: fix this
             List<String> displayNames = QuestionType.getDisplayNames();
             this.consoleOutputDriver.printNumberedLines(displayNames, displayNames.size());
 

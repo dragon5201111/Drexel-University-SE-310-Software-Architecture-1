@@ -14,13 +14,15 @@ public class QuestionFactory {
 
     public Question createQuestion(QuestionType questionType) {
         String prompt = this.consoleInputDriver.getStringInput("Enter the prompt for the question: ");
+
+        // Ordering of this switch is irrelevant
         return switch (questionType) {
-            case TRUE_FALSE -> createTrueFalse(prompt);
-            case MULTIPLE_CHOICE -> createMultipleChoice(prompt);
-            case SHORT_ANSWER -> createShortAnswer(prompt);
-            case ESSAY -> createEssay(prompt);
-            case VALID_DATE -> createValidDate(prompt);
-            case MATCHING -> createMatching(prompt);
+            case TRUE_FALSE -> this.createTrueFalse(prompt);
+            case MULTIPLE_CHOICE -> this.createMultipleChoice(prompt);
+            case SHORT_ANSWER -> this.createShortAnswer(prompt);
+            case ESSAY -> this.createEssay(prompt);
+            case VALID_DATE -> this.createValidDate(prompt);
+            case MATCHING -> this.createMatching(prompt);
         };
     }
 

@@ -25,9 +25,11 @@ public enum QuestionType {
 
     public static List<String> getDisplayNames() {
         List<String> displayNames = new ArrayList<>();
+
         for (QuestionType questionType : QuestionType.values()) {
             displayNames.add(questionType.getDisplayName());
         }
+
         return displayNames;
     }
 
@@ -37,6 +39,7 @@ public enum QuestionType {
                 return type;
             }
         }
+
         // Default is to return true false
         return TRUE_FALSE;
     }

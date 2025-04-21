@@ -25,8 +25,9 @@ public class Matching extends Question implements Serializable {
     public void displayQuestion() {
         this.consoleOutputDriver.println(this.getPrompt());
         for(int i = 0; i < this.leftSet.size(); i++){
-            consoleOutputDriver.println(constructPairString(i, i));
+            this.consoleOutputDriver.println(constructPairString(i, i));
         }
+        this.consoleOutputDriver.println();
     }
 
     private String constructPairString(int leftIndex, int rightIndex){
@@ -145,6 +146,6 @@ public class Matching extends Question implements Serializable {
 
     @Override
     public void displayResponse() {
-        consoleOutputDriver.printLines(this.getResponseList());
+        this.consoleOutputDriver.printLines(this.getResponseList());
     }
 }

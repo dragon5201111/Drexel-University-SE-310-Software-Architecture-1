@@ -6,7 +6,6 @@ import Survey.Survey;
 import java.util.List;
 
 public class SurveyLoadOption extends SurveyActionOption{
-    private final ObjectSerializer objectSerializer = new ObjectSerializer();
 
     public SurveyLoadOption(SurveyMenu surveyMenu) {
         super("Load an existing Survey", surveyMenu);
@@ -27,12 +26,12 @@ public class SurveyLoadOption extends SurveyActionOption{
         }
 
         this.consoleOutputDriver.printNumberedLines(serializedFiles, serializedFiles.size());
-        int selection = this.consoleInputDriver.getIntegerInput("Select a survey to load by number: ", serializedFiles.size());
+        int selection = this.consoleInputDriver.getIntegerInput("Please select a file to load: ", serializedFiles.size());
 
         String surveyName = serializedFiles.get(selection - 1);
         Survey surveyToLoad = (Survey) objectSerializer.deserialize(surveyName);
 
-        this.surveyMenu.setLoadedSurvey(surveyToLoad, surveyName);
-        this.consoleOutputDriver.println("Load success! Loaded Survey: " + surveyName);
+        this.surveyMenu.setLoadedSurvey(surveyToLoad);
+        this.consoleOutputDriver.println("Load success! Loaded survey: " + surveyName);
     }
 }

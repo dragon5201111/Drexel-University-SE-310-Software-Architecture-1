@@ -1,6 +1,5 @@
 package Menu.Survey;
 
-import Serialization.ObjectSerializer;
 import Survey.Survey;
 
 import java.util.List;
@@ -18,7 +17,7 @@ public class SurveyLoadOption extends SurveyActionOption{
 
     @Override
     protected void performAction(Survey survey) {
-        List<String> serializedFiles = this.objectSerializer.getSerializedFiles();
+        List<String> serializedFiles = this.objectSerializer.getSerializedFileNames();
 
         if(serializedFiles.isEmpty()){
             this.consoleOutputDriver.println("There are no survey files to load.");

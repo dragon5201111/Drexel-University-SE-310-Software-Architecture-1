@@ -45,7 +45,7 @@ public class ObjectSerializer{
         return fileName.substring(0, fileName.lastIndexOf('.'));
     }
 
-    public List<String> getSerializedFiles(){
+    public List<String> getSerializedFileNames(){
         File directory = new File(this.getSavePath());
         File[] files = directory.listFiles();
 

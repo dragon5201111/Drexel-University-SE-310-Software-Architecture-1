@@ -34,6 +34,7 @@ public class SurveyMenu extends Menu {
 
     @Override
     public void initializeOptions() {
+        this.addMenuOption(new SurveyCreateOption(this));
         this.addMenuOption(new SurveyDisplayOption(this));
         this.addMenuOption(new SurveyLoadOption(this));
         this.addMenuOption(new SurveySaveOption(this));

@@ -31,7 +31,7 @@ public class MultipleChoice extends Question implements Serializable {
 
     @Override
     public void displayQuestion() {
-        this.consoleOutputDriver.println(this.getPrompt());
+        this.consoleOutputDriver.println(this.getPrompt() + " Please Give " + this.numberOfChoices + " choices.");
         this.displayChoicesList();
     }
 

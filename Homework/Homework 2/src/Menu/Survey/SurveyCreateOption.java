@@ -31,18 +31,29 @@ public class SurveyCreateOption extends SurveyActionOption{
         }
     }
 
+    private void displayOptions() {
+        for(QuestionType questionType : QuestionType.values()){
+            this.consoleOutputDriver.println(questionType.getValue() + ") " + questionType.getDisplayName());
+        }
+    }
+
     @Override
     protected void performAction(Survey survey) {
         String surveyTitle = consoleInputDriver.getStringInput("Enter a Survey Title: ");
         Survey newSurvey = new Survey(surveyTitle);
 
         while (this.consoleInputDriver.userWantsToModify("add a question", "survey")) {
-            // TODO: fix this
-            List<String> displayNames = QuestionType.getDisplayNames();
-            this.consoleOutputDriver.printNumberedLines(displayNames, displayNames.size());
+            this.displayOptions();
 
-            int choice = this.consoleInputDriver.getIntegerInput("Enter Question Type: ", displayNames.size());
+            int choice = this.consoleInputDriver.getIntegerInput("Enter question type (select corresponding number): ");
+
+            if(!QuestionType.isValidValue(choice)){
+                this.consoleOutputDriver.println("Invalid question type. Try again.");
+                continue;
+            }
+
             QuestionType questionType = QuestionType.fromValue(choice);
+            this.consoleOutputDriver.println("Creating a new question of type " + questionType.getDisplayName() + ".");
 
             Question newQuestion = questionFactory.createQuestion(questionType);
             newSurvey.addQuestion(newQuestion);

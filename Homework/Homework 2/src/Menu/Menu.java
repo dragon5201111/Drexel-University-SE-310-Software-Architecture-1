@@ -13,30 +13,30 @@ public abstract class Menu {
         this.initializeOptions();
     }
 
-    public abstract void displayMainMenu();
+    protected abstract void displayMainMenu();
+    protected abstract void initializeOptions();
     public abstract void start();
-    public abstract void initializeOptions();
 
-    public List<String> getMenuOptionLabels() {
+    protected List<String> getMenuOptionLabels() {
         return this.getMenuOptions()
                 .stream()
                 .map(option -> option.getOptionLabel())
                 .collect(Collectors.toList());
     }
 
-    public void addMenuOption(MenuOption menuOption) {
+    protected void addMenuOption(MenuOption menuOption) {
         this.menuOptions.add(menuOption);
     }
 
-    public MenuOption getMenuOption(int index) {
+    protected MenuOption getMenuOption(int index) {
         return this.menuOptions.get(index);
     }
 
-    public int getMenuOptionSize(){
+    protected int getMenuOptionSize(){
         return this.menuOptions.size();
     }
 
-    public List<MenuOption> getMenuOptions() {
+    protected List<MenuOption> getMenuOptions() {
         return this.menuOptions;
     }
 

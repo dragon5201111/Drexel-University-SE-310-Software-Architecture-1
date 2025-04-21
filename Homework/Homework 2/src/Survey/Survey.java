@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Survey implements Serializable {
+public class Survey implements Serializable{
     @Serial
     private final static long serialVersionUID = 11L;
 
@@ -37,6 +37,7 @@ public class Survey implements Serializable {
     private void removeQuestion(int questionIndex){
         this.questions.remove(questionIndex);
     }
+
 
     private void setSurveyTitle(String surveyTitle){
         this.surveyTitle = surveyTitle;

@@ -1,14 +1,14 @@
 Using Sample Files:
-Sample Files are located in the resources/sampleFiles directory. To use the sample files, run the java program for the first time and select
+Sample Files are located in the 'Homework 2/resources/sampleFiles' directory. To use the sample files, run the java program for the first time and select
 "Load an existing survey" from the menu. Then choose "Quit" from the menu and drag the files in the sampleFiles directory into the
 newly created ser directory.
 
 What works:
-Everything should work as desired. There might be some edge cases I missed as I was building this assignment but, for the most part,
+Everything works as desired. There might be some edge cases I missed as I was building this assignment but, for the most part,
 this application handles well and implements all requirements; in other words, my application won't go to all sideways at a mere malformed input.
 
 Development & Testing:
-This application was built and tested on Windows and was briefly tested on Linux (i.e., TUX).
+This application was built and tested on Windows and was briefly tested on Drexel's Linux Cluster - TUX.
 
 IMPORTANT INFO:
 Regarding the menus, I added extra prompts to improve the overall program control. These prompts are in ADDITION to all of the other

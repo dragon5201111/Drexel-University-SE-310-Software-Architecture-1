@@ -55,23 +55,25 @@ public class QuestionFactory {
         return new Matching(prompt, leftSet, rightSet);
     }
 
+    private int getResponseLimit(String subject) {
+        return this.consoleInputDriver.getIntegerInput("Enter max number of " + subject + ": ");
+    }
+
     private ValidDate createValidDate(String prompt){
-        return new ValidDate(prompt);
+        return new ValidDate(prompt, this.getResponseLimit("responses"));
     }
 
     private Essay createEssay(String prompt){
-        int responseLimit = this.consoleInputDriver.getIntegerInput("Enter number of responses: ");
-        return new Essay(prompt, responseLimit);
+        return new Essay(prompt, this.getResponseLimit("responses"));
     }
 
     private ShortAnswer createShortAnswer(String prompt){
-        int wordLimit = this.consoleInputDriver.getIntegerInput("Enter word limit: ");
-        return new ShortAnswer(prompt, wordLimit);
+        return new ShortAnswer(prompt, this.getResponseLimit("words"));
     }
 
     private MultipleChoice createMultipleChoice(String prompt){
-        int numberOfChoices = this.consoleInputDriver.getIntegerInput("Enter the number of choices to create: ");
-        int numberOfResponses = this.consoleInputDriver.getIntegerInput("Enter the number of responses to the question: ");
+        int numberOfChoices = this.getResponseLimit("choices");
+        int numberOfResponses = this.getResponseLimit("responses");
 
         List<String> choices = new ArrayList<>();
 

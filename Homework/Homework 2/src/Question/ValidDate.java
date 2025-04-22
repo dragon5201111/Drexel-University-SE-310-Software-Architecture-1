@@ -11,39 +11,44 @@ public class ValidDate extends Question implements Serializable {
 
     private final String DATE_FORMAT = "MM/dd/yyyy";
     private final SimpleDateFormat simpleDateFormat = new SimpleDateFormat(DATE_FORMAT);
+    private int responseLimit;
 
-    public ValidDate(String prompt) {
+    public ValidDate(String prompt, int responseLimit) {
         super(prompt);
-        simpleDateFormat.setLenient(false);
+        this.simpleDateFormat.setLenient(false);
+        this.responseLimit = responseLimit;
     }
 
     @Override
     public void displayQuestion() {
-        consoleOutputDriver.println(this.getPrompt());
+        consoleOutputDriver.println(this.getPrompt() + " Please give " + this.responseLimit + " date(s).");
     }
 
     @Override
     public void answerQuestionBody() {
-        String validDate;
+        for(int i = 0; i < this.responseLimit; i++) {
+            String validDate;
 
-        while(true){
+            while(true){
 
-            validDate = consoleInputDriver.getStringInput("Enter a valid date (" + DATE_FORMAT + "): ");
+                validDate = consoleInputDriver.getStringInput("(" + (i+1) + ") Enter a valid date (" + DATE_FORMAT + "): ");
 
-            try{
-                simpleDateFormat.parse(validDate);
-                break;
-            } catch (ParseException e) {
-                consoleOutputDriver.println("Invalid date entered. Try again: " + validDate);
+                try{
+                    simpleDateFormat.parse(validDate);
+                    break;
+                } catch (ParseException e) {
+                    consoleOutputDriver.println("Invalid date entered. Try again: " + validDate);
+                }
             }
-        }
 
-        this.addResponse(validDate);
+            this.addResponse(validDate);
+        }
     }
 
 
     @Override
     public void modifyQuestionParameters() {
+        this.responseLimit = this.consoleInputDriver.getIntegerInput("Enter the number of max responses to this question: ");
     }
 
     @Override

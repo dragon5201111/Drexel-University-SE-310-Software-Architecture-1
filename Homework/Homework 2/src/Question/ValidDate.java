@@ -4,6 +4,7 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 public class ValidDate extends Question implements Serializable {
     @Serial
@@ -53,6 +54,7 @@ public class ValidDate extends Question implements Serializable {
 
     @Override
     public void displayResponse() {
-        consoleOutputDriver.println(this.getFirstResponse());
+        List<String> responseList = this.getResponseList();
+        this.consoleOutputDriver.printNumberedLines(responseList, responseList.size());
     }
 }

@@ -17,7 +17,7 @@ public class SurveyTakeOption extends SurveyActionOption {
         survey.takeSurvey();
         String responseSaveName = this.getResponseSaveName(survey);
         this.objectSerializer.serialize(survey, responseSaveName);
-        this.consoleOutputDriver.println("Survey response saved as " + responseSaveName + ".");
+        this.consoleOutputDriver.println("Survey response saved as " + responseSaveName + ". Load the survey to view your responses!");
 
         // Don't keep responses on survey. They are stored in a file.
         survey.clearSurveyResponses();

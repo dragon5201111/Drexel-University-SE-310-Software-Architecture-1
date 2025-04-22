@@ -4,13 +4,11 @@ import IO.Console.ConsoleInputDriver;
 import IO.Console.ConsoleOutputDriver;
 import Question.Question;
 
-import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Survey implements Serializable{
-    @Serial
     private final static long serialVersionUID = 11L;
 
     private final ConsoleOutputDriver consoleOutputDriver;

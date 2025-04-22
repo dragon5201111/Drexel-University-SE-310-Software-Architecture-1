@@ -1,13 +1,11 @@
 package Question;
 
-import java.io.Serial;
 import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class ValidDate extends Question implements Serializable {
-    @Serial
     private final static long serialVersionUID = 10L;
 
     private final String DATE_FORMAT = "MM/dd/yyyy";

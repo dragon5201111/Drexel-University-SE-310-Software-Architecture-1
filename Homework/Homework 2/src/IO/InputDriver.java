@@ -1,8 +1,5 @@
 package IO;
 
-import java.io.Serial;
-import java.io.Serializable;
-
 public abstract class InputDriver{
 
     public abstract String getStringInput(String prompt);

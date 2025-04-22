@@ -1,12 +1,34 @@
 package Serialization;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ObjectSerializer{
-    private final String SER_DIRECTORY = System.getProperty("user.dir") + File.separator + "ser" + File.separator;
-    private final String SER_EXTENSION = ".ser";
+    private static final String SER_DIRECTORY = System.getProperty("user.dir") + File.separator + "ser" + File.separator;
+    private static final String SER_EXTENSION = ".ser";
+
+    static {
+        if(!serializeDirectoryExists()){
+            createSerializeDirectory();
+        }
+    }
+
+    private static void createSerializeDirectory(){
+        try{
+            Files.createDirectory(Paths.get(SER_DIRECTORY));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private static boolean serializeDirectoryExists(){
+        File directoryFile = new File(SER_DIRECTORY);
+        return directoryFile.exists() && directoryFile.isDirectory();
+    }
 
     private String getSavePath(){
         return SER_DIRECTORY;

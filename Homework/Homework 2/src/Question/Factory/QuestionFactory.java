@@ -7,6 +7,7 @@ import Question.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class QuestionFactory {
     private final ConsoleInputDriver consoleInputDriver = new ConsoleInputDriver();
@@ -16,14 +17,22 @@ public class QuestionFactory {
         String prompt = this.consoleInputDriver.getStringInput("Enter the prompt for the question: ");
 
         // Ordering of this switch is irrelevant
-        return switch (questionType) {
-            case TRUE_FALSE -> this.createTrueFalse(prompt);
-            case MULTIPLE_CHOICE -> this.createMultipleChoice(prompt);
-            case SHORT_ANSWER -> this.createShortAnswer(prompt);
-            case ESSAY -> this.createEssay(prompt);
-            case VALID_DATE -> this.createValidDate(prompt);
-            case MATCHING -> this.createMatching(prompt);
-        };
+        switch (questionType) {
+            case TRUE_FALSE:
+                return this.createTrueFalse(prompt);
+            case MULTIPLE_CHOICE:
+                return this.createMultipleChoice(prompt);
+            case SHORT_ANSWER:
+                return this.createShortAnswer(prompt);
+            case ESSAY:
+                return this.createEssay(prompt);
+            case VALID_DATE:
+                return this.createValidDate(prompt);
+            case MATCHING:
+                return this.createMatching(prompt);
+        }
+
+        throw new IllegalArgumentException("Unrecognized question type: " + questionType);
     }
 
     private boolean setsAreValid(List<String> leftSet, List<String> rightSet){
@@ -34,7 +43,7 @@ public class QuestionFactory {
         return Arrays.stream(set.trim()
                 .replaceAll("\\s+", " ")
                 .split(" "))
-                .toList();
+                .collect(Collectors.toList());
     }
 
     private Matching createMatching(String prompt) {

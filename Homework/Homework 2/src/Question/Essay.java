@@ -1,10 +1,8 @@
 package Question;
 
-import java.io.Serial;
 import java.io.Serializable;
 
 public class Essay extends Question implements Serializable {
-    @Serial
     private final static long serialVersionUID = 3L;
 
     private int responseLimit;

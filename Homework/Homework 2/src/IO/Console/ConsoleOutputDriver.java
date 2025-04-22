@@ -2,12 +2,10 @@ package IO.Console;
 
 import IO.OutputDriver;
 
-import java.io.Serial;
 import java.io.Serializable;
 import java.util.List;
 
 public class ConsoleOutputDriver extends OutputDriver implements Serializable {
-    @Serial
     private final static long serialVersionUID = 2L;
 
     @Override

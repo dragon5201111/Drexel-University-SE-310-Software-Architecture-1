@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum QuestionType {
-    // CANNOT USE DUPLICATE VALUES
+    // DO NOT USE DUPLICATE VALUES
     TRUE_FALSE(1, "True/False"),
     MULTIPLE_CHOICE(2, "Multiple Choice"),
     SHORT_ANSWER(3, "Short Answer"),

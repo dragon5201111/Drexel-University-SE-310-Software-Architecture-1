@@ -32,7 +32,7 @@ public class QuestionFactory {
                 return this.createMatching(prompt);
         }
 
-        throw new IllegalArgumentException("Unrecognized question type: " + questionType);
+        throw new IllegalArgumentException("Unrecognized question type! How did you get here?" + questionType);
     }
 
     private boolean setsAreValid(List<String> leftSet, List<String> rightSet){

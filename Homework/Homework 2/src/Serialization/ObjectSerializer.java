@@ -2,7 +2,6 @@ package Serialization;
 
 import java.io.*;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,8 +11,8 @@ public class ObjectSerializer{
     private static final String SER_EXTENSION = ".ser";
 
     static {
-        if(!serializeDirectoryExists()){
-            createSerializeDirectory();
+        if(!ObjectSerializer.serializeDirectoryExists()){
+            ObjectSerializer.createSerializeDirectory();
         }
     }
 

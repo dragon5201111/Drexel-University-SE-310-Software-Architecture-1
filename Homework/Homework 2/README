@@ -9,3 +9,7 @@ this application handles well and implements all requirements; in other words, m
 
 Development & Testing:
 This application was built and tested on Windows and was briefly tested on Linux (i.e., TUX).
+
+IMPORTANT INFO:
+Regarding the menus, I added extra prompts to improve the overall program control. These prompts are in ADDITION to all of the other
+menu requirements and are for quality of life; all required menus are present.

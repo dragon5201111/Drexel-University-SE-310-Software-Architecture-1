@@ -8,8 +8,12 @@ Everything works as desired. There might be some edge cases I missed as I was bu
 this application handles well and implements all requirements; in other words, my application won't go to all sideways at a mere malformed input.
 
 Development & Testing:
+Developed on SDK 11, Language Level SDK Default.
 This application was built and tested on Windows and was briefly tested on Drexel's Linux Cluster - TUX.
 
 IMPORTANT INFO:
 Regarding the menus, I added extra prompts to improve the overall program control. These prompts are in ADDITION to all of the other
 menu requirements and are for quality of life; all required menus are present.
+
+Running The Program:
+Compile Main.java in 'Homework 2/src' and run.

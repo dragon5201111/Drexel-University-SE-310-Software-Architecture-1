@@ -53,7 +53,7 @@ public class Survey implements Serializable{
 
             this.displaySurvey();
 
-            int questionIndex = consoleInputDriver.getIntegerInput("What question do you wish to modify? ", questions.size()) - 1;
+            int questionIndex = consoleInputDriver.getIntegerInput("What question do you wish to modify (enter a number)? ", questions.size()) - 1;
             Question correspondingQuestion = this.getQuestion(questionIndex);
 
             if(consoleInputDriver.userWantsToModify("delete", "question")){
@@ -110,6 +110,12 @@ public class Survey implements Serializable{
             this.consoleOutputDriver.println();
             questionNumber++;
         }
+    }
+
+    public void clearSurveyResponses(){
+       for(Question question : questions) {
+           question.removeResponses();
+       }
     }
 
     @FunctionalInterface

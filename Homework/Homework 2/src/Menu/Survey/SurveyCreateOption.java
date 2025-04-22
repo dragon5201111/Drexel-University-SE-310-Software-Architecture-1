@@ -33,7 +33,7 @@ public class SurveyCreateOption extends SurveyActionOption{
 
     private void displayOptions() {
         for(QuestionType questionType : QuestionType.values()){
-            this.consoleOutputDriver.println(questionType.getValue() + ") " + questionType.getDisplayName());
+            this.consoleOutputDriver.println(questionType.getValue() + ") Add a new " + questionType.getDisplayName());
         }
     }
 
@@ -43,9 +43,13 @@ public class SurveyCreateOption extends SurveyActionOption{
         Survey newSurvey = new Survey(surveyTitle);
 
         while (this.consoleInputDriver.userWantsToModify("add a question", "survey")) {
+
+            this.consoleOutputDriver.println();
             this.displayOptions();
+            this.consoleOutputDriver.println();
 
             int choice = this.consoleInputDriver.getIntegerInput("Enter question type (select corresponding number): ");
+            this.consoleOutputDriver.println();
 
             if(!QuestionType.isValidValue(choice)){
                 this.consoleOutputDriver.println("Invalid question type. Try again.");
@@ -60,6 +64,8 @@ public class SurveyCreateOption extends SurveyActionOption{
         }
 
         this.surveyMenu.setLoadedSurvey(newSurvey);
-        this.consoleOutputDriver.println("'" + surveyTitle + "' has been created and loaded.");
+
+        this.consoleOutputDriver.println();
+        this.consoleOutputDriver.println("'" + surveyTitle + "' has been created and loaded. Please save for future usage.");
     }
 }

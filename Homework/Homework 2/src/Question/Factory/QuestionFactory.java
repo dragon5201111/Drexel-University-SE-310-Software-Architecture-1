@@ -70,7 +70,8 @@ public class QuestionFactory {
     }
 
     private MultipleChoice createMultipleChoice(String prompt){
-        int numberOfChoices = this.consoleInputDriver.getIntegerInput("Enter the number of choices: ");
+        int numberOfChoices = this.consoleInputDriver.getIntegerInput("Enter the number of choices to create: ");
+        int numberOfResponses = this.consoleInputDriver.getIntegerInput("Enter the number of responses to the question: ");
 
         List<String> choices = new ArrayList<>();
 
@@ -78,7 +79,7 @@ public class QuestionFactory {
             choices.add(this.consoleInputDriver.getStringInput("Enter choice #" + (i+1) + ": "));
         }
 
-        return new MultipleChoice(prompt, choices, numberOfChoices);
+        return new MultipleChoice(prompt, choices, numberOfResponses);
     }
 
     private TrueFalse createTrueFalse(String prompt){

@@ -2,6 +2,7 @@ package Question;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Matching extends Question implements Serializable {
@@ -16,8 +17,8 @@ public class Matching extends Question implements Serializable {
 
     public Matching(String prompt, List<String> leftSet, List<String> rightSet) {
         super(prompt);
-        this.leftSet = leftSet;
-        this.rightSet = rightSet;
+        this.leftSet = new ArrayList<>(leftSet);
+        this.rightSet = new ArrayList<>(rightSet);
     }
 
 
@@ -93,19 +94,15 @@ public class Matching extends Question implements Serializable {
     }
 
     private int getSetIndex(String side, String selection){
-        int setIndex;
-        while(true){
-            try {
-                if (side.equals(LEFT_SET)) {
-                    setIndex = convertCharToInt(selection.charAt(0));
-                } else {
-                    setIndex = Integer.parseInt(selection) - 1;
-                }
-                break;
-            } catch (Exception e) {
-                consoleOutputDriver.println("Invalid input format.");
+        int setIndex = -1;
+        try {
+            if (side.equals(LEFT_SET)) {
+                setIndex = convertCharToInt(selection.charAt(0));
+            } else {
+                setIndex = Integer.parseInt(selection) - 1;
             }
-
+        } catch (Exception e) {
+            consoleOutputDriver.println("Invalid input format.");
         }
         return setIndex;
     }

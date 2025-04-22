@@ -10,7 +10,7 @@ public enum QuestionType {
     SHORT_ANSWER(3, "Short Answer"),
     ESSAY(4, "Essay"),
     VALID_DATE(5, "Valid Date"),
-    MATCHING(9, "Matching");
+    MATCHING(6, "Matching");
 
     private final int value;
     private final String displayName;

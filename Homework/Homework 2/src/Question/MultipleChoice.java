@@ -2,6 +2,7 @@ package Question;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MultipleChoice extends Question implements Serializable {
@@ -13,7 +14,7 @@ public class MultipleChoice extends Question implements Serializable {
 
     public MultipleChoice(String prompt, List<String> choices, int numberOfChoices) {
         super(prompt);
-        this.choices = choices;
+        this.choices = new ArrayList<>(choices);
         this.numberOfChoices = numberOfChoices;
     }
 
@@ -25,8 +26,7 @@ public class MultipleChoice extends Question implements Serializable {
             }
             consoleOutputDriver.print(choiceText);
         }
-
-        consoleOutputDriver.println();
+        this.consoleOutputDriver.println();
     }
 
     @Override
@@ -70,12 +70,12 @@ public class MultipleChoice extends Question implements Serializable {
 
     @Override
     public void modifyQuestionParameters() {
-        this.numberOfChoices = consoleInputDriver.getIntegerInput("Enter number of choices for question: ");
+        this.numberOfChoices = consoleInputDriver.getIntegerInput("Enter number of responses permitted for the question: ");
 
         consoleOutputDriver.println("Select a choice from the list to modify: ");
         this.displayChoicesList();
 
-        String choice = consoleInputDriver.getStringInput("Choice to modify (a,b,c,d,...): ");
+        String choice = consoleInputDriver.getStringInput("Select a choice to modify (A,B,C,D...): ");
         int choiceIndex = getChoiceIndex(choice);
 
         String newChoice = consoleInputDriver.getStringInput("Overwriting '" + this.choices.get(choiceIndex) + "': " );

@@ -2,26 +2,31 @@ package Menu.Survey;
 
 import IO.Console.ConsoleInputDriver;
 import IO.Console.ConsoleOutputDriver;
-import Menu.Menu;
+import Menu.*;
 import Survey.Survey;
 
-public class SurveyMenu extends Menu {
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class SurveyMenu{
+    private final List<MenuOption> menuOptions;
     private Survey loadedSurvey = null;
 
     private final ConsoleInputDriver consoleInputDriver = new ConsoleInputDriver();
     private final ConsoleOutputDriver consoleOutputDriver = new ConsoleOutputDriver();
 
     public SurveyMenu() {
-        super();
+        this.menuOptions = new ArrayList<MenuOption>();
+        // Adds corresponding menu options
+        this.initializeOptions();
     }
 
 
-    @Override
     protected void displayMainMenu() {
         this.consoleOutputDriver.printNumberedLines(this.getMenuOptionLabels(), this.getMenuOptionSize());
     }
 
-    @Override
     public void start() {
         while(true) {
             this.displayMainMenu();
@@ -32,7 +37,6 @@ public class SurveyMenu extends Menu {
         }
     }
 
-    @Override
     protected void initializeOptions() {
         this.addMenuOption(new SurveyCreateOption(this));
         this.addMenuOption(new SurveyDisplayOption(this));
@@ -51,5 +55,26 @@ public class SurveyMenu extends Menu {
         return this.loadedSurvey;
     }
 
+    protected List<String> getMenuOptionLabels() {
+        return this.getMenuOptions()
+                .stream()
+                .map(option -> option.getOptionLabel())
+                .collect(Collectors.toList());
+    }
 
+    protected void addMenuOption(MenuOption menuOption) {
+        this.menuOptions.add(menuOption);
+    }
+
+    protected MenuOption getMenuOption(int index) {
+        return this.menuOptions.get(index);
+    }
+
+    protected int getMenuOptionSize(){
+        return this.menuOptions.size();
+    }
+
+    protected List<MenuOption> getMenuOptions() {
+        return this.menuOptions;
+    }
 }

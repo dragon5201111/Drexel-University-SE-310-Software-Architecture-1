@@ -1,6 +1,7 @@
 package Menu.Survey;
 
-import Question.Factory.SimpleQuestionFactory;
+import Question.Factory.QuestionFactory;
+import Question.Factory.QuestionFactoryCreator;
 import Question.Question;
 import Question.QuestionType;
 import Survey.Survey;
@@ -55,7 +56,9 @@ public class SurveyCreateOption extends SurveyMenuOption {
             QuestionType questionType = QuestionType.fromValue(choice);
             this.consoleOutputDriver.println("Creating a new question of type " + questionType.getDisplayName() + ".");
 
-            Question newQuestion = SimpleQuestionFactory.createQuestion(questionType);
+            QuestionFactory questionFactory = QuestionFactoryCreator.getQuestionFactory(questionType);
+            String prompt = this.consoleInputDriver.getStringInput("Enter the prompt for the question: ");
+            Question newQuestion = questionFactory.createQuestion(prompt);
             newSurvey.addQuestion(newQuestion);
         }
 

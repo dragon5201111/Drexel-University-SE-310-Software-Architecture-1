@@ -1,11 +1,9 @@
 package IO.Console;
 
-import IO.InputDriver;
-
 import java.io.Serializable;
 import java.util.Scanner;
 
-public class ConsoleInputDriver extends InputDriver implements Serializable {
+public class ConsoleInputDriver implements Serializable {
     private final static long serialVersionUID = 1L;
 
     public final char CHAR_BASE = 'A';
@@ -16,18 +14,15 @@ public class ConsoleInputDriver extends InputDriver implements Serializable {
         return input.equalsIgnoreCase("yes");
     }
 
-    @Override
     public String getStringInput(String prompt) {
         System.out.print(prompt);
         return scanner.nextLine();
     }
 
-    @Override
     public int getIntegerInput(String prompt) {
         return this.getIntegerInput(prompt, Integer.MAX_VALUE - 1);
     }
 
-    @Override
     public int getIntegerInput(String prompt, int max) {
         int input;
 

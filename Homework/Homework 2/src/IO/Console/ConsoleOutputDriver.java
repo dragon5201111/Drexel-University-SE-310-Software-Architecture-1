@@ -1,14 +1,10 @@
 package IO.Console;
-
-import IO.OutputDriver;
-
 import java.io.Serializable;
 import java.util.List;
 
-public class ConsoleOutputDriver extends OutputDriver implements Serializable {
+public class ConsoleOutputDriver implements Serializable {
     private final static long serialVersionUID = 2L;
 
-    @Override
     public void println(String s) {
         System.out.println(s);
     }
@@ -17,7 +13,6 @@ public class ConsoleOutputDriver extends OutputDriver implements Serializable {
         System.out.println();
     }
 
-    @Override
     public void print(String s) {
         if(s.isEmpty()){
             return;
@@ -25,12 +20,10 @@ public class ConsoleOutputDriver extends OutputDriver implements Serializable {
         System.out.print(s);
     }
 
-    @Override
     public void printLines(List<String> lines) {
         this.printLines(lines, 0);
     }
 
-    @Override
     public void printLines(List<String> lines, int startIndex) {
         if(lines.isEmpty() || startIndex >= lines.size() || startIndex < 0){
             return;

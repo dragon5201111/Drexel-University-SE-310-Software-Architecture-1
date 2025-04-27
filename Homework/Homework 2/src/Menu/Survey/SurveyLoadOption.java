@@ -1,5 +1,6 @@
 package Menu.Survey;
 
+import Serialization.ObjectSerializer;
 import Survey.Survey;
 
 import java.util.List;
@@ -17,7 +18,7 @@ public class SurveyLoadOption extends SurveyMenuOption {
 
     @Override
     protected void performAction(Survey survey) {
-        List<String> serializedFiles = this.objectSerializer.getSerializedFileNames();
+        List<String> serializedFiles = ObjectSerializer.getSerializedFileNames();
 
         if(serializedFiles.isEmpty()){
             this.consoleOutputDriver.println("There are no survey files to load.");
@@ -28,7 +29,7 @@ public class SurveyLoadOption extends SurveyMenuOption {
         int selection = this.consoleInputDriver.getIntegerInput("Please select a file to load: ", serializedFiles.size());
 
         String surveyName = serializedFiles.get(selection - 1);
-        Survey surveyToLoad = (Survey) objectSerializer.deserialize(surveyName);
+        Survey surveyToLoad = (Survey) ObjectSerializer.deserialize(surveyName);
 
         this.surveyMenu.setLoadedSurvey(surveyToLoad);
         this.consoleOutputDriver.println("Load success! Loaded survey: " + surveyName);

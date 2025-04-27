@@ -22,21 +22,21 @@ public class SurveyMenu{
     }
 
 
-    protected void displayMainMenu() {
-        this.consoleOutputDriver.printNumberedLines(this.getMenuOptionLabels(), this.getMenuOptionSize());
+    private void displayMainMenu() {
+        this.consoleOutputDriver.printNumberedLines(this.getMenuOptionLabels(), this.getMenuOptionsSize());
     }
 
     public void start() {
         while(true) {
             this.displayMainMenu();
-            int selection = this.consoleInputDriver.getIntegerInput("Please select a corresponding option: ", this.getMenuOptionSize());
+            int selection = this.consoleInputDriver.getIntegerInput("Please select a corresponding option: ", this.getMenuOptionsSize());
             this.consoleOutputDriver.println();
             this.getMenuOption(selection - 1).execute();
             this.consoleOutputDriver.println();
         }
     }
 
-    protected void initializeOptions() {
+    private void initializeOptions() {
         this.addMenuOption(new SurveyCreateOption(this));
         this.addMenuOption(new SurveyDisplayOption(this));
         this.addMenuOption(new SurveyLoadOption(this));
@@ -54,26 +54,26 @@ public class SurveyMenu{
         return this.loadedSurvey;
     }
 
-    protected List<String> getMenuOptionLabels() {
+    public List<String> getMenuOptionLabels() {
         return this.getMenuOptions()
                 .stream()
                 .map(SurveyMenuOption::getOptionLabel)
                 .collect(Collectors.toList());
     }
 
-    protected void addMenuOption(SurveyMenuOption menuOption) {
+    public void addMenuOption(SurveyMenuOption menuOption) {
         this.menuOptions.add(menuOption);
     }
 
-    protected SurveyMenuOption getMenuOption(int index) {
+    public SurveyMenuOption getMenuOption(int index) {
         return this.menuOptions.get(index);
     }
 
-    protected int getMenuOptionSize(){
+    public int getMenuOptionsSize(){
         return this.menuOptions.size();
     }
 
-    protected List<SurveyMenuOption> getMenuOptions() {
+    public List<SurveyMenuOption> getMenuOptions() {
         return this.menuOptions;
     }
 }

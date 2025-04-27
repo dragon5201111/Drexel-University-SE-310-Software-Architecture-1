@@ -7,7 +7,7 @@ public class ConsoleInputDriver implements Serializable {
     private final static long serialVersionUID = 1L;
 
     public final char CHAR_BASE = 'A';
-    private static final Scanner scanner = new Scanner(System.in);
+    private static final Scanner SCANNER = new Scanner(System.in);
 
     public boolean userWantsToModify(String verb, String subject) {
         String input = this.getStringInput("Do you wish to " + verb + " the " + subject + "? yes or no: ");
@@ -16,7 +16,7 @@ public class ConsoleInputDriver implements Serializable {
 
     public String getStringInput(String prompt) {
         System.out.print(prompt);
-        return scanner.nextLine();
+        return SCANNER.nextLine();
     }
 
     public int getIntegerInput(String prompt) {
@@ -29,7 +29,7 @@ public class ConsoleInputDriver implements Serializable {
         while(true){
             try {
                 System.out.print(prompt);
-                input = Integer.parseInt(scanner.nextLine());
+                input = Integer.parseInt(SCANNER.nextLine());
 
                 if(input < 1 || input > max){
                     throw new NumberFormatException();

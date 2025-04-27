@@ -2,7 +2,6 @@ package Menu.Survey;
 
 import IO.Console.ConsoleInputDriver;
 import IO.Console.ConsoleOutputDriver;
-import Serialization.ObjectSerializer;
 import Survey.Survey;
 
 public abstract class SurveyMenuOption {
@@ -11,14 +10,12 @@ public abstract class SurveyMenuOption {
     protected final SurveyMenu surveyMenu;
     protected final ConsoleOutputDriver consoleOutputDriver;
     protected final ConsoleInputDriver consoleInputDriver;
-    protected final ObjectSerializer objectSerializer;
 
     public SurveyMenuOption(String optionLabel, SurveyMenu surveyMenu) {
         this.optionLabel = optionLabel;
         this.surveyMenu = surveyMenu;
         this.consoleOutputDriver = new ConsoleOutputDriver();
         this.consoleInputDriver = new ConsoleInputDriver();
-        this.objectSerializer = new ObjectSerializer();
     }
 
     public void execute() {

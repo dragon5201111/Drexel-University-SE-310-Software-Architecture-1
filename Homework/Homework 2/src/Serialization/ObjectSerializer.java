@@ -29,17 +29,17 @@ public class ObjectSerializer{
         return directoryFile.exists() && directoryFile.isDirectory();
     }
 
-    private String getSavePath(){
+    private static String getSavePath(){
         return SER_DIRECTORY;
     }
 
-    private String getFilePath(String fileName) {
-        return this.getSavePath() + fileName + SER_EXTENSION;
+    private static String getFilePath(String fileName) {
+        return getSavePath() + fileName + SER_EXTENSION;
     }
 
-    public void serialize(Object object, String fileName){
+    public static void serialize(Object object, String fileName){
         try {
-            FileOutputStream fileOutputStream = new FileOutputStream(this.getFilePath(fileName));
+            FileOutputStream fileOutputStream = new FileOutputStream(getFilePath(fileName));
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
             objectOutputStream.writeObject(object);
             objectOutputStream.close();
@@ -49,9 +49,9 @@ public class ObjectSerializer{
         }
     }
 
-    public Object deserialize(String fileName){
+    public static Object deserialize(String fileName){
         try {
-            FileInputStream fileInputStream = new FileInputStream(this.getFilePath(fileName));
+            FileInputStream fileInputStream = new FileInputStream(getFilePath(fileName));
             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
             Object returnObject = objectInputStream.readObject();
             objectInputStream.close();
@@ -62,12 +62,12 @@ public class ObjectSerializer{
         }
     }
 
-    private String stripExtension(String fileName) {
+    private static String stripExtension(String fileName) {
         return fileName.substring(0, fileName.lastIndexOf('.'));
     }
 
-    public List<String> getSerializedFileNames(){
-        File directory = new File(this.getSavePath());
+    public static List<String> getSerializedFileNames(){
+        File directory = new File(getSavePath());
         File[] files = directory.listFiles();
 
         List<String> serializedFiles = new ArrayList<>();
@@ -79,7 +79,7 @@ public class ObjectSerializer{
             String fileName = file.getName();
 
             if(fileName.endsWith(SER_EXTENSION)){
-                serializedFiles.add(this.stripExtension(fileName));
+                serializedFiles.add(stripExtension(fileName));
             }
         }
 

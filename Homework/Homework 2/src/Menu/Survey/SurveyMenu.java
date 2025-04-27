@@ -2,7 +2,6 @@ package Menu.Survey;
 
 import IO.Console.ConsoleInputDriver;
 import IO.Console.ConsoleOutputDriver;
-import Menu.*;
 import Survey.Survey;
 
 import java.util.ArrayList;
@@ -10,14 +9,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class SurveyMenu{
-    private final List<MenuOption> menuOptions;
+    private final List<SurveyMenuOption> menuOptions;
     private Survey loadedSurvey = null;
 
     private final ConsoleInputDriver consoleInputDriver = new ConsoleInputDriver();
     private final ConsoleOutputDriver consoleOutputDriver = new ConsoleOutputDriver();
 
     public SurveyMenu() {
-        this.menuOptions = new ArrayList<MenuOption>();
+        this.menuOptions = new ArrayList<>();
         // Adds corresponding menu options
         this.initializeOptions();
     }
@@ -58,15 +57,15 @@ public class SurveyMenu{
     protected List<String> getMenuOptionLabels() {
         return this.getMenuOptions()
                 .stream()
-                .map(option -> option.getOptionLabel())
+                .map(SurveyMenuOption::getOptionLabel)
                 .collect(Collectors.toList());
     }
 
-    protected void addMenuOption(MenuOption menuOption) {
+    protected void addMenuOption(SurveyMenuOption menuOption) {
         this.menuOptions.add(menuOption);
     }
 
-    protected MenuOption getMenuOption(int index) {
+    protected SurveyMenuOption getMenuOption(int index) {
         return this.menuOptions.get(index);
     }
 
@@ -74,7 +73,7 @@ public class SurveyMenu{
         return this.menuOptions.size();
     }
 
-    protected List<MenuOption> getMenuOptions() {
+    protected List<SurveyMenuOption> getMenuOptions() {
         return this.menuOptions;
     }
 }

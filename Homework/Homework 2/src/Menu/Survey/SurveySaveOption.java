@@ -1,9 +1,8 @@
 package Menu.Survey;
 
-import Serialization.ObjectSerializer;
 import Survey.Survey;
 
-public class SurveySaveOption extends SurveyActionOption{
+public class SurveySaveOption extends SurveyMenuOption {
 
     public SurveySaveOption(SurveyMenu surveyMenu) {
         super("Save the current Survey", surveyMenu);

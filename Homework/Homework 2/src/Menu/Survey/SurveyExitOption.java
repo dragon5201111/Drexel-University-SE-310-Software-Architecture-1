@@ -1,7 +1,7 @@
 package Menu.Survey;
 import Survey.Survey;
 
-public class SurveyExitOption extends SurveyActionOption {
+public class SurveyExitOption extends SurveyMenuOption {
 
     public SurveyExitOption() {
         super("Quit", null);

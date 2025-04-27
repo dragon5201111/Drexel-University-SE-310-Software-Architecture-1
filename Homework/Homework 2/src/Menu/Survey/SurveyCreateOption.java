@@ -4,9 +4,8 @@ import Question.Factory.QuestionFactory;
 import Question.Question;
 import Question.QuestionType;
 import Survey.Survey;
-import java.util.List;
 
-public class SurveyCreateOption extends SurveyActionOption{
+public class SurveyCreateOption extends SurveyMenuOption {
     private final QuestionFactory questionFactory;
 
     public SurveyCreateOption(SurveyMenu surveyMenu) {

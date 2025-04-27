@@ -4,7 +4,7 @@ import Survey.Survey;
 
 import java.util.List;
 
-public class SurveyLoadOption extends SurveyActionOption{
+public class SurveyLoadOption extends SurveyMenuOption {
 
     public SurveyLoadOption(SurveyMenu surveyMenu) {
         super("Load an existing Survey", surveyMenu);

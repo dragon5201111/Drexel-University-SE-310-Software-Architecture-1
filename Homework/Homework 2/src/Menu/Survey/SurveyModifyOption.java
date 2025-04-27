@@ -1,7 +1,7 @@
 package Menu.Survey;
 import Survey.Survey;
 
-public class SurveyModifyOption extends SurveyActionOption {
+public class SurveyModifyOption extends SurveyMenuOption {
 
     public SurveyModifyOption(SurveyMenu surveyMenu) {
         super("Modifying the current Survey", surveyMenu);

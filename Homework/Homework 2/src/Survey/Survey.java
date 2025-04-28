@@ -11,14 +11,14 @@ import java.util.List;
 public class Survey implements Serializable{
     private final static long serialVersionUID = 11L;
 
-    private final ConsoleOutputDriver consoleOutputDriver;
-    private final ConsoleInputDriver consoleInputDriver;
-    private final List<Question> questions;
+    protected final ConsoleOutputDriver consoleOutputDriver;
+    protected final ConsoleInputDriver consoleInputDriver;
+    protected final List<Question> questions;
 
-    private String surveyTitle;
+    protected String title;
 
-    public Survey(String surveyTitle) {
-        this.surveyTitle = surveyTitle;
+    public Survey(String title) {
+        this.title = title;
         this.questions = new ArrayList<>();
         this.consoleOutputDriver = new ConsoleOutputDriver();
         this.consoleInputDriver = new ConsoleInputDriver();
@@ -32,13 +32,13 @@ public class Survey implements Serializable{
         return this.questions.get(index);
     }
 
-    private void removeQuestion(int questionIndex){
+    protected void removeQuestion(int questionIndex){
         this.questions.remove(questionIndex);
     }
 
 
-    private void setSurveyTitle(String surveyTitle){
-        this.surveyTitle = surveyTitle;
+    protected void setTitle(String title){
+        this.title = title;
     }
 
 
@@ -49,7 +49,7 @@ public class Survey implements Serializable{
                 break;
             }
 
-            this.displaySurvey();
+            this.display();
 
             int questionIndex = consoleInputDriver.getIntegerInput("What question do you wish to modify (enter a number)? ", questions.size()) - 1;
             Question correspondingQuestion = this.getQuestion(questionIndex);
@@ -67,14 +67,14 @@ public class Survey implements Serializable{
         }
     }
 
-    public void modifySurvey(){
+    public void modify(){
         if(!this.consoleInputDriver.userWantsToModify("modify","survey")){
             return;
         }
 
         if(this.consoleInputDriver.userWantsToModify("modify", "survey title")){
-            this.displaySurveyTitle();
-            this.setSurveyTitle(this.consoleInputDriver.getStringInput("Enter survey title: "));
+            this.displayTitle();
+            this.setTitle(this.consoleInputDriver.getStringInput("Enter survey title: "));
         }
 
         if(this.consoleInputDriver.userWantsToModify("modify", "questions")) {
@@ -84,20 +84,20 @@ public class Survey implements Serializable{
         consoleOutputDriver.println();
     }
 
-    public void takeSurvey(){
-        processSurvey(Question::answerQuestion);
+    public void take(){
+        process(Question::answerQuestion);
     }
 
 
-    public void displaySurvey(){
-        processSurvey(question -> {
+    public void display(){
+        process(question -> {
             question.displayQuestion();
             question.displayResponse();
         });
     }
 
-    private void processSurvey(QuestionAction questionAction) {
-        this.displaySurveyTitle();
+    private void process(QuestionAction questionAction) {
+        this.displayTitle();
 
         int questionNumber = 1;
         for(Question question : questions) {
@@ -110,7 +110,7 @@ public class Survey implements Serializable{
         }
     }
 
-    public void clearSurveyResponses(){
+    public void clearResponses(){
        for(Question question : questions) {
            question.removeResponses();
        }
@@ -121,12 +121,12 @@ public class Survey implements Serializable{
         void perform(Question question);
     }
 
-    public String getSurveyTitle() {
-        return surveyTitle;
+    public String getTitle() {
+        return title;
     }
 
-    public void displaySurveyTitle(){
-        this.consoleOutputDriver.println("Survey Name: " + this.getSurveyTitle());
+    public void displayTitle(){
+        this.consoleOutputDriver.println("Survey Name: " + this.getTitle());
     }
 
 }

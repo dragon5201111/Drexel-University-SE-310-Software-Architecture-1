@@ -1,15 +1,14 @@
 package Question;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
-public class Response implements Serializable {
+public class Response implements Serializable{
     private final static long serialVersionUID = 7L;
 
     private final String RESPONSE_DEFAULT = "-";
-    private final List<String> responseList = new ArrayList<>();
+    private List<String> responseList = new ArrayList<>();
 
     public void addResponse(String response){
         this.responseList.add(response);
@@ -29,7 +28,23 @@ public class Response implements Serializable {
         return this.responseList.get(0);
     }
 
+    public void setResponseList(List<String> responseList) {
+        this.responseList = responseList;
+    }
+
     public void clearResponseList(){
         this.responseList.clear();
+    }
+
+    private Map<String, Integer> getFrequencyMap(List<String> responseList){
+        Map<String, Integer> frequencyMap = new HashMap<>();
+        responseList.forEach(response->{
+            frequencyMap.put(response, frequencyMap.getOrDefault(response, 0) + 1);
+        });
+        return frequencyMap;
+    }
+
+    public boolean compare(List<String> otherResponseList){
+        return this.getFrequencyMap(this.responseList).equals(this.getFrequencyMap(otherResponseList));
     }
 }

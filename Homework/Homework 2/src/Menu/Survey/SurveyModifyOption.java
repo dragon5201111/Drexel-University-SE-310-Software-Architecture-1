@@ -9,6 +9,6 @@ public class SurveyModifyOption extends SurveyMenuOption {
 
     @Override
     protected void performAction(Survey survey) {
-        survey.modifySurvey();
+        survey.modify();
     }
 }

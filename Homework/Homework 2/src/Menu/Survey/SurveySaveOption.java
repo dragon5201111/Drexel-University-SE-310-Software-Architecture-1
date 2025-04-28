@@ -12,9 +12,9 @@ public class SurveySaveOption extends SurveyMenuOption {
 
     @Override
     protected void performAction(Survey survey) {
-        String surveyTitle = survey.getSurveyTitle();
+        String surveyTitle = survey.getTitle();
         ObjectSerializer.serialize(survey, surveyTitle);
-        survey.displaySurvey();
+        survey.display();
         this.consoleOutputDriver.println("Success! Saved survey as: " + surveyTitle);
     }
 }

@@ -10,6 +10,6 @@ public class SurveyDisplayOption extends SurveyMenuOption {
 
     @Override
     protected void performAction(Survey survey) {
-        survey.displaySurvey();
+        survey.display();
     }
 }

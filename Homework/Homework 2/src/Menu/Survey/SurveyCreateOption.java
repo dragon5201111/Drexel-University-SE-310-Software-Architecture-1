@@ -57,6 +57,7 @@ public class SurveyCreateOption extends SurveyMenuOption {
             this.consoleOutputDriver.println("Creating a new question of type " + questionType.getDisplayName() + ".");
 
             QuestionFactory questionFactory = QuestionFactoryCreator.getQuestionFactory(questionType);
+
             String prompt = this.consoleInputDriver.getStringInput("Enter the prompt for the question: ");
             Question newQuestion = questionFactory.createQuestion(prompt);
             newSurvey.addQuestion(newQuestion);

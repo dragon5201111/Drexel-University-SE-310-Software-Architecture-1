@@ -37,11 +37,12 @@ public class Response implements Serializable{
     }
 
     private Map<String, Integer> getFrequencyMap(List<String> responseList){
-        Map<String, Integer> frequencyMap = new HashMap<>();
-        responseList.forEach(response->{
-            frequencyMap.put(response, frequencyMap.getOrDefault(response, 0) + 1);
-        });
-        return frequencyMap;
+        return responseList.stream()
+                .collect(Collectors.toMap(
+                        response -> response,
+                        response -> 1,
+                        Integer::sum
+                ));
     }
 
     public boolean compare(List<String> otherResponseList){

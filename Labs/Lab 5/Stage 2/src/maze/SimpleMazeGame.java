@@ -176,9 +176,4 @@ public class SimpleMazeGame
 		MazeViewer viewer = new MazeViewer(maze);
 	    viewer.run();
 	}
-
-	public Wall makeWall(){
-
-	}
-
 }

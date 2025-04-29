@@ -39,28 +39,28 @@ import java.util.stream.Collectors;
  * @version 1.0
  * @since 1.0
  */
-public class SimpleMazeGame
+public class MazeGameCreator
 {
 	/**
 	 * Creates a small maze.
 	 */
 
-	public static Maze createMaze()
+	public Maze createMaze()
 	{
 		Maze maze = new Maze();
 
-		Room roomOne = new Room(0);
-		Room roomTwo = new Room(1);
-		Door door = new Door(roomOne, roomTwo);
+		Room roomOne = this.makeRoom(0);
+		Room roomTwo = this.makeRoom(1);
+		Door door = this.makeDoor(roomOne, roomTwo);
 
-		roomOne.setSide(Direction.North, new Wall());
-		roomOne.setSide(Direction.South, new Wall());
+		roomOne.setSide(Direction.North, this.makeWall());
+		roomOne.setSide(Direction.South, this.makeWall());
 		roomOne.setSide(Direction.East, door);
-		roomOne.setSide(Direction.West, new Wall());
+		roomOne.setSide(Direction.West, this.makeWall());
 
-		roomTwo.setSide(Direction.North, new Wall());
-		roomTwo.setSide(Direction.South, new Wall());
-		roomTwo.setSide(Direction.East, new Wall());
+		roomTwo.setSide(Direction.North, this.makeWall());
+		roomTwo.setSide(Direction.South, this.makeWall());
+		roomTwo.setSide(Direction.East, this.makeWall());
 		roomTwo.setSide(Direction.West, door);
 
 		maze.setCurrentRoom(roomOne);
@@ -70,7 +70,7 @@ public class SimpleMazeGame
 		return maze;
 	}
 
-	public static Maze loadMaze(final String path)
+	public Maze loadMaze(final String path)
 	{
 		Maze newMaze = new Maze();
 
@@ -93,7 +93,7 @@ public class SimpleMazeGame
 
 				if(objectName.equalsIgnoreCase("room")){
 					int roomNumber = Integer.parseInt(lineTokens[1]);
-					Room newRoom = new Room(roomNumber);
+					Room newRoom = this.makeRoom(roomNumber);
 
 					rooms.put(roomNumber, newRoom);
 
@@ -115,7 +115,7 @@ public class SimpleMazeGame
 					Room roomOne = rooms.get(roomOneNumber);
 					Room roomTwo = rooms.get(roomTwoNumber);
 
-					Door door = new Door(roomOne, roomTwo);
+					Door door = this.makeDoor(roomOne, roomTwo);
 					door.setOpen(isOpen);
 
 					doors.put(doorIdentifier, door);
@@ -137,7 +137,7 @@ public class SimpleMazeGame
 
 						MapSite site;
 						if(objectIdentifier.equalsIgnoreCase("wall")){
-							site = new Wall();
+							site = this.makeWall();
 						}else if(objectIdentifier.startsWith("d")){
 							site = doors.get(objectIdentifier);
 						}else{
@@ -163,14 +163,38 @@ public class SimpleMazeGame
 
 	public static void main(String[] args)
 	{
+		MazeGameCreator mazeCreator;
 		Maze maze;
+
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Choose a maze type:\n1.) basic\n2.) red\n3.) blue");
+
+		while (true){
+			System.out.print("Enter basic, red or blue: ");
+			String mazeType = scanner.nextLine();
+
+			if(mazeType.equalsIgnoreCase("basic")){
+				mazeCreator = new MazeGameCreator();
+				break;
+			}else if(mazeType.equalsIgnoreCase("red")){
+				mazeCreator = new RedMazeGameCreator();
+				break;
+			}else if(mazeType.equalsIgnoreCase("blue")){
+				mazeCreator = new BlueMazeGameCreator();
+				break;
+			}
+
+			System.out.println("Invalid maze type.");
+		}
+
+		scanner.close();
 
 		String largeMazePath = "large.maze";
 		File largeMazeFile = new File(largeMazePath);
 		if(largeMazeFile.exists()){
-			maze = loadMaze(largeMazePath);
+			maze = mazeCreator.loadMaze(largeMazePath);
 		}else{
-			maze = createMaze();
+			maze = mazeCreator.createMaze();
 		}
 
 		MazeViewer viewer = new MazeViewer(maze);
@@ -178,7 +202,16 @@ public class SimpleMazeGame
 	}
 
 	public Wall makeWall(){
-
+		return new Wall();
 	}
+
+	public Door makeDoor(Room roomOne, Room roomTwo){
+		return new Door(roomOne, roomTwo);
+	}
+
+	public Room makeRoom(int roomNumber){
+		return new Room(roomNumber);
+	}
+
 
 }

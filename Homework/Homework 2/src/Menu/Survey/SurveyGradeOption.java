@@ -1,5 +1,4 @@
 package Menu.Survey;
-
 import Survey.Survey;
 
 public class SurveyGradeOption extends SurveyMenuOption{

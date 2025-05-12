@@ -2,7 +2,9 @@ package Question;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class MultipleChoice extends Question implements Serializable {
     private final static long serialVersionUID = 5L;
@@ -49,6 +51,11 @@ public class MultipleChoice extends Question implements Serializable {
                 consoleOutputDriver.println("Invalid Choice. Please try again.");
             }
         }
+    }
+
+    @Override
+    public List<String> tabulateResponses() {
+        return this.getResponseFrequenciesList();
     }
 
     private boolean isValidChoiceIndex(int index) {

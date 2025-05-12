@@ -41,7 +41,6 @@ public class Survey implements Serializable{
         this.title = title;
     }
 
-
     private void modifyQuestions(){
         while(true){
             if(this.questions.isEmpty()){
@@ -88,6 +87,17 @@ public class Survey implements Serializable{
         process(Question::answerQuestion);
     }
 
+    public void displayTabulated(){
+        for(Question question : this.questions){
+            question.displayQuestion();
+
+            for(String line : question.tabulateResponses()){
+                this.consoleOutputDriver.println(line);
+            }
+
+            this.consoleOutputDriver.println();
+        }
+    }
 
     public void display(){
         process(question -> {
@@ -110,12 +120,6 @@ public class Survey implements Serializable{
         }
     }
 
-    public void clearResponses(){
-       for(Question question : questions) {
-           question.removeResponses();
-       }
-    }
-
     @FunctionalInterface
     private interface QuestionAction {
         void perform(Question question);
@@ -128,5 +132,4 @@ public class Survey implements Serializable{
     public void displayTitle(){
         this.consoleOutputDriver.println("Survey Name: " + this.getTitle());
     }
-
 }

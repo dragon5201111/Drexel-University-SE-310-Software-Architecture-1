@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class SurveyMenu{
+public class SurveyMenu implements Menu {
     private final List<SurveyMenuOption> menuOptions;
     private Survey loadedSurvey = null;
 
@@ -26,6 +26,7 @@ public class SurveyMenu{
         this.consoleOutputDriver.printNumberedLines(this.getMenuOptionLabels(), this.getMenuOptionsSize());
     }
 
+    @Override
     public void start() {
         while(true) {
             this.displayMainMenu();
@@ -43,6 +44,7 @@ public class SurveyMenu{
         this.addMenuOption(new SurveySaveOption(this));
         this.addMenuOption(new SurveyTakeOption(this));
         this.addMenuOption(new SurveyModifyOption(this));
+        this.addMenuOption(new SurveyTabulateOption(this));
         this.addMenuOption(new SurveyExitOption());
     }
 
@@ -61,6 +63,7 @@ public class SurveyMenu{
                 .collect(Collectors.toList());
     }
 
+    @Override
     public void addMenuOption(int position, SurveyMenuOption menuOption) {
         this.menuOptions.add(position, menuOption);
     }

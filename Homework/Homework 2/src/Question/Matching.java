@@ -2,7 +2,9 @@ package Question;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Matching extends Question implements Serializable {
     private final static long serialVersionUID = 4L;
@@ -51,6 +53,34 @@ public class Matching extends Question implements Serializable {
             int[] pairIndexes = getPairIndexes(pair);
             this.addResponse(constructPairString(pairIndexes[0], pairIndexes[1]));
         }
+    }
+
+    @Override
+    public List<String> tabulateResponses() {
+        List<String> responseList = this.getResponseList();
+        int responseListSize = responseList.size();
+
+        int leftSetSize = leftSet.size();
+
+        Map<String, Integer> responseCountMap = new HashMap<>();
+
+        for (int i = 0; i < responseListSize; i += leftSetSize) {
+            StringBuilder blockBuilder = new StringBuilder();
+            for (int j = 0; j < leftSetSize; j++) {
+                blockBuilder.append(responseList.get(i + j)).append("\n");
+            }
+            String block = blockBuilder.toString().trim();
+
+            responseCountMap.put(block, responseCountMap.getOrDefault(block, 0) + 1);
+        }
+
+        List<String> output = new ArrayList<>();
+        for (Map.Entry<String, Integer> entry : responseCountMap.entrySet()) {
+            output.add(String.valueOf(entry.getValue()));
+            output.add(entry.getKey());
+        }
+
+        return output;
     }
 
 

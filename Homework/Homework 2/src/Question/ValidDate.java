@@ -44,6 +44,11 @@ public class ValidDate extends Question implements Serializable {
         }
     }
 
+    @Override
+    public List<String> tabulateResponses() {
+        return this.getResponseFrequenciesList();
+    }
+
 
     @Override
     public void modifyQuestionParameters() {

@@ -1,6 +1,7 @@
 package Question;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class ShortAnswer extends Essay implements Serializable {
     private final static long serialVersionUID = 8L;
@@ -9,6 +10,10 @@ public class ShortAnswer extends Essay implements Serializable {
         super(prompt, wordLimit);
     }
 
+    @Override
+    public List<String> tabulateResponses() {
+        return this.getResponseFrequenciesList();
+    }
 
     @Override
     public void displayResponse() {

@@ -1,6 +1,7 @@
 package Question;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Essay extends Question implements Serializable {
     private final static long serialVersionUID = 3L;
@@ -40,6 +41,11 @@ public class Essay extends Question implements Serializable {
 
           }
         }
+    }
+
+    @Override
+    public List<String> tabulateResponses() {
+        return this.getResponseList();
     }
 
 

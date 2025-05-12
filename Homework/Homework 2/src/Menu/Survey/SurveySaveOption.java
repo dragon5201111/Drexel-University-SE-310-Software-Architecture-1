@@ -6,7 +6,7 @@ import Survey.Survey;
 public class SurveySaveOption extends SurveyMenuOption {
 
     public SurveySaveOption(SurveyMenu surveyMenu) {
-        super("Save the current Survey", surveyMenu);
+        super("Save", surveyMenu);
     }
 
 

@@ -8,7 +8,7 @@ import java.util.List;
 public class SurveyLoadOption extends SurveyMenuOption {
 
     public SurveyLoadOption(SurveyMenu surveyMenu) {
-        super("Load an existing Survey", surveyMenu);
+        super("Load", surveyMenu);
     }
 
     @Override

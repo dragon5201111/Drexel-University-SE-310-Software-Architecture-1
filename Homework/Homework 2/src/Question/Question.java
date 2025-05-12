@@ -4,7 +4,10 @@ import IO.Console.ConsoleInputDriver;
 import IO.Console.ConsoleOutputDriver;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public abstract class Question implements Serializable {
     private final static long serialVersionUID = 6L;
@@ -29,7 +32,6 @@ public abstract class Question implements Serializable {
     // Template method
     public void answerQuestion() {
         this.displayQuestion();
-        this.removeResponses();
         this.answerQuestionBody();
     }
 
@@ -57,6 +59,23 @@ public abstract class Question implements Serializable {
             this.modifyQuestionParameters();
         }
     }
+
+    public List<String> getResponseFrequenciesList(){
+        Map<String, Integer> frequencyMap = new HashMap<>();
+
+        for (String response : this.getResponseList()) {
+            frequencyMap.put(response, frequencyMap.getOrDefault(response, 0) + 1);
+        }
+
+        List<String> result = new ArrayList<>();
+        for (Map.Entry<String, Integer> entry : frequencyMap.entrySet()) {
+            result.add(entry.getKey() + ": " + entry.getValue());
+        }
+
+        return result;
+    }
+
+    public abstract List<String> tabulateResponses();
 
     public void addResponse(String response){
         this.response.addResponse(response);

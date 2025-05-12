@@ -8,7 +8,7 @@ import Survey.Survey;
 
 public class SurveyCreateOption extends SurveyMenuOption {
     public SurveyCreateOption(SurveyMenu surveyMenu) {
-        super("Create a new Survey", surveyMenu);
+        super("Create", surveyMenu);
     }
 
     @Override

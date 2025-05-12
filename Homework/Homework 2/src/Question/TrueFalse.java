@@ -1,6 +1,10 @@
 package Question;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class TrueFalse extends Question implements Serializable {
     private final static long serialVersionUID = 9L;
@@ -29,6 +33,11 @@ public class TrueFalse extends Question implements Serializable {
 
             consoleOutputDriver.println("Invalid answer. Must be " + TRUE + "/" + FALSE + ".");
         }
+    }
+
+    @Override
+    public List<String> tabulateResponses() {
+        return this.getResponseFrequenciesList();
     }
 
     private boolean isTrueOrFalse(String string){

@@ -12,6 +12,5 @@ public class SurveyTabulateOption extends SurveyMenuOption{
     @Override
     protected void performAction(Survey survey) {
         survey.displayTabulated();
-
     }
 }

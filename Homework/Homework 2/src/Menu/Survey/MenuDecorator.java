@@ -16,4 +16,9 @@ public abstract class MenuDecorator implements Menu {
     public void addMenuOption(int position, SurveyMenuOption menuOption){
         this.menu.addMenuOption(position, menuOption);
     }
+
+    @Override
+    public void setMenuOption(int position, SurveyMenuOption menuOption){
+        this.menu.setMenuOption(position, menuOption);
+    }
 }

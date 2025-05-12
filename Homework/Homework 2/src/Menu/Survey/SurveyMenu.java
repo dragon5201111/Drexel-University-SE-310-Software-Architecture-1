@@ -68,6 +68,11 @@ public class SurveyMenu implements Menu {
         this.menuOptions.add(position, menuOption);
     }
 
+    @Override
+    public void setMenuOption(int position, SurveyMenuOption menuOption) {
+        this.menuOptions.set(position, menuOption);
+    }
+
     public void addMenuOption(SurveyMenuOption menuOption) {
         this.addMenuOption(this.menuOptions.size(), menuOption);
     }

@@ -36,7 +36,7 @@ public class SurveyCreateOption extends SurveyMenuOption {
 
     @Override
     protected void performAction(Survey survey) {
-        String surveyTitle = consoleInputDriver.getStringInput("Enter a Survey Title: ");
+        String surveyTitle = consoleInputDriver.getStringInput("Enter a Title: ");
         Survey newSurvey = new Survey(surveyTitle);
 
         while (this.consoleInputDriver.userWantsToModify("add a question", "survey")) {

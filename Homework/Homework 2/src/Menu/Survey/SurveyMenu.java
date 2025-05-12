@@ -61,8 +61,12 @@ public class SurveyMenu{
                 .collect(Collectors.toList());
     }
 
+    public void addMenuOption(int position, SurveyMenuOption menuOption) {
+        this.menuOptions.add(position, menuOption);
+    }
+
     public void addMenuOption(SurveyMenuOption menuOption) {
-        this.menuOptions.add(menuOption);
+        this.addMenuOption(this.menuOptions.size(), menuOption);
     }
 
     public SurveyMenuOption getMenuOption(int index) {

@@ -5,27 +5,18 @@ import Question.Factory.QuestionFactoryCreator;
 import Question.Question;
 import Question.QuestionType;
 import Survey.Survey;
+import Test.Test;
 
 public class SurveyCreateOption extends SurveyMenuOption {
-    public SurveyCreateOption(SurveyMenu surveyMenu) {
+    private final boolean createTest;
+    public SurveyCreateOption(SurveyMenu surveyMenu, boolean createTest) {
         super("Create", surveyMenu);
+        this.createTest = createTest;
     }
 
     @Override
     public void execute() {
-        Survey loadedSurvey = this.surveyMenu.getLoadedSurvey();
-
-        if(loadedSurvey == null){
-            this.performAction(null);
-            return;
-        }
-
-        this.consoleOutputDriver.println("This action will overwrite the loaded survey.");
-
-        if(this.consoleInputDriver.userWantsToModify("overwrite", "survey")){
-            this.consoleOutputDriver.println();
-            this.performAction(null);
-        }
+        this.performAction(null);
     }
 
     private void displayOptions() {
@@ -34,12 +25,25 @@ public class SurveyCreateOption extends SurveyMenuOption {
         }
     }
 
+    private Question createQuestionFromQuestionType(QuestionType questionType) {
+        this.consoleOutputDriver.println("Creating a new question of type " + questionType.getDisplayName() + ".");
+        QuestionFactory questionFactory = QuestionFactoryCreator.getQuestionFactory(questionType);
+        String prompt = this.consoleInputDriver.getStringInput("Enter the prompt for the question: ");
+        return questionFactory.createQuestion(prompt);
+    }
+
     @Override
     protected void performAction(Survey survey) {
         String surveyTitle = consoleInputDriver.getStringInput("Enter a Title: ");
-        Survey newSurvey = new Survey(surveyTitle);
+        Survey newSurvey;
 
-        while (this.consoleInputDriver.userWantsToModify("add a question", "survey")) {
+        if(this.createTest){
+            newSurvey = new Test(surveyTitle);
+        }else{
+            newSurvey = new Survey(surveyTitle);
+        }
+
+        while (this.consoleInputDriver.userWantsToModify("add a question")) {
 
             this.consoleOutputDriver.println();
             this.displayOptions();
@@ -54,13 +58,15 @@ public class SurveyCreateOption extends SurveyMenuOption {
             }
 
             QuestionType questionType = QuestionType.fromValue(choice);
-            this.consoleOutputDriver.println("Creating a new question of type " + questionType.getDisplayName() + ".");
-
-            QuestionFactory questionFactory = QuestionFactoryCreator.getQuestionFactory(questionType);
-
-            String prompt = this.consoleInputDriver.getStringInput("Enter the prompt for the question: ");
-            Question newQuestion = questionFactory.createQuestion(prompt);
+            Question newQuestion = this.createQuestionFromQuestionType(questionType);
             newSurvey.addQuestion(newQuestion);
+
+            if(this.createTest){
+                while(this.consoleInputDriver.userWantsToModify("add a correct answer", "question")) {
+                    String correctAnswer = consoleInputDriver.getStringInput("Enter the correct answer: ");
+                    ((Test)newSurvey).addAnswer(newQuestion, correctAnswer);
+                }
+            }
         }
 
         this.surveyMenu.setLoadedSurvey(newSurvey);

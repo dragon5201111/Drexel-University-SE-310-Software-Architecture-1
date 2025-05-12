@@ -10,7 +10,7 @@ public class SurveyTakeOption extends SurveyMenuOption {
     }
 
     private String getResponseSaveName(Survey survey) {
-        return survey.getTitle() + "Response";
+        return survey.getTitle() + " Response";
     }
 
     @Override
@@ -18,6 +18,8 @@ public class SurveyTakeOption extends SurveyMenuOption {
         survey.take();
         String responseSaveName = this.getResponseSaveName(survey);
         ObjectSerializer.serialize(survey, responseSaveName);
-        this.consoleOutputDriver.println("Survey response saved as " + responseSaveName + ". Load the survey to view your responses!");
+        this.consoleOutputDriver.println("Response saved as " + responseSaveName + ". Load the response file to view responses.");
+        // Responses are saved in separate file.
+        survey.clearResponses();
     }
 }

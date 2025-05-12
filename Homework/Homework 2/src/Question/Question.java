@@ -32,6 +32,7 @@ public abstract class Question implements Serializable {
     // Template method
     public void answerQuestion() {
         this.displayQuestion();
+        this.removeResponses();
         this.answerQuestionBody();
     }
 
@@ -91,6 +92,10 @@ public abstract class Question implements Serializable {
 
     public String getFirstResponse(){
         return this.response.getFirstResponse();
+    }
+
+    public boolean grade(List<String> answers){
+        return this.response.compare(answers);
     }
 
 }

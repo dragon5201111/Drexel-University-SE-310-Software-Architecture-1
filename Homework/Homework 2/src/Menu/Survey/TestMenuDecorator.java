@@ -7,6 +7,7 @@ public class TestMenuDecorator extends MenuDecorator {
     }
 
     private void addTestOptions(){
+        this.setMenuOption(0, new SurveyCreateOption((SurveyMenu) this.menu, true));
         this.addMenuOption(2, new SurveyDisplayWAnswersOption((SurveyMenu) this.menu));
         this.addMenuOption(7, new SurveyGradeOption((SurveyMenu) this.menu));
     }

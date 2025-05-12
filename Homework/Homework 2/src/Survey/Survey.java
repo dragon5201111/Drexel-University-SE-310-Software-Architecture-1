@@ -125,8 +125,18 @@ public class Survey implements Serializable{
         void perform(Question question);
     }
 
+    public List<Question> getQuestions() {
+        return this.questions;
+    }
+
     public String getTitle() {
         return title;
+    }
+
+    public void clearResponses(){
+        for(Question question : this.questions){
+            question.removeResponses();
+        }
     }
 
     public void displayTitle(){

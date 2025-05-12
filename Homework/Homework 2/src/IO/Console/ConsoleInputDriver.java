@@ -14,6 +14,11 @@ public class ConsoleInputDriver implements Serializable {
         return input.equalsIgnoreCase("yes");
     }
 
+    public boolean userWantsToModify(String verb) {
+        String input = this.getStringInput("Do you wish to " + verb + "? yes or no: ");
+        return input.equalsIgnoreCase("yes");
+    }
+
     public String getStringInput(String prompt) {
         System.out.print(prompt);
         return SCANNER.nextLine();

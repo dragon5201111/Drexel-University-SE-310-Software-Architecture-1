@@ -24,7 +24,7 @@ public abstract class SurveyMenuOption {
         if (loadedSurvey != null) {
             performAction(loadedSurvey);
         } else {
-            this.consoleOutputDriver.println("You must have a survey loaded in order to perform this action.");
+            this.consoleOutputDriver.println("You must load in order to perform this action.");
         }
     }
 

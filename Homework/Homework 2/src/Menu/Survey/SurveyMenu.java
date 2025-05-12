@@ -38,7 +38,7 @@ public class SurveyMenu implements Menu {
     }
 
     private void initializeOptions() {
-        this.addMenuOption(new SurveyCreateOption(this));
+        this.addMenuOption(new SurveyCreateOption(this, false));
         this.addMenuOption(new SurveyDisplayOption(this));
         this.addMenuOption(new SurveyLoadOption(this));
         this.addMenuOption(new SurveySaveOption(this));

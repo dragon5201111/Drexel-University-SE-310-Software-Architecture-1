@@ -24,56 +24,45 @@ public class ValidDate extends Question implements Serializable {
         consoleOutputDriver.println(this.getPrompt() + " Please give " + this.responseLimit + " date(s).");
     }
 
-    @Override
-    public void answerQuestionBody() {
-        for(int i = 0; i < this.responseLimit; i++) {
-            String validDate;
-
-            while(true){
-
-                validDate = consoleInputDriver.getStringInput("(" + (i+1) + ") Enter a valid date (" + DATE_FORMAT + "): ");
-
-                try{
-                    simpleDateFormat.parse(validDate);
-                    break;
-                } catch (ParseException e) {
-                    consoleOutputDriver.println("Invalid date entered. Try again: " + validDate);
-                }
-            }
-
-            this.addResponse(validDate);
-        }
-    }
 
     @Override
     public List<String> tabulateResponses() {
         return this.getResponseFrequenciesList();
     }
 
-    @Override
-    public List<String> getCorrectAnswers() {
-        List<String> correctAnswers = new ArrayList<String>();
-        for(int i = 0; i < this.responseLimit; i++) {
-            String validDate;
+    private List<String> collectValidDates() {
+        List<String> validDates = new ArrayList<>();
 
-            while(true){
-
-                validDate = consoleInputDriver.getStringInput("(" + (i+1) + ") Enter a valid date (" + DATE_FORMAT + "): ");
-
-                try{
-                    simpleDateFormat.parse(validDate);
+        for (int i = 0; i < this.responseLimit; i++) {
+            while (true) {
+                String input = consoleInputDriver.getStringInput("(" + (i + 1) + ") Enter a valid date (" + DATE_FORMAT + "): ");
+                try {
+                    simpleDateFormat.parse(input);
+                    validDates.add(input);
                     break;
                 } catch (ParseException e) {
-                    consoleOutputDriver.println("Invalid date entered. Try again: " + validDate);
+                    consoleOutputDriver.println("Invalid date entered. Try again: " + input);
                 }
             }
-
-            correctAnswers.add(validDate);
         }
 
-        return correctAnswers;
+        return validDates;
     }
 
+
+    @Override
+    public void answerQuestionBody() {
+        List<String> dates = collectValidDates();
+        for (String date : dates) {
+            this.addResponse(date);
+        }
+    }
+
+
+    @Override
+    public List<String> getCorrectAnswers() {
+        return collectValidDates();
+    }
 
     @Override
     public void modifyQuestionParameters() {

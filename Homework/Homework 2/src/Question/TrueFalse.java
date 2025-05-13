@@ -25,14 +25,12 @@ public class TrueFalse extends Question implements Serializable {
         return this.getResponseFrequenciesList();
     }
 
-    @Override
-    public void answerQuestionBody() {
-        while(true){
+    private String collectTrueFalseResponse() {
+        while (true) {
             String response = consoleInputDriver.getStringInput(TRUE + "/" + FALSE + ": ");
 
-            if(isTrueOrFalse(response)){
-                this.addResponse(response);
-                break;
+            if (isTrueOrFalse(response)) {
+                return response;
             }
 
             consoleOutputDriver.println("Invalid answer. Must be " + TRUE + "/" + FALSE + ".");
@@ -40,18 +38,15 @@ public class TrueFalse extends Question implements Serializable {
     }
 
     @Override
+    public void answerQuestionBody() {
+        this.addResponse(collectTrueFalseResponse());
+    }
+
+
+    @Override
     public List<String> getCorrectAnswers() {
         List<String> correctAnswers = new ArrayList<>();
-        while(true){
-            String answer = consoleInputDriver.getStringInput(TRUE + "/" + FALSE + ": ");
-
-            if(isTrueOrFalse(answer)){
-                correctAnswers.add(answer);
-                break;
-            }
-
-            consoleOutputDriver.println("Invalid answer. Must be " + TRUE + "/" + FALSE + ".");
-        }
+        correctAnswers.add(collectTrueFalseResponse());
         return correctAnswers;
     }
 

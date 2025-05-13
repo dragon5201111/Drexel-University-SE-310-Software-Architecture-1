@@ -53,6 +53,12 @@ public class Essay extends Question implements Serializable {
         return responses;
     }
 
+    @Override
+    public List<String> getCorrectAnswers() {
+        // Essay has no correct answers
+        return new ArrayList<>();
+    }
+
 
     @Override
     public void modifyQuestionParameters() {

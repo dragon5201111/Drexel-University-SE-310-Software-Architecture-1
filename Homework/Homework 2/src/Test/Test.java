@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Map;
 
 public class Test extends Survey {
-    private int numResponses = 0;
     private final Map<Question, List<String>> correctAnswers;
 
     public Test(String title) {
@@ -21,10 +20,8 @@ public class Test extends Survey {
         return this.correctAnswers.computeIfAbsent(question, q -> new ArrayList<>());
     }
 
-    public void addAnswer(Question question, String answer){
-        this.correctAnswers
-                .computeIfAbsent(question, q -> new ArrayList<>())
-                .add(answer.strip());
+    public void addAnswer(Question question, List<String> answers){
+        this.correctAnswers.put(question, answers);
     }
 
     public void clearAnswers(Question question){

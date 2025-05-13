@@ -7,6 +7,8 @@ import Question.QuestionType;
 import Survey.Survey;
 import Test.Test;
 
+import java.util.List;
+
 public class SurveyCreateOption extends SurveyMenuOption {
     private final boolean createTest;
     public SurveyCreateOption(SurveyMenu surveyMenu, boolean createTest) {
@@ -61,11 +63,9 @@ public class SurveyCreateOption extends SurveyMenuOption {
             Question newQuestion = this.createQuestionFromQuestionType(questionType);
             newSurvey.addQuestion(newQuestion);
 
-            if(this.createTest){
-                while(this.consoleInputDriver.userWantsToModify("add a correct answer", "question")) {
-                    String correctAnswer = consoleInputDriver.getStringInput("Enter the correct answer: ");
-                    ((Test)newSurvey).addAnswer(newQuestion, correctAnswer);
-                }
+            if(this.createTest && this.consoleInputDriver.userWantsToModify("add a correct answer")) {
+               List<String> correctAnswers = newQuestion.getCorrectAnswers();
+               ((Test)newSurvey).addAnswer(newQuestion, correctAnswers);
             }
         }
 

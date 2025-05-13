@@ -1,6 +1,7 @@
 package Question;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -36,6 +37,22 @@ public class TrueFalse extends Question implements Serializable {
     @Override
     public List<String> tabulateResponses() {
         return this.getResponseFrequenciesList();
+    }
+
+    @Override
+    public List<String> getCorrectAnswers() {
+        List<String> correctAnswers = new ArrayList<>();
+        while(true){
+            String answer = consoleInputDriver.getStringInput(TRUE + "/" + FALSE + ": ");
+
+            if(isTrueOrFalse(answer)){
+                correctAnswers.add(answer);
+                break;
+            }
+
+            consoleOutputDriver.println("Invalid answer. Must be " + TRUE + "/" + FALSE + ".");
+        }
+        return correctAnswers;
     }
 
     private boolean isTrueOrFalse(String string){

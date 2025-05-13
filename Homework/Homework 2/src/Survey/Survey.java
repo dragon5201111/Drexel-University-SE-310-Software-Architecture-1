@@ -61,12 +61,8 @@ public class Survey implements Serializable{
                 correspondingQuestion.modifyQuestion();
 
                 if(this instanceof Test && this.consoleInputDriver.userWantsToModify("modify", "correct answer")){
-                    ((Test)this).clearAnswers(correspondingQuestion);
-                    do{
-                        String correctAnswer = consoleInputDriver.getStringInput("Enter the correct answer: ");
-                        ((Test)this).addAnswer(correspondingQuestion, correctAnswer);
-                    }while(this.consoleInputDriver.userWantsToModify("continue modifying", "correct answer"));
-
+                    List<String> correctAnswers = correspondingQuestion.getCorrectAnswers();
+                    ((Test) this).addAnswer(correspondingQuestion, correctAnswers);
                 }
             }
 

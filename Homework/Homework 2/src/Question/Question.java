@@ -90,6 +90,7 @@ public abstract class Question implements Serializable {
 
 
     public abstract List<String> tabulateResponses();
+    public abstract List<String> getCorrectAnswers();
 
     private Response getMostRecentResponse(){
         return this.responses.get(this.responses.size() - 1);

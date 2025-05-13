@@ -1,6 +1,7 @@
 package Question;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ShortAnswer extends Essay implements Serializable {
@@ -13,6 +14,21 @@ public class ShortAnswer extends Essay implements Serializable {
     @Override
     public List<String> tabulateResponses() {
         return this.getResponseFrequenciesList();
+    }
+
+    @Override
+    public List<String> getCorrectAnswers() {
+        List<String> correctAnswers = new ArrayList<>();
+        while(true) {
+            String answer = this.consoleInputDriver.getStringInput("Enter Correct Answer: ");
+
+            if(this.responseIsValid(answer)) {
+                correctAnswers.add(answer);
+                break;
+            }
+        }
+
+        return correctAnswers;
     }
 
     @Override

@@ -35,13 +35,14 @@ public class Matching extends Question implements Serializable {
         return String.format("%c) %-15s %d) %s", (char)(this.consoleInputDriver.CHAR_BASE+leftIndex),this.leftSet.get(leftIndex), rightIndex+1,this.rightSet.get(rightIndex));
     }
 
-    @Override
-    public void answerQuestionBody() {
+    private List<String> collectPairs(String inputPromptPrefix) {
         String pair;
+        List<String> pairs = new ArrayList<>();
+
         for(int i = 0; i < this.leftSet.size(); i++){
 
             while(true){
-                pair = consoleInputDriver.getStringInput("Enter a pair (" + (i+1) + "):");
+                pair = consoleInputDriver.getStringInput(inputPromptPrefix + "(" + (i+1) + "):");
 
                 if(isValidPair(pair)){
                     break;
@@ -51,37 +52,55 @@ public class Matching extends Question implements Serializable {
             }
 
             int[] pairIndexes = getPairIndexes(pair);
-            this.addResponse(constructPairString(pairIndexes[0], pairIndexes[1]));
+            pairs.add(constructPairString(pairIndexes[0], pairIndexes[1]));
+        }
+        return pairs;
+    }
+
+
+    @Override
+    public List<String> getCorrectAnswers() {
+        this.displayQuestion();
+        return this.collectPairs("Enter a correct pair");
+    }
+
+    @Override
+    public void answerQuestionBody() {
+        List<String> pairs = this.collectPairs("Enter a pair");
+        for (String response : pairs) {
+            this.addResponse(response);
         }
     }
 
     @Override
     public List<String> tabulateResponses() {
-        List<String> responseList = this.getResponseList();
-        int responseListSize = responseList.size();
-
-        int leftSetSize = leftSet.size();
-
-        Map<String, Integer> responseCountMap = new HashMap<>();
-
-        for (int i = 0; i < responseListSize; i += leftSetSize) {
-            StringBuilder blockBuilder = new StringBuilder();
-            for (int j = 0; j < leftSetSize; j++) {
-                blockBuilder.append(responseList.get(i + j)).append("\n");
-            }
-            String block = blockBuilder.toString().trim();
-
-            responseCountMap.put(block, responseCountMap.getOrDefault(block, 0) + 1);
-        }
-
-        List<String> output = new ArrayList<>();
-        for (Map.Entry<String, Integer> entry : responseCountMap.entrySet()) {
-            output.add(String.valueOf(entry.getValue()));
-            output.add(entry.getKey());
-        }
-
-        return output;
+        throw new UnsupportedOperationException("Not supported yet.");
+//        List<String> responseList = this.getResponseList();
+//        int responseListSize = responseList.size();
+//
+//        int leftSetSize = leftSet.size();
+//
+//        Map<String, Integer> responseCountMap = new HashMap<>();
+//
+//        for (int i = 0; i < responseListSize; i += leftSetSize) {
+//            StringBuilder blockBuilder = new StringBuilder();
+//            for (int j = 0; j < leftSetSize; j++) {
+//                blockBuilder.append(responseList.get(i + j)).append("\n");
+//            }
+//            String block = blockBuilder.toString().trim();
+//
+//            responseCountMap.put(block, responseCountMap.getOrDefault(block, 0) + 1);
+//        }
+//
+//        List<String> output = new ArrayList<>();
+//        for (Map.Entry<String, Integer> entry : responseCountMap.entrySet()) {
+//            output.add(String.valueOf(entry.getValue()));
+//            output.add(entry.getKey());
+//        }
+//
+//        return output;
     }
+
 
 
     private boolean indexIsInList(int index, List<String> list){

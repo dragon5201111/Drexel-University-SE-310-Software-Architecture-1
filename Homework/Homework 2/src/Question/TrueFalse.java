@@ -1,10 +1,8 @@
 package Question;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
 
 public class TrueFalse extends Question implements Serializable {
     private final static long serialVersionUID = 9L;

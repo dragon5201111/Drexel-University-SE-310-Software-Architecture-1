@@ -19,7 +19,5 @@ public class SurveyTakeOption extends SurveyMenuOption {
         String responseSaveName = this.getResponseSaveName(survey);
         ObjectSerializer.serialize(survey, responseSaveName);
         this.consoleOutputDriver.println("Response saved as " + responseSaveName + ". Load the response file to view responses.");
-        // Responses are saved in separate file.
-        survey.clearResponses();
     }
 }

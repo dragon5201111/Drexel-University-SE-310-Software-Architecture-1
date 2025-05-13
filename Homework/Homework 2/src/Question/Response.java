@@ -8,7 +8,7 @@ public class Response implements Serializable{
     private final static long serialVersionUID = 7L;
 
     private final String RESPONSE_DEFAULT = "-";
-    private List<String> responseList = new ArrayList<>();
+    private final List<String> responseList = new ArrayList<>();
 
     public void addResponse(String response){
         this.responseList.add(response.strip().toLowerCase());
@@ -28,9 +28,6 @@ public class Response implements Serializable{
         return this.responseList.get(0);
     }
 
-    public void setResponseList(List<String> responseList) {
-        this.responseList = responseList;
-    }
 
     public void clearResponseList(){
         this.responseList.clear();
@@ -47,5 +44,9 @@ public class Response implements Serializable{
 
     public boolean compare(List<String> otherResponseList){
         return this.getFrequencyMap(this.responseList).equals(this.getFrequencyMap(otherResponseList));
+    }
+
+    public String getResponseDefault(){
+        return RESPONSE_DEFAULT;
     }
 }

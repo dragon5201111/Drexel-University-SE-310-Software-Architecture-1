@@ -12,7 +12,7 @@ import java.util.Map;
 public abstract class Question implements Serializable {
     private final static long serialVersionUID = 6L;
 
-    private final Response response;
+    private final List<Response> responses;
     private String prompt;
 
     protected final ConsoleInputDriver consoleInputDriver = new ConsoleInputDriver();
@@ -20,7 +20,8 @@ public abstract class Question implements Serializable {
 
     public Question(String prompt) {
         this.prompt = prompt;
-        this.response = new Response();
+        this.responses = new ArrayList<>();
+        this.responses.add(new Response());
     }
 
     public abstract void modifyQuestionParameters();
@@ -32,7 +33,7 @@ public abstract class Question implements Serializable {
     // Template method
     public void answerQuestion() {
         this.displayQuestion();
-        this.removeResponses();
+        this.responses.add(new Response());
         this.answerQuestionBody();
     }
 
@@ -64,9 +65,16 @@ public abstract class Question implements Serializable {
     public List<String> getResponseFrequenciesList(){
         Map<String, Integer> frequencyMap = new HashMap<>();
 
-        for (String response : this.getResponseList()) {
-            frequencyMap.put(response, frequencyMap.getOrDefault(response, 0) + 1);
+        for(Response response : this.responses){
+            for (String value : response.getResponseList()) {
+                if(value.equals(response.getResponseDefault())){
+                    continue;
+                }
+
+                frequencyMap.put(value, frequencyMap.getOrDefault(value, 0) + 1);
+            }
         }
+
 
         List<String> result = new ArrayList<>();
         for (Map.Entry<String, Integer> entry : frequencyMap.entrySet()) {
@@ -76,26 +84,28 @@ public abstract class Question implements Serializable {
         return result;
     }
 
+
     public abstract List<String> tabulateResponses();
 
-    public void addResponse(String response){
-        this.response.addResponse(response);
+    private Response getMostRecentResponse(){
+        return this.responses.get(this.responses.size() - 1);
     }
 
-    public void removeResponses(){
-        this.response.clearResponseList();
+    public void addResponse(String response){
+        this.getMostRecentResponse().addResponse(response);
     }
+
 
     public List<String> getResponseList(){
-        return this.response.getResponseList();
+        return this.getMostRecentResponse().getResponseList();
     }
 
     public String getFirstResponse(){
-        return this.response.getFirstResponse();
+        return this.getMostRecentResponse().getFirstResponse();
     }
 
     public boolean grade(List<String> answers){
-        return this.response.compare(answers);
+        return this.getMostRecentResponse().compare(answers);
     }
 
 }

@@ -133,12 +133,6 @@ public class Survey implements Serializable{
         return title;
     }
 
-    public void clearResponses(){
-        for(Question question : this.questions){
-            question.removeResponses();
-        }
-    }
-
     public void displayTitle(){
         this.consoleOutputDriver.println("Survey Name: " + this.getTitle());
     }

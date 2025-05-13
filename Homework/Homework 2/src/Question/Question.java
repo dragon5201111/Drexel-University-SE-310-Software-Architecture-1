@@ -21,7 +21,6 @@ public abstract class Question implements Serializable {
     public Question(String prompt) {
         this.prompt = prompt;
         this.responses = new ArrayList<>();
-        this.responses.add(new Response());
     }
 
     public abstract void modifyQuestionParameters();
@@ -62,14 +61,14 @@ public abstract class Question implements Serializable {
         }
     }
 
-    public List<Response> getResponses() {
+    public List<Response> getAllResponses() {
         return this.responses;
     }
 
     public List<String> getResponseFrequenciesList(){
         Map<String, Integer> frequencyMap = new HashMap<>();
 
-        for(Response response : this.getResponses()){
+        for(Response response : this.getAllResponses()){
             for (String value : response.getResponseList()) {
                 if(value.equals(response.getResponseDefault())){
                     continue;
@@ -82,7 +81,7 @@ public abstract class Question implements Serializable {
 
         List<String> result = new ArrayList<>();
         for (Map.Entry<String, Integer> entry : frequencyMap.entrySet()) {
-            result.add(entry.getKey() + ": " + entry.getValue());
+            result.add(entry.getKey() + " " + entry.getValue());
         }
 
         return result;
@@ -102,15 +101,25 @@ public abstract class Question implements Serializable {
 
 
     public List<String> getResponseList(){
+        if(this.responses.isEmpty()){
+            return new ArrayList<>();
+        }
         return this.getMostRecentResponse().getResponseList();
     }
 
     public String getFirstResponse(){
+        if(this.responses.isEmpty()){
+            return "";
+        }
         return this.getMostRecentResponse().getFirstResponse();
     }
 
     public boolean grade(List<String> answers){
         return this.getMostRecentResponse().compare(answers);
+    }
+
+    public boolean grade(int index, List<String> answers){
+        return this.responses.get(index).compare(answers);
     }
 
 }

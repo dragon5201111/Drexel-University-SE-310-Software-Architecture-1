@@ -50,7 +50,6 @@ public class ShortAnswer extends Essay implements Serializable {
 
     @Override
     public void answerQuestionBody() {
-        System.out.println("foo");
         String response = this.collectSingleResponse("- ");
         this.addResponse(response);
     }

@@ -74,31 +74,28 @@ public class Matching extends Question implements Serializable {
 
     @Override
     public List<String> tabulateResponses() {
-        throw new UnsupportedOperationException("Not supported yet.");
-//        List<String> responseList = this.getResponseList();
-//        int responseListSize = responseList.size();
-//
-//        int leftSetSize = leftSet.size();
-//
-//        Map<String, Integer> responseCountMap = new HashMap<>();
-//
-//        for (int i = 0; i < responseListSize; i += leftSetSize) {
-//            StringBuilder blockBuilder = new StringBuilder();
-//            for (int j = 0; j < leftSetSize; j++) {
-//                blockBuilder.append(responseList.get(i + j)).append("\n");
-//            }
-//            String block = blockBuilder.toString().trim();
-//
-//            responseCountMap.put(block, responseCountMap.getOrDefault(block, 0) + 1);
-//        }
-//
-//        List<String> output = new ArrayList<>();
-//        for (Map.Entry<String, Integer> entry : responseCountMap.entrySet()) {
-//            output.add(String.valueOf(entry.getValue()));
-//            output.add(entry.getKey());
-//        }
-//
-//        return output;
+        List<String> output = new ArrayList<>();
+        List<Response> allResponses = this.getAllResponses();
+        Map<String, Integer> responsePerms = new HashMap<>();
+
+        for(Response response : allResponses){
+            List<String> responseList = response.getResponseList();
+
+            StringBuilder stringBuilder = new StringBuilder();
+            for (String s : responseList) {
+                stringBuilder.append(s).append('\n');
+            }
+
+            String permutation = stringBuilder.toString();
+            responsePerms.put(permutation, responsePerms.getOrDefault(permutation, 0) + 1);
+        }
+
+        for (Map.Entry<String, Integer> entry : responsePerms.entrySet()) {
+            output.add(String.valueOf(entry.getValue()));
+            output.add(entry.getKey());
+        }
+
+        return output;
     }
 
 

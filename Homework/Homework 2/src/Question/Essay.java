@@ -47,7 +47,7 @@ public class Essay extends Question implements Serializable {
     @Override
     public List<String> tabulateResponses() {
         List<String> responses = new ArrayList<>();
-        for(Response response : this.getResponses()){
+        for(Response response : this.getAllResponses()){
             responses.addAll(response.getResponseList());
         }
         return responses;

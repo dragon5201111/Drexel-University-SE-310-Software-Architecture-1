@@ -111,7 +111,6 @@ public class Survey implements Serializable{
     public void display(){
         process(question -> {
             question.displayQuestion();
-            this.consoleOutputDriver.println("Most recent response:");
             question.displayResponse();
         });
     }

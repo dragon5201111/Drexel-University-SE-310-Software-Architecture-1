@@ -3,6 +3,7 @@ import Question.*;
 import Survey.Survey;
 import Test.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SurveyGradeOption extends SurveyMenuOption{
@@ -18,7 +19,7 @@ public class SurveyGradeOption extends SurveyMenuOption{
         return question instanceof Essay && !(question instanceof ShortAnswer);
     }
 
-    private double calculateGrade(Test test, List<Question> questions) {
+    private double calculateGrade(Test test, int index, List<Question> questions) {
         double grade = 0;
         int totalQuestions = questions.size();
         double pointsPerQuestion = (double) 100 / totalQuestions;
@@ -29,7 +30,7 @@ public class SurveyGradeOption extends SurveyMenuOption{
             }
 
             List<String> answersList = test.getAnswerList(question);
-            boolean isCorrect = question.grade(answersList);
+            boolean isCorrect = question.grade(index, answersList);
 
             if(isCorrect){
                 grade += pointsPerQuestion;
@@ -60,6 +61,14 @@ public class SurveyGradeOption extends SurveyMenuOption{
         return count;
     }
 
+    private List<String> constructResponsePrompt(Test test, int numberOfResponses){
+        List<String> prompt = new ArrayList<>();
+        for(int i = 0; i < numberOfResponses; i++){
+            prompt.add(test.getTitle() + " - Response " + (i + 1));
+        }
+        return prompt;
+    }
+
     @Override
     protected void performAction(Survey survey) {
         if(isNotTest(survey)) {
@@ -67,12 +76,21 @@ public class SurveyGradeOption extends SurveyMenuOption{
             return;
         }
 
+
         Test test = (Test)survey;
+        int numberOfResponses = test.getNumberOfResponses();
+        if(numberOfResponses == 0){
+            this.consoleOutputDriver.println("Cannot grade a test that has not been taken. Please take the test first.");
+            return;
+        }
+
+
+        this.consoleOutputDriver.printNumberedLines(this.constructResponsePrompt(test, numberOfResponses), numberOfResponses);
+        int responseIndex = this.consoleInputDriver.getIntegerInput("Selection: ", numberOfResponses);
+
+
         List<Question> questions = test.getQuestions();
-
-
-
-        double grade = calculateGrade(test, questions);
+        double grade = calculateGrade(test, responseIndex - 1, questions);
         this.displayGrade(grade, this.getEssayQuestionCount(questions), (double) 100 / questions.size());
     }
 }

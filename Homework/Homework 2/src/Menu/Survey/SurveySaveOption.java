@@ -15,6 +15,6 @@ public class SurveySaveOption extends SurveyMenuOption {
         String surveyTitle = survey.getTitle();
         ObjectSerializer.serialize(survey, surveyTitle);
         survey.display();
-        this.consoleOutputDriver.println("Success! Saved survey as: " + surveyTitle);
+        this.consoleOutputDriver.println("Success! Saved as: " + surveyTitle);
     }
 }

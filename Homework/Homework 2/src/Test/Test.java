@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 public class Test extends Survey {
+    private int numResponses = 0;
     private final Map<Question, List<String>> correctAnswers;
 
     public Test(String title) {

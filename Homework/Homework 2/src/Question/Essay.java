@@ -1,6 +1,7 @@
 package Question;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Essay extends Question implements Serializable {
@@ -33,7 +34,7 @@ public class Essay extends Question implements Serializable {
               String response = this.consoleInputDriver.getStringInput(questionLetter);
 
               if(responseIsValid(response)){
-                  this.addResponse(questionLetter + response);
+                  this.addResponse(response);
                   break;
               }
 
@@ -45,7 +46,11 @@ public class Essay extends Question implements Serializable {
 
     @Override
     public List<String> tabulateResponses() {
-        return this.getResponseList();
+        List<String> responses = new ArrayList<>();
+        for(Response response : this.getResponses()){
+            responses.addAll(response.getResponseList());
+        }
+        return responses;
     }
 
 

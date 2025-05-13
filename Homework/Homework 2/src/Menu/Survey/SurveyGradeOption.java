@@ -40,10 +40,12 @@ public class SurveyGradeOption extends SurveyMenuOption{
     }
 
     private void displayGrade(double grade, int essayQuestionCount, double pointsPerQuestion) {
-        this.consoleOutputDriver.println("You received an " + grade + " on the test.");
+        this.consoleOutputDriver.println("You received an " + String.format("%.2f", grade) + " on the test.");
 
-        if(essayQuestionCount > 0){
-            this.consoleOutputDriver.println("The test was worth 100 points, but only " + (100 - (essayQuestionCount * pointsPerQuestion)) +
+        if (essayQuestionCount > 0) {
+            double autoGradablePoints = 100 - (essayQuestionCount * pointsPerQuestion);
+            this.consoleOutputDriver.println("The test was worth 100 points, but only " +
+                    String.format("%.2f", autoGradablePoints) +
                     " of those points could be auto graded because there was at least one essay question.");
         }
     }
@@ -67,6 +69,8 @@ public class SurveyGradeOption extends SurveyMenuOption{
 
         Test test = (Test)survey;
         List<Question> questions = test.getQuestions();
+
+
 
         double grade = calculateGrade(test, questions);
         this.displayGrade(grade, this.getEssayQuestionCount(questions), (double) 100 / questions.size());

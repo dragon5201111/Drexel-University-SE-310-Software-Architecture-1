@@ -62,10 +62,14 @@ public abstract class Question implements Serializable {
         }
     }
 
+    public List<Response> getResponses() {
+        return this.responses;
+    }
+
     public List<String> getResponseFrequenciesList(){
         Map<String, Integer> frequencyMap = new HashMap<>();
 
-        for(Response response : this.responses){
+        for(Response response : this.getResponses()){
             for (String value : response.getResponseList()) {
                 if(value.equals(response.getResponseDefault())){
                     continue;

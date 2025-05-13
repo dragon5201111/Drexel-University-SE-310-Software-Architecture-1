@@ -21,6 +21,11 @@ public class TrueFalse extends Question implements Serializable {
     }
 
     @Override
+    public List<String> tabulateResponses() {
+        return this.getResponseFrequenciesList();
+    }
+
+    @Override
     public void answerQuestionBody() {
         while(true){
             String response = consoleInputDriver.getStringInput(TRUE + "/" + FALSE + ": ");
@@ -32,11 +37,6 @@ public class TrueFalse extends Question implements Serializable {
 
             consoleOutputDriver.println("Invalid answer. Must be " + TRUE + "/" + FALSE + ".");
         }
-    }
-
-    @Override
-    public List<String> tabulateResponses() {
-        return this.getResponseFrequenciesList();
     }
 
     @Override

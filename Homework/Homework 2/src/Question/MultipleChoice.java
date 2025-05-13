@@ -33,47 +33,45 @@ public class MultipleChoice extends Question implements Serializable {
         this.displayChoicesList();
     }
 
-    @Override
-    public void answerQuestionBody() {
-        for(int i = 0; i < this.numberOfChoices; i++){
-            while (true) {
-                String choice = consoleInputDriver.getStringInput("Choice " + (i + 1) + ": ");
-
-                int choiceIndex = getChoiceIndex(choice);
-
-                if (isValidChoiceIndex(choiceIndex)) {
-                    this.addResponse(this.choices.get(choiceIndex));
-                    break;
-                }
-
-                consoleOutputDriver.println("Invalid Choice. Please try again.");
-            }
-        }
-    }
 
     @Override
     public List<String> tabulateResponses() {
         return this.getResponseFrequenciesList();
     }
 
-    @Override
-    public List<String> getCorrectAnswers() {
-        List<String> correctAnswers = new ArrayList<>();
-        for(int i = 0; i < this.numberOfChoices; i++){
+    private List<String> collectChoices(String promptPrefix) {
+        List<String> selections = new ArrayList<>();
+
+        for (int i = 0; i < this.numberOfChoices; i++) {
             while (true) {
-                String choice = consoleInputDriver.getStringInput("Choice " + (i + 1) + ": ");
+                String choice = consoleInputDriver.getStringInput(promptPrefix + " " + (i + 1) + ": ");
 
                 int choiceIndex = getChoiceIndex(choice);
 
                 if (isValidChoiceIndex(choiceIndex)) {
-                    correctAnswers.add(this.choices.get(choiceIndex));
+                    selections.add(this.choices.get(choiceIndex));
                     break;
                 }
 
                 consoleOutputDriver.println("Invalid Choice. Please try again.");
             }
         }
-        return correctAnswers;
+
+        return selections;
+    }
+
+
+    @Override
+    public List<String> getCorrectAnswers() {
+        return this.collectChoices("Choice");
+    }
+
+    @Override
+    public void answerQuestionBody() {
+        List<String> choices = collectChoices("Choice");
+        for (String choice : choices) {
+            this.addResponse(choice);
+        }
     }
 
     private boolean isValidChoiceIndex(int index) {

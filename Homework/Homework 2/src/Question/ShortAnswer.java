@@ -17,21 +17,6 @@ public class ShortAnswer extends Essay implements Serializable {
     }
 
     @Override
-    public List<String> getCorrectAnswers() {
-        List<String> correctAnswers = new ArrayList<>();
-        while(true) {
-            String answer = this.consoleInputDriver.getStringInput("Enter Correct Answer: ");
-
-            if(this.responseIsValid(answer)) {
-                correctAnswers.add(answer);
-                break;
-            }
-        }
-
-        return correctAnswers;
-    }
-
-    @Override
     public void displayResponse() {
         this.consoleOutputDriver.println(this.getFirstResponse());
     }
@@ -42,17 +27,31 @@ public class ShortAnswer extends Essay implements Serializable {
         return response.length() <= this.getResponseLimit() && !response.isEmpty();
     }
 
-    @Override
-    public void answerQuestionBody() {
-        while(true){
-            String response = this.consoleInputDriver.getStringInput("- ");
+    private String collectSingleResponse(String prompt) {
+        while (true) {
+            String response = this.consoleInputDriver.getStringInput(prompt);
 
-            if(this.responseIsValid(response)){
-                this.addResponse(response);
-                break;
+            if (this.responseIsValid(response)) {
+                return response;
             }
 
-            this.consoleOutputDriver.println("Invalid response. Question.Response exceeds the limit of " + this.getResponseLimit() + " characters or is empty.");
+            this.consoleOutputDriver.println("Invalid response. Response exceeds the limit of " + this.getResponseLimit() + " characters or is empty.");
         }
+    }
+
+    @Override
+    public List<String> getCorrectAnswers() {
+        List<String> correctAnswers = new ArrayList<>();
+        String answer = this.collectSingleResponse("Enter Correct Answer: ");
+        correctAnswers.add(answer);
+        return correctAnswers;
+    }
+
+
+    @Override
+    public void answerQuestionBody() {
+        System.out.println("foo");
+        String response = this.collectSingleResponse("- ");
+        this.addResponse(response);
     }
 }

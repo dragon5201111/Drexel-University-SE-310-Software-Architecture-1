@@ -3,6 +3,7 @@ package Survey;
 import IO.Console.ConsoleInputDriver;
 import IO.Console.ConsoleOutputDriver;
 import Question.Question;
+import Test.Test;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -44,7 +45,7 @@ public class Survey implements Serializable{
     private void modifyQuestions(){
         while(true){
             if(this.questions.isEmpty()){
-                consoleOutputDriver.println("No survey questions to modify.");
+                consoleOutputDriver.println("No questions to modify.");
                 break;
             }
 
@@ -58,22 +59,29 @@ public class Survey implements Serializable{
                 consoleOutputDriver.println("Question deleted.");
             }else{
                 correspondingQuestion.modifyQuestion();
+
+                if(this instanceof Test && this.consoleInputDriver.userWantsToModify("modify", "correct answer")){
+                    ((Test)this).clearAnswers(correspondingQuestion);
+                    do{
+                        String correctAnswer = consoleInputDriver.getStringInput("Enter the correct answer: ");
+                        ((Test)this).addAnswer(correspondingQuestion, correctAnswer);
+                    }while(this.consoleInputDriver.userWantsToModify("continue modifying", "correct answer"));
+
+                }
             }
 
             if(!this.consoleInputDriver.userWantsToModify("Do you wish to continue modifying?", "questions")){
                 break;
             }
+
+
         }
     }
 
     public void modify(){
-        if(!this.consoleInputDriver.userWantsToModify("modify","survey")){
-            return;
-        }
-
-        if(this.consoleInputDriver.userWantsToModify("modify", "survey title")){
+        if(this.consoleInputDriver.userWantsToModify("modify", "title")){
             this.displayTitle();
-            this.setTitle(this.consoleInputDriver.getStringInput("Enter survey title: "));
+            this.setTitle(this.consoleInputDriver.getStringInput("Enter title: "));
         }
 
         if(this.consoleInputDriver.userWantsToModify("modify", "questions")) {
@@ -91,7 +99,12 @@ public class Survey implements Serializable{
         for(Question question : this.questions){
             question.displayQuestion();
 
-            for(String line : question.tabulateResponses()){
+            List<String> tabulatedResponses = question.tabulateResponses();
+            if(tabulatedResponses.isEmpty()){
+                this.consoleOutputDriver.println("Nothing to tabulate.");
+            }
+
+            for(String line : tabulatedResponses){
                 this.consoleOutputDriver.println(line);
             }
 
@@ -102,6 +115,7 @@ public class Survey implements Serializable{
     public void display(){
         process(question -> {
             question.displayQuestion();
+            this.consoleOutputDriver.println("Most recent response:");
             question.displayResponse();
         });
     }
@@ -134,6 +148,6 @@ public class Survey implements Serializable{
     }
 
     public void displayTitle(){
-        this.consoleOutputDriver.println("Survey Name: " + this.getTitle());
+        this.consoleOutputDriver.println("Name: " + this.getTitle());
     }
 }

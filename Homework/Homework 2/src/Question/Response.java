@@ -11,7 +11,7 @@ public class Response implements Serializable{
     private final List<String> responseList = new ArrayList<>();
 
     public void addResponse(String response){
-        this.responseList.add(response.strip().toLowerCase());
+        this.responseList.add(response.strip());
     }
 
     public List<String> getResponseList() {

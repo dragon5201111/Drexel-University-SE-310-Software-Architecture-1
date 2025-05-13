@@ -21,7 +21,7 @@ public class SurveyLoadOption extends SurveyMenuOption {
         List<String> serializedFiles = ObjectSerializer.getSerializedFileNames();
 
         if(serializedFiles.isEmpty()){
-            this.consoleOutputDriver.println("There are no survey files to load.");
+            this.consoleOutputDriver.println("There are no files to load.");
             return;
         }
 

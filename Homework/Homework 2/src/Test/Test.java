@@ -23,6 +23,10 @@ public class Test extends Survey {
     public void addAnswer(Question question, String answer){
         this.correctAnswers
                 .computeIfAbsent(question, q -> new ArrayList<>())
-                .add(answer.strip().toLowerCase());
+                .add(answer.strip());
+    }
+
+    public void clearAnswers(Question question){
+        this.correctAnswers.remove(question);
     }
 }

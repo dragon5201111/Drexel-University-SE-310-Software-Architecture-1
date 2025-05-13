@@ -9,8 +9,8 @@ import java.util.Map;
 public class TrueFalse extends Question implements Serializable {
     private final static long serialVersionUID = 9L;
 
-    private final String TRUE = "T";
-    private final String FALSE = "F";
+    private final String TRUE = "True";
+    private final String FALSE = "False";
 
     public TrueFalse(String prompt) {
         super(prompt);

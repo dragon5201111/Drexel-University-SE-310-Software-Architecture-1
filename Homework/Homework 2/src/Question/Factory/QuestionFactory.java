@@ -27,6 +27,6 @@ public abstract class QuestionFactory {
     }
 
     protected int getResponseLimit(String subject) {
-        return this.consoleInputDriver.getIntegerInput("Enter max number of " + subject + ": ");
+        return this.consoleInputDriver.getIntegerInput("Enter the number of " + subject + ": ");
     }
 }

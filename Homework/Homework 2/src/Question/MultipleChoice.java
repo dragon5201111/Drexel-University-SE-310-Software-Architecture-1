@@ -93,13 +93,18 @@ public class MultipleChoice extends Question implements Serializable {
 
     @Override
     public void modifyQuestionParameters() {
-        this.numberOfChoices = consoleInputDriver.getIntegerInput("Enter number of responses permitted for the question: ");
+        this.numberOfChoices = consoleInputDriver.getIntegerInput("Enter the number of choices for your multiple-choice question: ");
 
         consoleOutputDriver.println("Select a choice from the list to modify: ");
         this.displayChoicesList();
 
         String choice = consoleInputDriver.getStringInput("Select a choice to modify (A,B,C,D...): ");
         int choiceIndex = getChoiceIndex(choice);
+
+        if(choiceIndex == -1){
+            this.consoleOutputDriver.println("Invalid Choice. Quitting.");
+            return;
+        }
 
         String newChoice = consoleInputDriver.getStringInput("Overwriting '" + this.choices.get(choiceIndex) + "': " );
         this.choices.set(choiceIndex, newChoice);

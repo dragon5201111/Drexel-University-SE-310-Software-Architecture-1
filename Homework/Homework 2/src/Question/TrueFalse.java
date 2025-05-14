@@ -33,7 +33,7 @@ public class TrueFalse extends Question implements Serializable {
                 return response;
             }
 
-            consoleOutputDriver.println("Invalid answer. Must be " + TRUE + "/" + FALSE + ".");
+            consoleOutputDriver.println("Invalid answer. Must be " + TRUE + "/" + FALSE + ". This is case sensitive.");
         }
     }
 

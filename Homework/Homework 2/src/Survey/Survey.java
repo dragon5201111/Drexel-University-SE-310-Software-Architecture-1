@@ -97,7 +97,7 @@ public class Survey implements Serializable{
 
             List<String> tabulatedResponses = question.tabulateResponses();
             if(tabulatedResponses.isEmpty()){
-                this.consoleOutputDriver.println("Nothing to tabulate.");
+                this.consoleOutputDriver.println("No responses yet. Nothing to tabulate.");
             }
 
             for(String line : tabulatedResponses){

@@ -10,5 +10,6 @@ public class SurveyModifyOption extends SurveyMenuOption {
     @Override
     protected void performAction(Survey survey) {
         survey.modify();
+        this.consoleOutputDriver.println("Modified. Save to keep changes.");
     }
 }

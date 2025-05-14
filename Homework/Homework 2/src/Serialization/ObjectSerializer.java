@@ -78,6 +78,10 @@ public class ObjectSerializer{
         for(File file : files){
             String fileName = file.getName();
 
+            if(fileName.contains("Response")){
+                continue;
+            }
+
             if(fileName.endsWith(SER_EXTENSION)){
                 serializedFiles.add(stripExtension(fileName));
             }

@@ -3,8 +3,8 @@ import Survey.Survey;
 
 public class SurveyExitOption extends SurveyMenuOption {
 
-    public SurveyExitOption() {
-        super("Quit", null);
+    public SurveyExitOption(SurveyMenu menu) {
+        super("Return to previous menu", menu);
     }
 
     @Override
@@ -14,6 +14,6 @@ public class SurveyExitOption extends SurveyMenuOption {
 
     @Override
     protected void performAction(Survey survey) {
-        System.exit(0);
+        this.surveyMenu.stop = true;
     }
 }

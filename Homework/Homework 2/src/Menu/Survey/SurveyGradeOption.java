@@ -84,10 +84,9 @@ public class SurveyGradeOption extends SurveyMenuOption{
             return;
         }
 
-
         this.consoleOutputDriver.printNumberedLines(this.constructResponsePrompt(test, numberOfResponses), numberOfResponses);
-        int responseIndex = this.consoleInputDriver.getIntegerInput("Selection: ", numberOfResponses);
-
+        int responseIndex = this.consoleInputDriver.getIntegerInput("Select an existing response set: ", numberOfResponses);
+        this.consoleOutputDriver.println();
 
         List<Question> questions = test.getQuestions();
         double grade = calculateGrade(test, responseIndex - 1, questions);

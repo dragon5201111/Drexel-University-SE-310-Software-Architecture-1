@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class SurveyMenu implements Menu {
+    protected boolean stop = false;
     private final List<SurveyMenuOption> menuOptions;
     private Survey loadedSurvey = null;
 
@@ -33,6 +34,9 @@ public class SurveyMenu implements Menu {
             int selection = this.consoleInputDriver.getIntegerInput("Please select a corresponding option: ", this.getMenuOptionsSize());
             this.consoleOutputDriver.println();
             this.getMenuOption(selection - 1).execute();
+            if(this.stop) {
+                break;
+            }
             this.consoleOutputDriver.println();
         }
     }
@@ -45,7 +49,7 @@ public class SurveyMenu implements Menu {
         this.addMenuOption(new SurveyTakeOption(this));
         this.addMenuOption(new SurveyModifyOption(this));
         this.addMenuOption(new SurveyTabulateOption(this));
-        this.addMenuOption(new SurveyExitOption());
+        this.addMenuOption(new SurveyExitOption(this));
     }
 
     public void setLoadedSurvey(Survey loadedSurvey) {

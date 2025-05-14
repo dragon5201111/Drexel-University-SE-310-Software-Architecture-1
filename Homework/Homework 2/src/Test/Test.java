@@ -24,13 +24,4 @@ public class Test extends Survey {
         this.correctAnswers.put(question, answers);
     }
 
-    public int getNumberOfResponses(){
-        if(this.questions.isEmpty()){
-            return 0;
-        }
-
-        return this.questions.get(0).getAllResponses().size();
-    }
-
-
 }

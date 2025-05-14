@@ -35,14 +35,14 @@ public class Matching extends Question implements Serializable {
         return String.format("%c) %-15s %d) %s", (char)(this.consoleInputDriver.CHAR_BASE+leftIndex),this.leftSet.get(leftIndex), rightIndex+1,this.rightSet.get(rightIndex));
     }
 
-    private List<String> collectPairs(String inputPromptPrefix) {
+    private List<String> collectPairs() {
         String pair;
         List<String> pairs = new ArrayList<>();
 
         for(int i = 0; i < this.leftSet.size(); i++){
 
             while(true){
-                pair = consoleInputDriver.getStringInput(inputPromptPrefix + "(" + (i+1) + "):");
+                pair = consoleInputDriver.getStringInput("Enter a pair" + "(" + (i+1) + "):");
 
                 if(isValidPair(pair)){
                     break;
@@ -61,12 +61,13 @@ public class Matching extends Question implements Serializable {
     @Override
     public List<String> getCorrectAnswers() {
         this.displayQuestion();
-        return this.collectPairs("Enter a correct pair");
+        this.consoleOutputDriver.println("Select (A1, B1,...) or some pair permutation");
+        return this.collectPairs();
     }
 
     @Override
     public void answerQuestionBody() {
-        List<String> pairs = this.collectPairs("Enter a pair");
+        List<String> pairs = this.collectPairs();
         for (String response : pairs) {
             this.addResponse(response);
         }

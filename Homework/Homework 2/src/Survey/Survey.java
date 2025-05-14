@@ -145,4 +145,12 @@ public class Survey implements Serializable{
     public void displayTitle(){
         this.consoleOutputDriver.println("Name: " + this.getTitle());
     }
+
+    public int getNumberOfResponses(){
+        if(this.questions.isEmpty()){
+            return 0;
+        }
+
+        return this.questions.get(0).getAllResponses().size();
+    }
 }

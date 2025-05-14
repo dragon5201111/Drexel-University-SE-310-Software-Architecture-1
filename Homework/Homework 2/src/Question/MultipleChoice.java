@@ -39,12 +39,12 @@ public class MultipleChoice extends Question implements Serializable {
         return this.getResponseFrequenciesList();
     }
 
-    private List<String> collectChoices(String promptPrefix) {
+    private List<String> collectChoices() {
         List<String> selections = new ArrayList<>();
 
         for (int i = 0; i < this.numberOfChoices; i++) {
             while (true) {
-                String choice = consoleInputDriver.getStringInput(promptPrefix + " " + (i + 1) + ": ");
+                String choice = consoleInputDriver.getStringInput("Choice" + " " + (i + 1) + ": ");
 
                 int choiceIndex = getChoiceIndex(choice);
 
@@ -63,12 +63,14 @@ public class MultipleChoice extends Question implements Serializable {
 
     @Override
     public List<String> getCorrectAnswers() {
-        return this.collectChoices("Choice");
+        this.displayChoicesList();
+        this.consoleOutputDriver.println("Select (A, B, C, D, ...)");
+        return this.collectChoices();
     }
 
     @Override
     public void answerQuestionBody() {
-        List<String> choices = collectChoices("Choice");
+        List<String> choices = collectChoices();
         for (String choice : choices) {
             this.addResponse(choice);
         }

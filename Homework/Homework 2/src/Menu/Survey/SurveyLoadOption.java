@@ -32,6 +32,6 @@ public class SurveyLoadOption extends SurveyMenuOption {
         Survey surveyToLoad = (Survey) ObjectSerializer.deserialize(surveyName);
 
         this.surveyMenu.setLoadedSurvey(surveyToLoad);
-        this.consoleOutputDriver.println("Load success! Loaded survey: " + surveyName);
+        this.consoleOutputDriver.println("Load success! Loaded: " + surveyName);
     }
 }

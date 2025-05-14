@@ -21,5 +21,6 @@ Running The Program:
 Compile Main.java in 'Homework 2/src' and run.
 
 Command Line:
+~Change current working directory to src~
 javac Main.java
-java Main.java
+java Main

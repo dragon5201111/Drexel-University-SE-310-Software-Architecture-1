@@ -2,14 +2,16 @@ Using Sample Files:
 Sample Files are located in the 'Homework 2/resources/sampleFiles' directory. To use the sample files, run the java program for the first time and select
 "Load" from the menu. This will create a directory 'ser' in the appropriate location relative to your machine.
 Then quit the program and drag the sample files in the sampleFiles directory into the
-newly created 'ser' directory. This is the best work-around I could create regarding path issues.
+newly created 'ser' directory. Look for the most recently created 'ser' directory. This is the best work-around I could create regarding path issues
+regarding different machines.
 
 What works:
 Everything works as desired. All functionality is implemented.
 
 Development & Testing:
 Developed on SDK 11, Language Level SDK Default.
-This application was built and tested on Windows and was briefly tested on Drexel's Linux Cluster - TUX.
+This application was built and tested on Windows and was briefly tested on Drexel's Linux Cluster - TUX
+(Linux tux1 5.15.0-134-generic #145-Ubuntu SMP Wed Feb 12 20:08:39 UTC 2025 x86_64 x86_64 x86_64 GNU/Linux).
 
 IMPORTANT INFO:
 Regarding the menus, I added extra prompts to improve the overall program control. These prompts are in ADDITION to all of the other
@@ -17,3 +19,7 @@ menu requirements and are for quality of life; all required menus are present.
 
 Running The Program:
 Compile Main.java in 'Homework 2/src' and run.
+
+Command Line:
+javac Main.java
+java Main.java

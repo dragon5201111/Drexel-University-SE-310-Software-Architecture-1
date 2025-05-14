@@ -1,11 +1,11 @@
 Using Sample Files:
 Sample Files are located in the 'Homework 2/resources/sampleFiles' directory. To use the sample files, run the java program for the first time and select
-"Load an existing survey" from the menu. Then choose "Quit" from the menu and drag the files in the sampleFiles directory into the
-newly created ser directory.
+"Load" from the menu. This will create a directory 'ser' in the appropriate location relative to your machine.
+Then quit the program and drag the sample files in the sampleFiles directory into the
+newly created 'ser' directory. This is the best work-around I could create regarding path issues.
 
 What works:
-Everything works as desired. There might be some edge cases I missed as I was building this assignment but, for the most part,
-this application handles well and implements all requirements; in other words, my application won't go to all sideways at a mere malformed input.
+Everything works as desired. All functionality is implemented.
 
 Development & Testing:
 Developed on SDK 11, Language Level SDK Default.

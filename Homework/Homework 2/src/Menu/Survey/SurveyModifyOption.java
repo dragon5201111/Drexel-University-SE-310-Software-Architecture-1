@@ -1,4 +1,5 @@
 package Menu.Survey;
+import Serialization.ObjectSerializer;
 import Survey.Survey;
 
 public class SurveyModifyOption extends SurveyMenuOption {
@@ -10,6 +11,7 @@ public class SurveyModifyOption extends SurveyMenuOption {
     @Override
     protected void performAction(Survey survey) {
         survey.modify();
-        this.consoleOutputDriver.println("Modified. Save to keep changes.");
+        this.consoleOutputDriver.println("Modification saved");
+        ObjectSerializer.serialize(survey, survey.getTitle());
     }
 }

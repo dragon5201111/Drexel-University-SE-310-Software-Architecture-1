@@ -4,6 +4,7 @@ import Question.Factory.QuestionFactory;
 import Question.Factory.QuestionFactoryCreator;
 import Question.Question;
 import Question.QuestionType;
+import Serialization.ObjectSerializer;
 import Survey.Survey;
 import Test.Test;
 
@@ -70,8 +71,8 @@ public class SurveyCreateOption extends SurveyMenuOption {
         }
 
         this.surveyMenu.setLoadedSurvey(newSurvey);
-
+        ObjectSerializer.serialize(newSurvey, surveyTitle);
         this.consoleOutputDriver.println();
-        this.consoleOutputDriver.println("'" + surveyTitle + "' has been created and loaded. Please save for future usage.");
+        this.consoleOutputDriver.println("'" + surveyTitle + "' has been created, saved, and loaded.");
     }
 }

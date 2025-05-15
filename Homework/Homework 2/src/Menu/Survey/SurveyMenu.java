@@ -41,7 +41,7 @@ public class SurveyMenu implements Menu {
         }
     }
 
-    private void initializeOptions() {
+    protected void initializeOptions() {
         this.addMenuOption(new SurveyCreateOption(this, false));
         this.addMenuOption(new SurveyDisplayOption(this));
         this.addMenuOption(new SurveyLoadOption(this));
@@ -72,17 +72,12 @@ public class SurveyMenu implements Menu {
         this.menuOptions.add(position, menuOption);
     }
 
-    @Override
-    public void setMenuOption(int position, SurveyMenuOption menuOption) {
-        this.menuOptions.set(position, menuOption);
-    }
-
     public void addMenuOption(SurveyMenuOption menuOption) {
         this.addMenuOption(this.menuOptions.size(), menuOption);
     }
 
-    public SurveyMenuOption getMenuOption(int index) {
-        return this.menuOptions.get(index);
+    public SurveyMenuOption getMenuOption(int position) {
+        return this.menuOptions.get(position);
     }
 
     public int getMenuOptionsSize(){
@@ -92,4 +87,5 @@ public class SurveyMenu implements Menu {
     public List<SurveyMenuOption> getMenuOptions() {
         return this.menuOptions;
     }
+
 }

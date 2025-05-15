@@ -6,7 +6,7 @@ import Survey.Survey;
 public class SurveyTakeOption extends SurveyMenuOption {
 
     public SurveyTakeOption(SurveyMenu surveyMenu) {
-        super("Take", surveyMenu);
+        super("Take the current Survey", surveyMenu);
     }
 
     @Override

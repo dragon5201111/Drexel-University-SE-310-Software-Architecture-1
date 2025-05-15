@@ -5,7 +5,7 @@ import Survey.Survey;
 public class SurveyDisplayOption extends SurveyMenuOption {
 
     public SurveyDisplayOption(SurveyMenu surveyMenu) {
-        super("Display", surveyMenu);
+        super("Display an existing Survey", surveyMenu);
     }
 
     @Override

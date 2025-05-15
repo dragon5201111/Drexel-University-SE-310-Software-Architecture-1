@@ -8,14 +8,18 @@ public class Main {
         ConsoleOutputDriver consoleOutputDriver = new ConsoleOutputDriver();
 
         while(true){
-            Menu menu = new SurveyMenu();
+            Menu menu;
 
             int menuSelection = consoleInputDriver.getIntegerInput("1) Survey\n2) Test\n3) Quit\n", 3);
 
-            if(menuSelection == 2){
-                menu = new TestMenuDecorator(menu);
-            } else if (menuSelection == 3) {
-                break;
+            switch(menuSelection){
+                case 2:
+                    menu = new TestMenu();
+                    break;
+                case 3:
+                    return;
+                default:
+                    menu = new SurveyMenu();
             }
 
             consoleOutputDriver.println();

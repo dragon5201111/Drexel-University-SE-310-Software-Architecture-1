@@ -5,7 +5,7 @@ import Survey.Survey;
 public class SurveyModifyOption extends SurveyMenuOption {
 
     public SurveyModifyOption(SurveyMenu surveyMenu) {
-        super("Modify", surveyMenu);
+        super("Modify the current Survey", surveyMenu);
     }
 
     @Override

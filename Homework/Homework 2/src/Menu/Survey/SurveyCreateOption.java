@@ -13,7 +13,7 @@ import java.util.List;
 public class SurveyCreateOption extends SurveyMenuOption {
     private final boolean createTest;
     public SurveyCreateOption(SurveyMenu surveyMenu, boolean createTest) {
-        super("Create", surveyMenu);
+        super("Create a new Survey", surveyMenu);
         this.createTest = createTest;
     }
 

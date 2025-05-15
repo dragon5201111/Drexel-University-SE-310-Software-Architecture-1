@@ -5,7 +5,7 @@ import IO.Console.ConsoleOutputDriver;
 import Survey.Survey;
 
 public abstract class SurveyMenuOption {
-    private final String optionLabel;
+    private String optionLabel;
 
     protected final SurveyMenu surveyMenu;
     protected final ConsoleOutputDriver consoleOutputDriver;
@@ -24,7 +24,7 @@ public abstract class SurveyMenuOption {
         if (loadedSurvey != null) {
             performAction(loadedSurvey);
         } else {
-            this.consoleOutputDriver.println("You must load in order to perform this action.");
+            this.consoleOutputDriver.println("You must have a Test/Survey loaded in order to perform this action.");
         }
     }
 
@@ -32,6 +32,10 @@ public abstract class SurveyMenuOption {
 
     public String getOptionLabel() {
         return this.optionLabel;
+    }
+
+    public void setOptionLabel(String optionLabel) {
+        this.optionLabel = optionLabel;
     }
 
 }

@@ -9,7 +9,7 @@ import java.util.List;
 public class SurveyDisplayWAnswersOption extends SurveyMenuOption{
 
     public SurveyDisplayWAnswersOption(SurveyMenu surveyMenu) {
-        super("Display with correct answers", surveyMenu);
+        super("Display an existing Test with correct answers ", surveyMenu);
     }
 
     @Override

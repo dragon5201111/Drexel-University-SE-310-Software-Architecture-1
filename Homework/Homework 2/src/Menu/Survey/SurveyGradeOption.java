@@ -8,7 +8,7 @@ import java.util.List;
 
 public class SurveyGradeOption extends SurveyMenuOption{
     public SurveyGradeOption(SurveyMenu surveyMenu) {
-        super("Grade", surveyMenu);
+        super("Grade a Test", surveyMenu);
     }
 
     private boolean isNotTest(Survey survey) {

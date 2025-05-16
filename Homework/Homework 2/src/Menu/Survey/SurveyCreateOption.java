@@ -24,8 +24,10 @@ public class SurveyCreateOption extends SurveyMenuOption {
 
     private void displayOptions() {
         for(QuestionType questionType : QuestionType.values()){
-            this.consoleOutputDriver.println(questionType.getValue() + ") Add a new " + questionType.getDisplayName());
+            this.consoleOutputDriver.println(questionType.getValue() + ") Add a new " + questionType.getDisplayName() + " question");
         }
+
+        this.consoleOutputDriver.println("7) Return to previous menu");
     }
 
     private Question createQuestionFromQuestionType(QuestionType questionType) {
@@ -53,6 +55,9 @@ public class SurveyCreateOption extends SurveyMenuOption {
             this.consoleOutputDriver.println();
 
             int choice = this.consoleInputDriver.getIntegerInput("Enter question type (select corresponding number): ");
+            if(choice == 7){
+                return;
+            }
             this.consoleOutputDriver.println();
 
             if(!QuestionType.isValidValue(choice)){

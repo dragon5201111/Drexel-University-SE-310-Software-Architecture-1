@@ -81,7 +81,7 @@ public abstract class Question implements Serializable {
 
         List<String> result = new ArrayList<>();
         for (Map.Entry<String, Integer> entry : frequencyMap.entrySet()) {
-            result.add(entry.getKey() + " " + entry.getValue());
+            result.add(String.format("%s: %d", entry.getKey(), entry.getValue()));
         }
 
         return result;

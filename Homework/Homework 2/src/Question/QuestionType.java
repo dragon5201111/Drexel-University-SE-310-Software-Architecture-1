@@ -5,12 +5,12 @@ import java.util.Map;
 
 public enum QuestionType {
     // DO NOT USE DUPLICATE VALUES
-    TRUE_FALSE(1, "True/False"),
-    MULTIPLE_CHOICE(2, "Multiple Choice"),
-    SHORT_ANSWER(3, "Short Answer"),
-    ESSAY(4, "Essay"),
-    VALID_DATE(5, "Valid Date"),
-    MATCHING(6, "Matching");
+    TRUE_FALSE(1, "T/F"),
+    MULTIPLE_CHOICE(2, "multiple-choice"),
+    SHORT_ANSWER(3, "short answer"),
+    ESSAY(4, "essay"),
+    VALID_DATE(5, "date"),
+    MATCHING(6, "matching");
 
     private final int value;
     private final String displayName;

@@ -46,8 +46,7 @@ public class SurveyGradeOption extends SurveyMenuOption{
         if (essayQuestionCount > 0) {
             double autoGradablePoints = 100 - (essayQuestionCount * pointsPerQuestion);
             this.consoleOutputDriver.println("The test was worth 100 points, but only " +
-                    String.format("%.2f", autoGradablePoints) +
-                    " of those points could be auto graded because there was at least one essay question.");
+                    String.format("%.2f of those points could be auto graded because there was %d essay question(s).", autoGradablePoints, essayQuestionCount));
         }
     }
 

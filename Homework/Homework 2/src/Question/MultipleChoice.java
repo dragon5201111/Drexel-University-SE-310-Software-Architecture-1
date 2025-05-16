@@ -83,7 +83,7 @@ public class MultipleChoice extends Question implements Serializable {
 
 
     private int getChoiceIndex(String choice) {
-        if(choice.isEmpty()){
+        if(choice.length() != 1) {
             return -1;
         }
 

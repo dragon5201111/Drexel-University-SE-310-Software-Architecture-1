@@ -1,6 +1,9 @@
 Using Sample Files:
-Sample Files are located in the 'Homework 2/resources/sampleFiles' directory. To use the sample files, run the java program for the first time and select
-"Load" from the menu. This will create a directory 'ser' in the appropriate location relative to your machine.
+To begin, if there is an existing directory in the project named 'ser' please delete it.
+Sample Files are located in the 'Homework 2/resources/sampleFiles' directory.
+To use the sample files, run the java program for the first time and from the main
+menu select either "Survey" or "Test" then, from the sub-menu, choose
+"Load". This will create a directory 'ser' in the appropriate location relative to your machine.
 Then quit the program and drag the sample files in the sampleFiles directory into the
 newly created 'ser' directory. Look for the most recently created 'ser' directory.
 This is the best work-around I could create regarding path issues regarding different machines.

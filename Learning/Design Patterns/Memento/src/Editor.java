@@ -29,7 +29,7 @@ public class Editor implements Subject{
     }
 
     public void restoreMemento(EditorMemento memento) {
-        this.content = memento.getContent();
+        this.content = memento.content();
     }
 
     @Override
